@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.soen6441.risk_game_u14","l":"App"}];updateSearchResults();
