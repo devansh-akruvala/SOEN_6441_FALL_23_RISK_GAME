@@ -29,8 +29,8 @@ public class MapController {
 						d_Map.addContinent(l_CommandSplit[l_WordIndex + 1], Integer.parseInt(l_CommandSplit[l_WordIndex + 2]));
 						//System.out.println("Continent "+l_CommandSplit[l_WordIndex+1]+" with value "+l_CommandSplit[l_WordIndex+2]+" is added...");
 					} catch (Exception e) {
-						//throw new Exception("Enter Int value");
-						return "Enter Int value";
+						//throw new Exception("Enter Integer value");
+						return "Enter Integer value";
 					}
 					l_WordIndex+=3;
 				}

@@ -42,12 +42,13 @@ public class MapControllerTest {
 	@Test
 	public void checkContinentCommand1() {
 		String command = "editcontinent -add A a";
-		String ans="Continents added succcessfully";
+		String ans="Enter Integer value";
 		
 		try {
+			System.out.println(d_MapController.addContinentCommand(command));
 			assertEquals(ans, d_MapController.addContinentCommand(command));
 		} catch (Exception e) {
-			assertTrue(true);
+			assertTrue(false);
 		}
 	}
 }
