@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.soen6441.risk_game_u14","l":"App"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.soen6441.risk_game_u14.model","l":"Continent"},{"p":"com.soen6441.risk_game_u14.model","l":"Country"},{"p":"com.soen6441.risk_game_u14","l":"Game"},{"p":"com.soen6441.risk_game_u14.controller","l":"GameEngine"}];updateSearchResults();

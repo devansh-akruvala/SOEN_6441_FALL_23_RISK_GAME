@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.soen6441.risk_game_u14"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.soen6441.risk_game_u14.controller"},{"l":"com.soen6441.risk_game_u14.model"}];updateSearchResults();
