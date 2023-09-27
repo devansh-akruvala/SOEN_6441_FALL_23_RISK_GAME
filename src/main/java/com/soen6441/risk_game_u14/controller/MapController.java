@@ -51,7 +51,7 @@ public class MapController {
 		}
 	}
 
-	public void addCountryCommand(String p_Command) throws Exception {
+	public String addCountryCommand(String p_Command) throws Exception {
 		String l_CommandSplit[] = p_Command.split(" ");
 		int l_CommandSplitLength = l_CommandSplit.length;
 		if (l_CommandSplit[0].equalsIgnoreCase("editcountry")) {
@@ -67,16 +67,19 @@ public class MapController {
 					l_WordIndex+=2;
 				}
 				else {
-					throw new Exception("Invalid Command");
+					System.out.println("Invalid Command");
+					return "Invalid Command";
 				}
 			}
-			System.out.println("Countries added succcessfully");
+			System.out.println("Countries added successfully");
+			return "Countries added successfully";
 		} else {
-			System.out.println("Invalid Command Country");
+			System.out.println("Invalid Command");
+			return "Invalid Command";
 		}
 	}
 	
-	public void addNeighborsCommand(String p_Command) throws Exception {
+	public String addNeighborsCommand(String p_Command) throws Exception {
 		String l_CommandSplit[] = p_Command.split(" ");
 		int l_CommandSplitLength = l_CommandSplit.length;
 		if (l_CommandSplit[0].equalsIgnoreCase("editneighbor")) {
@@ -90,12 +93,15 @@ public class MapController {
 					l_WordIndex+=2;
 				}
 				else {
-					throw new Exception("Invalid Command");
+					
+					//throw new Exception("Invalid Command");
+					return "Invalid Command";
 				}
 			}
-			System.out.println("Neighbors added succcessfully");
+			return "Neighbors added succcessfully";
 		} else {
-			System.out.println("Invalid Command Country");
+			return "Invalid Command";
+//			System.out.println("Invalid Command Country");
 		}
 	}
 	

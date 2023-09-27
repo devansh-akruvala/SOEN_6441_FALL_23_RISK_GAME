@@ -12,19 +12,14 @@ import com.soen6441.risk_game_u14.model.Map;
 
 public class MapControllerTest {
 	
+	MapController d_MapController=null;
+	Map d_Map = null;
 	
-		Map d_Map = new Map();
-//		Continent d_ContinentObj1 = new Continent("C1", 10);
-//		Continent d_ContinentObj2 = new Continent("C2", 5);
-//		
-//		Country c1 = new Country("a1", "c1");
-//		Country c2 = new Country("a2", "c1");
-//		Country c3 = new Country("a3", "c2");
-//		Country c4 = new Country("a4", "c2");
-		
-		
-		MapController d_MapController = new MapController(d_Map);  
-		
+	@BeforeEach
+	public void initTest() {
+		d_Map = new Map();
+		d_MapController = new MapController(d_Map); 
+	}
 	@Test
 	public void checkContinentCommand() {
 		String command = "editcontinent -add A 1";
@@ -35,20 +30,50 @@ public class MapControllerTest {
 		} catch (Exception e) {
 			assertTrue(false);
 			e.printStackTrace();
-		}
+		}	
 	}
 	
 	
 	@Test
-	public void checkContinentCommand1() {
+	public void checkContinentCommandInteger() {
 		String command = "editcontinent -add A a";
 		String ans="Enter Integer value";
 		
 		try {
-			System.out.println(d_MapController.addContinentCommand(command));
 			assertEquals(ans, d_MapController.addContinentCommand(command));
 		} catch (Exception e) {
 			assertTrue(false);
 		}
 	}
+	
+	@Test
+	public void checkCountry() {
+		try {
+			d_Map.addContinent("A", 10);
+		} catch (Exception e) {
+
+		}
+		String command = "editcountry -add Country1 A";
+		String ans="Countries added successfully";
+		
+		try {
+			assertEquals(ans, d_MapController.addCountryCommand(command));
+		} catch (Exception e) {
+
+			assertTrue(false);
+		}
+	}
+	
+	@Test
+	public void checkCountryInvalid() {
+		String command = "editcountry -add Country1 ";
+		String ans="Invalid Command";
+		
+		try {
+			assertEquals(ans, d_MapController.addCountryCommand(command));
+		} catch (Exception e) {
+			assertTrue(false);
+		}
+	}
+	
 }
