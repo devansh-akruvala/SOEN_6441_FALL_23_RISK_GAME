@@ -12,12 +12,12 @@ import com.soen6441.risk_game_u14.model.Map;
  */
 public class MapController {
 	private Map d_Map;
-
+	
 	public MapController(Map map) {
 		this.d_Map = map;
 	}
 
-	public void addContinentCommand(String p_Command) throws Exception {
+	public String addContinentCommand(String p_Command) throws Exception {
 		String l_CommandSplit[] = p_Command.split(" ");
 		int l_CommandSplitLength = l_CommandSplit.length;
 		
@@ -29,7 +29,8 @@ public class MapController {
 						d_Map.addContinent(l_CommandSplit[l_WordIndex + 1], Integer.parseInt(l_CommandSplit[l_WordIndex + 2]));
 						//System.out.println("Continent "+l_CommandSplit[l_WordIndex+1]+" with value "+l_CommandSplit[l_WordIndex+2]+" is added...");
 					} catch (Exception e) {
-						throw new Exception("Enter Int value");
+						//throw new Exception("Enter Int value");
+						return "Enter Int value";
 					}
 					l_WordIndex+=3;
 				}
@@ -38,12 +39,15 @@ public class MapController {
 					l_WordIndex+=2;
 				}
 				else {
-					throw new Exception("Invalid Command");
+					//throw new Exception("Invalid Command");
+					return "Invalid Command";
 				}
 			}
 			System.out.println("Continents added succcessfully");
+			return "Continents added succcessfully";
 		} else {
 			System.out.println("Invalid Command");
+			return "Invalid Command";
 		}
 	}
 
