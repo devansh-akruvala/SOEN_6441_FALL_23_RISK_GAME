@@ -27,32 +27,32 @@ public class Map {
 		return d_CountryObjects;
 	}
 
-	public void setD_CountryObjects(ArrayList<Country> d_CountryObjects) {
-		this.d_CountryObjects = d_CountryObjects;
+	public void setD_CountryObjects(ArrayList<Country> p_CountryObjects) {
+		this.d_CountryObjects = p_CountryObjects;
 	}
 
 	public ArrayList<Continent> getD_ContinentObjects() {
 		return d_ContinentObjects;
 	}
 
-	public void setD_ContinentObjects(ArrayList<Continent> d_ContinentObjects) {
-		this.d_ContinentObjects = d_ContinentObjects;
+	public void setD_ContinentObjects(ArrayList<Continent> p_ContinentObjects) {
+		this.d_ContinentObjects = p_ContinentObjects;
 	}
 
 	public HashMap<Integer, ArrayList<Integer>> getD_Neighbors() {
 		return d_Neighbors;
 	}
 
-	public void setD_Neighbors(HashMap<Integer, ArrayList<Integer>> d_Neighbors) {
-		this.d_Neighbors = d_Neighbors;
+	public void setD_Neighbors(HashMap<Integer, ArrayList<Integer>> p_Neighbors) {
+		this.d_Neighbors = p_Neighbors;
 	}
 
 	public HashMap<Integer, Integer> getD_PreviousSave() {
 		return d_PreviousSave;
 	}
 
-	public void setD_PreviousSave(HashMap<Integer, Integer> d_PreviousSave) {
-		this.d_PreviousSave = d_PreviousSave;
+	public void setD_PreviousSave(HashMap<Integer, Integer> p_PreviousSave) {
+		this.d_PreviousSave = p_PreviousSave;
 	}
 	
 	public void reset() {
@@ -62,19 +62,19 @@ public class Map {
 		d_PreviousSave.clear();
 	}
 	
-	public void addContinent(String continentName,int continentValue) throws Exception {
-		//check continent already Ecist
-		if(continentAlreadyExist(continentName)) {
-			throw new Exception("Contient Already Exist!!");
+	public void addContinent(String p_ContinentName,int p_ContinentValue) throws Exception {
+		//check continent already Exist
+		if(continentAlreadyExist(p_ContinentName)) {
+			throw new Exception("Continent Already Exist!!");
 		}
 		else {
-			this.d_ContinentObjects.add(new Continent(continentName,continentValue));
+			this.d_ContinentObjects.add(new Continent(p_ContinentName,p_ContinentValue));
 		}
 	}
 	
-	public boolean continentAlreadyExist(String continentName) {
-		for(Continent continentIterator:this.d_ContinentObjects ) {
-			if(continentIterator.getD_ContinentName().equalsIgnoreCase(continentName)) {
+	public boolean continentAlreadyExist(String p_ContinentName) {
+		for(Continent l_ContinentIterator:this.d_ContinentObjects ) {
+			if(l_ContinentIterator.getD_ContinentName().equalsIgnoreCase(p_ContinentName)) {
 				return true;
 			}
 		}
@@ -82,40 +82,39 @@ public class Map {
 	}
 	
 	
-	public void addCountries(String countryName,String continentName) throws Exception {
-		if(continentAlreadyExist(continentName)) {
-			if(countryAlreadyExist(countryName)) {
+	public void addCountries(String p_CountryName,String p_ContinentName) throws Exception {
+		if(continentAlreadyExist(p_ContinentName)) {
+			if(countryAlreadyExist(p_CountryName)) {
 				throw new Exception("Country Already Exist!!");
 			}
 			else {
-				this.d_CountryObjects.add(new Country(countryName, continentName));
+				this.d_CountryObjects.add(new Country(p_CountryName, p_ContinentName));
 			}
 		}else {
 			throw new Exception("Continent Doesnt Exist");
 		}
 	}
 	
-	public boolean countryAlreadyExist(String countryName) {
-		for(Country countryIterator:this.d_CountryObjects ) {
-			if(countryIterator.getD_CountryName().equalsIgnoreCase(countryName)) {
-				System.out.println(countryIterator.getD_CountryName() +" NAme"); 
+	public boolean countryAlreadyExist(String p_CountryName) {
+		for(Country l_CountryIterator:this.d_CountryObjects ) {
+			if(l_CountryIterator.getD_CountryName().equalsIgnoreCase(p_CountryName)) { 
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public void addCountryNeighbour(String countryName,String neighborname) throws Exception {
-		if(countryAlreadyExist(countryName) && countryAlreadyExist(neighborname)) {
+	public void addCountryNeighbour(String p_CountryName,String p_NeighborName) throws Exception {
+		if(countryAlreadyExist(p_CountryName) && countryAlreadyExist(p_NeighborName)) {
 			//find country object and add neighbor
-			Country c1=null;
-			for(Country countryIterator:this.d_CountryObjects ) {
-				if(countryIterator.getD_CountryName().equalsIgnoreCase(countryName)) {
-					c1=countryIterator;
+			Country l_CountryObject=null;
+			for(Country l_CountryIterator:this.d_CountryObjects ) {
+				if(l_CountryIterator.getD_CountryName().equalsIgnoreCase(p_CountryName)) {
+					l_CountryObject=l_CountryIterator;
 					break;
 				}
 			}
-			c1.addNeighbours(neighborname);
+			l_CountryObject.addNeighbours(p_NeighborName);
 			
 		}
 		else {
@@ -126,14 +125,14 @@ public class Map {
 	
 	public void showMap() {
 		System.out.println("------------------------------------------------");
-		for(Continent continentIterator:d_ContinentObjects) {
-			System.out.println("Continent: "+continentIterator.getD_ContinentName()+" value =>  "+continentIterator.getD_ContinentValue());
+		for(Continent l_ContinentIterator:d_ContinentObjects) {
+			System.out.println("Continent: "+l_ContinentIterator.getD_ContinentName()+" value =>  "+l_ContinentIterator.getD_ContinentValue());
 			if(d_CountryObjects.size()>0) {
 				System.out.println("Countries:");
-				for(Country countryIterator: d_CountryObjects) {
-					if(countryIterator.getD_CountryContinent().equalsIgnoreCase(continentIterator.getD_ContinentName())) {
-						System.out.print(countryIterator.getD_CountryName()+ " Neighbors: ");
-						for(String neighbors:countryIterator.getD_Neighbors()) {
+				for(Country l_CountryIterator: d_CountryObjects) {
+					if(l_CountryIterator.getD_CountryContinent().equalsIgnoreCase(l_ContinentIterator.getD_ContinentName())) {
+						System.out.print(l_CountryIterator.getD_CountryName()+ " Neighbors: ");
+						for(String neighbors:l_CountryIterator.getD_Neighbors()) {
 							System.out.print(neighbors+", ");
 						}
 						System.out.println();

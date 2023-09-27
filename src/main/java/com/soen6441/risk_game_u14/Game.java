@@ -4,15 +4,15 @@ import com.soen6441.risk_game_u14.controller.GameEngine;
 /**
  * 
  * 
- *@author Devansh, Meshva 
+ *@author Devansh
  * 
  */
 
 public class Game {
 
 	public static void main(String[] args) throws Exception {
-		GameEngine riskGameEngine =  new GameEngine();
-		riskGameEngine.listenCommand();
+		GameEngine d_RiskGameEngine =  new GameEngine();
+		d_RiskGameEngine.listenCommand();
 	}
 	
 }

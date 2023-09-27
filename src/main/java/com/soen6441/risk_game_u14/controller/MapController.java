@@ -7,7 +7,7 @@ import com.soen6441.risk_game_u14.model.Map;
 /**
  * 
  * 
- *@author Devansh 
+ *@author Devansh Meshva
  * 
  */
 public class MapController {
@@ -17,84 +17,79 @@ public class MapController {
 		this.d_Map = map;
 	}
 
-	public void addContinentCommand(String command) throws Exception {
-		String commandSplit[] = command.split(" ");
-		System.out.println(commandSplit[0]);
-		if (commandSplit[0].equalsIgnoreCase("editcontinent")) {
-			int i = 1;
-			while (i < commandSplit.length) {
-				System.out.println(commandSplit[i]);
-				if (commandSplit[i].equalsIgnoreCase("-add")) {
-					System.out.println("Handling Add Please Add size chevk");
+	public void addContinentCommand(String p_Command) throws Exception {
+		String l_CommandSplit[] = p_Command.split(" ");
+		int l_CommandSplitLength = l_CommandSplit.length;
+		
+		if (l_CommandSplit[0].equalsIgnoreCase("editcontinent")) {
+			int l_WordIndex = 1;
+			while (l_WordIndex < l_CommandSplitLength) {
+				if (l_CommandSplit[l_WordIndex].equalsIgnoreCase("-add") && l_WordIndex+2<l_CommandSplitLength) {				
 					try {
-						d_Map.addContinent(commandSplit[i + 1], Integer.parseInt(commandSplit[i + 2]));
+						d_Map.addContinent(l_CommandSplit[l_WordIndex + 1], Integer.parseInt(l_CommandSplit[l_WordIndex + 2]));
+						//System.out.println("Continent "+l_CommandSplit[l_WordIndex+1]+" with value "+l_CommandSplit[l_WordIndex+2]+" is added...");
 					} catch (Exception e) {
 						throw new Exception("Enter Int value");
 					}
-					i+=3;
+					l_WordIndex+=3;
 				}
-				else if(commandSplit[i].equalsIgnoreCase("-remove")) {
-					System.out.println("Handling Remove Please Add size chevk");
-
+				else if(l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove") && l_WordIndex+1<l_CommandSplitLength) {
 					System.out.println("Hand;le remove");
-					i+=2;
+					l_WordIndex+=2;
 				}
 				else {
 					throw new Exception("Invalid Command");
 				}
 			}
+			System.out.println("Continents added succcessfully");
 		} else {
 			System.out.println("Invalid Command");
 		}
 	}
 
-	public void addCountryCommand(String command) throws Exception {
-		String commandSplit[] = command.split(" ");
-		System.out.println(commandSplit[0]);
-		if (commandSplit[0].equalsIgnoreCase("editcountry")) {
-			int i = 1;
-			while (i < commandSplit.length) {
-				if (commandSplit[i].equalsIgnoreCase("-add")) {
-					System.out.println("Handling Add Please Add size chevk");
-					d_Map.addCountries(commandSplit[i+1], commandSplit[i+2]);
-					i+=3;
+	public void addCountryCommand(String p_Command) throws Exception {
+		String l_CommandSplit[] = p_Command.split(" ");
+		int l_CommandSplitLength = l_CommandSplit.length;
+		if (l_CommandSplit[0].equalsIgnoreCase("editcountry")) {
+			int l_WordIndex = 1;
+			while (l_WordIndex < l_CommandSplitLength) {
+				if (l_CommandSplit[l_WordIndex].equalsIgnoreCase("-add") && l_WordIndex+2<l_CommandSplitLength) {
+					d_Map.addCountries(l_CommandSplit[l_WordIndex+1], l_CommandSplit[l_WordIndex+2]);
+					//System.out.println("Country "+l_CommandSplit[l_WordIndex+1]+" is added in "+l_CommandSplit[l_WordIndex+2]+" continent");
+					l_WordIndex+=3;
 				}
-				else if(commandSplit[i].equalsIgnoreCase("-remove")) {
-					System.out.println("Handling Remove Please Add size chevk");
-
+				else if(l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove") && l_WordIndex+1<l_CommandSplitLength) {
 					System.out.println("Hand;le remove");
-					i+=2;
+					l_WordIndex+=2;
 				}
 				else {
 					throw new Exception("Invalid Command");
 				}
 			}
+			System.out.println("Countries added succcessfully");
 		} else {
 			System.out.println("Invalid Command Country");
 		}
 	}
 	
-	public void addNeighborsCommand(String command) throws Exception {
-		String commandSplit[] = command.split(" ");
-		System.out.println(commandSplit[0]);
-		if (commandSplit[0].equalsIgnoreCase("editneighbor")) {
-			int i = 1;
-			while (i < commandSplit.length) {
-				if (commandSplit[i].equalsIgnoreCase("-add")) {
-					System.out.println("Handling Add Please Add size chevk");
-					d_Map.addCountryNeighbour(commandSplit[i+1], commandSplit[i+2]);
-					i+=3;
+	public void addNeighborsCommand(String p_Command) throws Exception {
+		String l_CommandSplit[] = p_Command.split(" ");
+		int l_CommandSplitLength = l_CommandSplit.length;
+		if (l_CommandSplit[0].equalsIgnoreCase("editneighbor")) {
+			int l_WordIndex = 1;
+			while (l_WordIndex < l_CommandSplit.length) {
+				if (l_CommandSplit[l_WordIndex].equalsIgnoreCase("-add")  && l_WordIndex+2<l_CommandSplitLength) {
+					d_Map.addCountryNeighbour(l_CommandSplit[l_WordIndex+1], l_CommandSplit[l_WordIndex+2]);
+					l_WordIndex+=3;
 				}
-				else if(commandSplit[i].equalsIgnoreCase("-remove")) {
-					System.out.println("Handling Remove Please Add size chevk");
-
-					System.out.println("Hand;le remove");
-					i+=2;
+				else if(l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove") && l_WordIndex+1<l_CommandSplitLength) {
+					l_WordIndex+=2;
 				}
 				else {
 					throw new Exception("Invalid Command");
 				}
 			}
+			System.out.println("Neighbors added succcessfully");
 		} else {
 			System.out.println("Invalid Command Country");
 		}

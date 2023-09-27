@@ -11,7 +11,7 @@ import com.soen6441.risk_game_u14.model.Map;
  * 
  * </ul>
  * 
- * @author Devansh 
+ * @author Devansh,Meshva
  */
 
 public class GameEngine {
@@ -21,47 +21,34 @@ public class GameEngine {
 	public void listenCommand() throws Exception {
 		showCommands();
 		System.out.println("Waiting for Input:\n");
-		Scanner s = new Scanner(System.in);
-		boolean stopGame=false;
-		while(!stopGame) {
-			String command = s.nextLine();
-			System.out.println(command);
+		Scanner l_ScannerObj = new Scanner(System.in);
+		boolean l_StopGame=false;
+		while(!l_StopGame) {
+			String l_Command = l_ScannerObj.nextLine();
 			
 			
-			String commandSection = command.split(" ")[0];
+			String l_CommandSection = l_Command.split(" ")[0];
 			
-			switch(commandSection) {
+			switch(l_CommandSection) {
 				
 			case "editcontinent":
-				System.out.println("Edit Continent");
-				
-				System.out.println("Calling Method It will take care of all commands");
-				System.out.println("Displaying Result");
-				d_MapController.addContinentCommand(command);
+				d_MapController.addContinentCommand(l_Command);
 				break;
 				
 			case "editcountry":
-				System.out.println("Edit countries");
-				System.out.println("Calling Method");
-				System.out.println("Displaying Result");
-				d_MapController.addCountryCommand(command);
+				d_MapController.addCountryCommand(l_Command);
 				break;
 			case "editneighbor":
-				System.out.println("edit neighbor command...");
-				System.out.println("Calling Method");
-				System.out.println("Displaying Result");
-				d_MapController.addNeighborsCommand(command);
+				d_MapController.addNeighborsCommand(l_Command);
 				break;
 			
 			case "showmap":
-				System.out.println("ShowMap command...");
-				System.out.println("Calling Method");
-				System.out.println("Displaying Result");
 				d_MapController.showMap();
 				break;
 			case "quit":
-				stopGame=!stopGame;
-				s.close();
+				l_StopGame=!l_StopGame;
+				l_ScannerObj.close();
+				break;
 			default:
 				System.out.println("Enter Valid Command");
 			
