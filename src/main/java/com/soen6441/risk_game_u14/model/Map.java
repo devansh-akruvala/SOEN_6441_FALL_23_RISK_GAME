@@ -2,12 +2,13 @@ package com.soen6441.risk_game_u14.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 
 /**
  * 
  * 
- *@author Devansh 
+ *@author Devansh Smridhi
  * 
  */
 public class Map {
@@ -122,6 +123,32 @@ public class Map {
 		}
 		
 	}
+
+
+
+public void removeCountry(String p_CountryName) throws Exception {
+    boolean removed = false;
+    Iterator<Country> iterator = d_CountryObjects.iterator();
+
+    while (iterator.hasNext()) {
+        Country country = iterator.next();
+        if (country.getD_CountryName().equalsIgnoreCase(p_CountryName)) {
+            iterator.remove(); // Remove country from list
+            removed = true;
+            break; //if country found
+        }
+    }
+
+    if (!removed) {
+        throw new Exception("Country doesn't exist");
+    }
+}
+
+
+
+
+
+
 	
 	public void showMap() {
 		System.out.println("------------------------------------------------");
