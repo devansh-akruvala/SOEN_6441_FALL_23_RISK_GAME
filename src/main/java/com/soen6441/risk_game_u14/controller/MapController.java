@@ -141,23 +141,12 @@ public class MapController {
         return "Invalid Command";
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	public void saveFile(String p_Command) throws Exception {
+		String l_FileName[] = p_Command.split(" ");
+		d_Map.saveFile(l_FileName[1]);
+		
+	}
 	
 	
 	

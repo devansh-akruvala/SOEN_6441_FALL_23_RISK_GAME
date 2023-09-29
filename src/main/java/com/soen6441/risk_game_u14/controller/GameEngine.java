@@ -45,6 +45,9 @@ public class GameEngine {
 			case "showmap":
 				d_MapController.showMap();
 				break;
+			case "savemap":
+				d_MapController.saveFile(l_Command);
+				break;
 			case "quit":
 				l_StopGame=!l_StopGame;
 				l_ScannerObj.close();
