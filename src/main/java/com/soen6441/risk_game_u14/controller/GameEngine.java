@@ -32,18 +32,25 @@ public class GameEngine {
 			switch(l_CommandSection) {
 				
 			case "editcontinent":
-				d_MapController.addContinentCommand(l_Command);
+				System.out.println("Output: "+d_MapController.addContinentCommand(l_Command));
 				break;
 				
 			case "editcountry":
-				d_MapController.addCountryCommand(l_Command);
+				System.out.println("Output: "+d_MapController.addCountryCommand(l_Command));
 				break;
 			case "editneighbor":
-				d_MapController.addNeighborsCommand(l_Command);
+				System.out.println("Output: "+d_MapController.addNeighborsCommand(l_Command));
 				break;
 			
 			case "showmap":
+				System.out.println("Output: ");
 				d_MapController.showMap();
+				break;
+			case "savemap":
+				System.out.println("Output: "+d_MapController.saveMap(l_Command));
+				break;
+			case "loadmap":
+				System.out.println("Output: "+d_MapController.loadMap(l_Command));
 				break;
 			case "quit":
 				l_StopGame=!l_StopGame;

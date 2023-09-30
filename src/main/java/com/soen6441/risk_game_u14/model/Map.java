@@ -1,8 +1,14 @@
 package com.soen6441.risk_game_u14.model;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
 
 
 /**
@@ -16,12 +22,17 @@ public class Map {
 	private ArrayList<Country> d_CountryObjects; 
 	private HashMap<Integer,ArrayList<Integer>> d_Neighbors;
 	private HashMap<Integer,Integer>d_PreviousSave;
-
+	private HashMap<String,Integer>d_CountryNameIdMap;
+	private HashMap<Integer,String>d_CountryIdNameMap;
+	private HashMap<Integer,String>d_ContinentIdNameMap;
 	public Map(){
 		d_CountryObjects=new ArrayList<Country>();
 		d_ContinentObjects=new ArrayList<Continent>();
 		d_Neighbors=new HashMap<Integer,ArrayList<Integer>>();
 		d_PreviousSave=new HashMap<Integer,Integer>();
+		d_CountryNameIdMap=new HashMap<>();
+		d_ContinentIdNameMap = new HashMap<>();
+		d_CountryIdNameMap = new HashMap<>();
 	}
 
 	public ArrayList<Country> getD_CountryObjects() {
@@ -61,6 +72,9 @@ public class Map {
 		d_ContinentObjects.clear();
 		d_Neighbors.clear();
 		d_PreviousSave.clear();
+		d_CountryNameIdMap.clear();
+		d_ContinentIdNameMap.clear();
+		d_CountryIdNameMap.clear();
 	}
 	
 	public void addContinent(String p_ContinentName,int p_ContinentValue) throws Exception {
@@ -119,7 +133,7 @@ public class Map {
 			
 		}
 		else {
-			throw new Exception("Invalid Command Check country nanes");
+			throw new Exception("Invalid Command Check country names");
 		}
 		
 	}
@@ -145,10 +159,110 @@ public void removeCountry(String p_CountryName) throws Exception {
 }
 
 
+	public void saveFile(String p_FileName) throws Exception {
+		
+		String l_Path="saved_maps\\";
+		File l_File=new File(l_Path+p_FileName);
+		FileWriter l_FileWriterObject = new FileWriter(l_File);
+		PrintWriter l_PrintWriterObject = new PrintWriter(l_FileWriterObject);
+		
+		
+		l_PrintWriterObject.println("Continents");
+		if(this.d_ContinentObjects.size()<0) {
+			l_PrintWriterObject.close();
+			throw new Exception("No continent to save");
+		}
+		for(Continent l_Continent:this.d_ContinentObjects) {
+			l_PrintWriterObject.println(l_Continent.getD_ContinentName()+" "+l_Continent.getD_ContinentValue());
+		}
+		l_PrintWriterObject.println("");		
+		l_PrintWriterObject.println("Countries");
+
+		
+		for(Country l_Country:this.d_CountryObjects) {
+			String l_CountryContinentName = l_Country.getD_CountryContinent();
+			// saving country name and id in map so it can be find in o(1) later on
+			this.d_CountryNameIdMap.put(l_Country.getD_CountryName(),l_Country.getD_CountryId());
+			// searching for continent to get continent id
+			Continent l_ContinentObject = findContinentByName(l_CountryContinentName);
+			if(l_ContinentObject!=null) {
+				l_PrintWriterObject.println(l_Country.getD_CountryName()+" "+l_ContinentObject.getD_ContinentId());
+			}	
+		}
+		l_PrintWriterObject.println("");		
+		l_PrintWriterObject.println("Neighbors");
+	
+		for(Country l_Country:this.d_CountryObjects) {
+			l_PrintWriterObject.print(l_Country.getD_CountryId()+" ");
+			List<String> l_CountrysNeighbors = l_Country.getD_Neighbors();
+			for(String l_NeighborIter:l_CountrysNeighbors) {
+				int l_NeighborCountryId = this.d_CountryNameIdMap.get(l_NeighborIter);
+				l_PrintWriterObject.print(l_NeighborCountryId+" ");
+			}
+			l_PrintWriterObject.println("");
+		}
+		l_PrintWriterObject.println("");
+		l_PrintWriterObject.close();
+		l_FileWriterObject.close();
+		
+	}
 
 
+	public Continent findContinentByName(String p_ContinentName) {
+		Continent l_Continent = null;
+		for(Continent l_ContIter: this.d_ContinentObjects) {
+			if(l_ContIter.getD_ContinentName().equalsIgnoreCase(p_ContinentName)) {
+				l_Continent = l_ContIter;
+				break;
+			}
+		}
+		return l_Continent;
+	}
 
-
+	public void loadFile(String p_FileName) throws Exception {
+		reset();
+		String l_Path="saved_maps\\";
+		File l_File=new File(l_Path+p_FileName);
+		Scanner l_Sc = new Scanner(l_File);
+		while(l_Sc.hasNextLine()){
+			String l_LineInput = l_Sc.nextLine();
+			// reading continents and adding to list
+			if(l_LineInput.equalsIgnoreCase("Continents")) {
+				l_LineInput = l_Sc.nextLine();
+				while(!l_LineInput.equalsIgnoreCase("") && l_Sc.hasNextLine()) {
+					String l_LineSplit[] = l_LineInput.split(" ");
+					Continent l_TempContinent = new Continent(l_LineSplit[0],Integer.parseInt(l_LineSplit[1]));
+					this.d_ContinentIdNameMap.put(l_TempContinent.getD_ContinentId(),l_TempContinent.getD_ContinentName());
+					this.d_ContinentObjects.add(l_TempContinent);
+					l_LineInput=l_Sc.nextLine();
+				}
+			}
+			if(l_LineInput.equalsIgnoreCase("Countries")) {
+				l_LineInput = l_Sc.nextLine();
+				while(!l_LineInput.equalsIgnoreCase("") && l_Sc.hasNextLine()) {
+					String l_LineSplit[] = l_LineInput.split(" ");
+					String l_ContinentName = this.d_ContinentIdNameMap.get(Integer.parseInt(l_LineSplit[1]));
+					Country l_TempCountry = new Country(l_LineSplit[0], l_ContinentName);
+					this.d_CountryIdNameMap.put(l_TempCountry.getD_CountryId(), l_TempCountry.getD_CountryName());
+					this.d_CountryObjects.add(l_TempCountry);
+					l_LineInput=l_Sc.nextLine();
+				}
+			}
+			if(l_LineInput.equalsIgnoreCase("Neighbors")) {
+				l_LineInput = l_Sc.nextLine();
+				while(!l_LineInput.equalsIgnoreCase("") && l_Sc.hasNextLine()) {
+					String l_LineSplit[] = l_LineInput.split(" ");
+					String l_CountryName = d_CountryIdNameMap.get(Integer.parseInt(l_LineSplit[0]));
+					for(int l_NeighborIterator=1;l_NeighborIterator<l_LineSplit.length;l_NeighborIterator++) {
+						String l_NeighborName = d_CountryIdNameMap.get(Integer.parseInt(l_LineSplit[l_NeighborIterator]));
+						addCountryNeighbour(l_CountryName, l_NeighborName);
+					}
+					l_LineInput=l_Sc.nextLine();
+				}
+			}
+		}
+		l_Sc.close();
+	}
 	
 	public void showMap() {
 		System.out.println("------------------------------------------------");
