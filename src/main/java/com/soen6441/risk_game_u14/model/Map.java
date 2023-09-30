@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 
 /**
@@ -22,12 +23,16 @@ public class Map {
 	private HashMap<Integer,ArrayList<Integer>> d_Neighbors;
 	private HashMap<Integer,Integer>d_PreviousSave;
 	private HashMap<String,Integer>d_CountryNameIdMap;
+	private HashMap<Integer,String>d_CountryIdNameMap;
+	private HashMap<Integer,String>d_ContinentIdNameMap;
 	public Map(){
 		d_CountryObjects=new ArrayList<Country>();
 		d_ContinentObjects=new ArrayList<Continent>();
 		d_Neighbors=new HashMap<Integer,ArrayList<Integer>>();
 		d_PreviousSave=new HashMap<Integer,Integer>();
 		d_CountryNameIdMap=new HashMap<>();
+		d_ContinentIdNameMap = new HashMap<>();
+		d_CountryIdNameMap = new HashMap<>();
 	}
 
 	public ArrayList<Country> getD_CountryObjects() {
@@ -68,6 +73,8 @@ public class Map {
 		d_Neighbors.clear();
 		d_PreviousSave.clear();
 		d_CountryNameIdMap.clear();
+		d_ContinentIdNameMap.clear();
+		d_CountryIdNameMap.clear();
 	}
 	
 	public void addContinent(String p_ContinentName,int p_ContinentValue) throws Exception {
@@ -126,7 +133,7 @@ public class Map {
 			
 		}
 		else {
-			throw new Exception("Invalid Command Check country nanes");
+			throw new Exception("Invalid Command Check country names");
 		}
 		
 	}
@@ -152,7 +159,7 @@ public void removeCountry(String p_CountryName) throws Exception {
 }
 
 
-	public String saveFile(String p_FileName) throws Exception {
+	public void saveFile(String p_FileName) throws Exception {
 		
 		String l_Path="saved_maps\\";
 		File l_File=new File(l_Path+p_FileName);
@@ -194,10 +201,10 @@ public void removeCountry(String p_CountryName) throws Exception {
 			}
 			l_PrintWriterObject.println("");
 		}
-		
+		l_PrintWriterObject.println("");
 		l_PrintWriterObject.close();
 		l_FileWriterObject.close();
-		return "Map Saved SuccessFully";
+		
 	}
 
 
@@ -212,6 +219,50 @@ public void removeCountry(String p_CountryName) throws Exception {
 		return l_Continent;
 	}
 
+	public void loadFile(String p_FileName) throws Exception {
+		reset();
+		String l_Path="saved_maps\\";
+		File l_File=new File(l_Path+p_FileName);
+		Scanner l_Sc = new Scanner(l_File);
+		while(l_Sc.hasNextLine()){
+			String l_LineInput = l_Sc.nextLine();
+			// reading continents and adding to list
+			if(l_LineInput.equalsIgnoreCase("Continents")) {
+				l_LineInput = l_Sc.nextLine();
+				while(!l_LineInput.equalsIgnoreCase("") && l_Sc.hasNextLine()) {
+					String l_LineSplit[] = l_LineInput.split(" ");
+					Continent l_TempContinent = new Continent(l_LineSplit[0],Integer.parseInt(l_LineSplit[1]));
+					this.d_ContinentIdNameMap.put(l_TempContinent.getD_ContinentId(),l_TempContinent.getD_ContinentName());
+					this.d_ContinentObjects.add(l_TempContinent);
+					l_LineInput=l_Sc.nextLine();
+				}
+			}
+			if(l_LineInput.equalsIgnoreCase("Countries")) {
+				l_LineInput = l_Sc.nextLine();
+				while(!l_LineInput.equalsIgnoreCase("") && l_Sc.hasNextLine()) {
+					String l_LineSplit[] = l_LineInput.split(" ");
+					String l_ContinentName = this.d_ContinentIdNameMap.get(Integer.parseInt(l_LineSplit[1]));
+					Country l_TempCountry = new Country(l_LineSplit[0], l_ContinentName);
+					this.d_CountryIdNameMap.put(l_TempCountry.getD_CountryId(), l_TempCountry.getD_CountryName());
+					this.d_CountryObjects.add(l_TempCountry);
+					l_LineInput=l_Sc.nextLine();
+				}
+			}
+			if(l_LineInput.equalsIgnoreCase("Neighbors")) {
+				l_LineInput = l_Sc.nextLine();
+				while(!l_LineInput.equalsIgnoreCase("") && l_Sc.hasNextLine()) {
+					String l_LineSplit[] = l_LineInput.split(" ");
+					String l_CountryName = d_CountryIdNameMap.get(Integer.parseInt(l_LineSplit[0]));
+					for(int l_NeighborIterator=1;l_NeighborIterator<l_LineSplit.length;l_NeighborIterator++) {
+						String l_NeighborName = d_CountryIdNameMap.get(Integer.parseInt(l_LineSplit[l_NeighborIterator]));
+						addCountryNeighbour(l_CountryName, l_NeighborName);
+					}
+					l_LineInput=l_Sc.nextLine();
+				}
+			}
+		}
+		l_Sc.close();
+	}
 	
 	public void showMap() {
 		System.out.println("------------------------------------------------");
