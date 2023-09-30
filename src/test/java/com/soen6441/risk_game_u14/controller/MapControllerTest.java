@@ -37,7 +37,7 @@ public class MapControllerTest {
 	@Test
 	public void checkContinentCommandInteger() {
 		String command = "editcontinent -add A a";
-		String ans="Enter Integer value";
+		String ans="Enter integer for Continent value";
 		
 		try {
 			assertEquals(ans, d_MapController.addContinentCommand(command));

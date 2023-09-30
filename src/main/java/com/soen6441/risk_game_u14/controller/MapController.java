@@ -27,7 +27,10 @@ public class MapController {
 				if (l_CommandSplit[l_WordIndex].equalsIgnoreCase("-add") && l_WordIndex+2<l_CommandSplitLength) {				
 					try {
 						d_Map.addContinent(l_CommandSplit[l_WordIndex + 1], Integer.parseInt(l_CommandSplit[l_WordIndex + 2]));
-					} catch (Exception e) {
+					} catch (NumberFormatException ne) {
+						return "Enter integer for Continent value";
+					} 
+					catch (Exception e) {
 						return e.getMessage();
 					}
 					l_WordIndex+=3;
