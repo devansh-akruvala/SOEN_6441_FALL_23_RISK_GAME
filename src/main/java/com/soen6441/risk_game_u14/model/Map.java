@@ -14,7 +14,7 @@ import java.util.Scanner;
 /**
  * 
  * 
- * @author Devansh Smridhi
+ * @author Devansh Smridhi Meshva
  * 
  */
 public class Map {
@@ -86,6 +86,19 @@ public class Map {
 			this.d_ContinentObjects.add(new Continent(p_ContinentName, p_ContinentValue));
 		}
 	}
+	
+	public void removeContinent(String p_ContinentName) throws Exception {
+		if (!continentAlreadyExist(p_ContinentName)) {
+			throw new Exception("Continent Doesnt exist!!");
+		} else {
+			Continent l_TempContinent =  findContinentByName(p_ContinentName);
+			List<Country> l_ContinentsCountries = new ArrayList(l_TempContinent.getD_CountryList());
+			for(Country l_country: l_ContinentsCountries) {
+				removeCountry(l_country.getD_CountryName());
+			}
+			this.d_ContinentObjects.remove(l_TempContinent);
+		}
+	}
 
 	public boolean continentAlreadyExist(String p_ContinentName) {
 		for (Continent l_ContinentIterator : this.d_ContinentObjects) {
@@ -104,12 +117,16 @@ public class Map {
 				Country l_TempCountry = new Country(p_CountryName, p_ContinentName);
 				this.d_CountryIdNameMap.put(l_TempCountry.getD_CountryId(),l_TempCountry.getD_CountryName());
 				this.d_CountryNameIdMap.put(l_TempCountry.getD_CountryName(),l_TempCountry.getD_CountryId());
+				Continent l_CountrysContinent =  findContinentByName(p_ContinentName);
+				l_CountrysContinent.getD_CountryList().add(l_TempCountry);
 				this.d_CountryObjects.add(l_TempCountry);
 			}
 		} else {
 			throw new Exception("Continent Doesnt Exist");
 		}
 	}
+	
+	
 
 	public boolean countryAlreadyExist(String p_CountryName) {
 		for (Country l_CountryIterator : this.d_CountryObjects) {
@@ -152,9 +169,10 @@ public class Map {
 		
 		Country l_CountryObject = findCountryByName(p_CountryName);
 		
-//		Continent l_CountrysContinent = findContinentByName(l_CountryObject.getD_CountryContinent());
-//		l_CountrysContinent.getD_CountryList().remove(l_CountryObject);
-//		
+		Continent l_CountrysContinent = findContinentByName(l_CountryObject.getD_CountryContinent());
+		l_CountrysContinent.getD_CountryList().remove(l_CountryObject);
+		
+		
 		List<String> l1 = new ArrayList(l_CountryObject.getD_Neighbors());
 		for(String l_CountrysNeighbor : l1) {
 			removeNeighbor(p_CountryName,l_CountrysNeighbor, true);
@@ -178,23 +196,11 @@ public class Map {
 		}
 
 		Country p_TempCountry = findCountryByName(p_CountryName);
-		Iterator<String> i =  p_TempCountry.getD_Neighbors().iterator();
-		while(i.hasNext()) {
-			if(i.next().equalsIgnoreCase(p_NeighborName)) {
-				i.remove();
-				break;
-			}
-		}
+		p_TempCountry.getD_Neighbors().remove(p_NeighborName); 
 		
 		if(p_Both==true) {
 			Country p_TempNeighborCountry = findCountryByName(p_NeighborName);
-			Iterator<String> j =  p_TempNeighborCountry.getD_Neighbors().iterator();
-			while(j.hasNext()) {
-				if(j.next().equalsIgnoreCase(p_CountryName)) {
-					j.remove();
-					break;
-				}
-			}
+			p_TempNeighborCountry.getD_Neighbors().remove(p_CountryName);
 		}
 	}
 
@@ -291,6 +297,8 @@ public class Map {
 					String l_LineSplit[] = l_LineInput.split(" ");
 					String l_ContinentName = this.d_ContinentIdNameMap.get(Integer.parseInt(l_LineSplit[1]));
 					Country l_TempCountry = new Country(l_LineSplit[0], l_ContinentName);
+					Continent l_TemoContinent = findContinentByName(l_ContinentName);
+					l_TemoContinent.getD_CountryList().add(l_TempCountry);
 					this.d_CountryIdNameMap.put(l_TempCountry.getD_CountryId(), l_TempCountry.getD_CountryName());
 					this.d_CountryObjects.add(l_TempCountry);
 					l_LineInput = l_Sc.nextLine();
