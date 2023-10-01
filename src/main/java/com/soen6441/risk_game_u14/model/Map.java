@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 /**
@@ -100,7 +101,10 @@ public class Map {
 			if (countryAlreadyExist(p_CountryName)) {
 				throw new Exception("Country Already Exist!!");
 			} else {
-				this.d_CountryObjects.add(new Country(p_CountryName, p_ContinentName));
+				Country l_TempCountry = new Country(p_CountryName, p_ContinentName);
+				this.d_CountryIdNameMap.put(l_TempCountry.getD_CountryId(),l_TempCountry.getD_CountryName());
+				this.d_CountryNameIdMap.put(l_TempCountry.getD_CountryName(),l_TempCountry.getD_CountryId());
+				this.d_CountryObjects.add(l_TempCountry);
 			}
 		} else {
 			throw new Exception("Continent Doesnt Exist");
@@ -126,6 +130,9 @@ public class Map {
 					break;
 				}
 			}
+			
+			Country l_NeighborCountryObject = findCountryByName(p_NeighborName);
+			//this.d_Neighbors.get(l_CountryObject.getD_CountryId()).add(l_NeighborCountryObject.getD_CountryId());
 			l_CountryObject.addNeighbours(p_NeighborName);
 
 		} else {
@@ -135,25 +142,30 @@ public class Map {
 	}
 
 	public void removeCountry(String p_CountryName) throws Exception {
-		boolean removed = false;
-		Iterator<Country> iterator = d_CountryObjects.iterator();
-
-		while (iterator.hasNext()) {
-			Country country = iterator.next();
-			if (country.getD_CountryName().equalsIgnoreCase(p_CountryName)) {
-				iterator.remove(); // Remove country from list
-				removed = true;
-				break; // if country found
-			}
+		// 1 cehck country exist
+		// 2 remove from country list
+		// 3 remove country from contiennst country list
+		// 4 remove neighbors;
+		if (!countryAlreadyExist(p_CountryName)) {
+			throw new Exception("Country Doesnt exist!!");
 		}
-
-		if (!removed) {
-			throw new Exception("Country doesn't exist");
+		
+		Country l_CountryObject = findCountryByName(p_CountryName);
+		
+//		Continent l_CountrysContinent = findContinentByName(l_CountryObject.getD_CountryContinent());
+//		l_CountrysContinent.getD_CountryList().remove(l_CountryObject);
+//		
+		List<String> l1 = new ArrayList(l_CountryObject.getD_Neighbors());
+		for(String l_CountrysNeighbor : l1) {
+			removeNeighbor(p_CountryName,l_CountrysNeighbor, true);
+		
 		}
-
+		
+		this.d_CountryObjects.remove(l_CountryObject);
 	}
-
-	public void removeNeighbor(String p_CountryName, String p_NeighborName) throws Exception {
+	
+	
+	public void removeNeighbor(String p_CountryName, String p_NeighborName , boolean p_Both ) throws Exception {
 		// 1 check country exits
 		// 2 check neighbor exist
 		// 3. check if they are neighbors
@@ -166,8 +178,24 @@ public class Map {
 		}
 
 		Country p_TempCountry = findCountryByName(p_CountryName);
-		p_TempCountry.getD_Neighbors().remove(p_NeighborName);
-
+		Iterator<String> i =  p_TempCountry.getD_Neighbors().iterator();
+		while(i.hasNext()) {
+			if(i.next().equalsIgnoreCase(p_NeighborName)) {
+				i.remove();
+				break;
+			}
+		}
+		
+		if(p_Both==true) {
+			Country p_TempNeighborCountry = findCountryByName(p_NeighborName);
+			Iterator<String> j =  p_TempNeighborCountry.getD_Neighbors().iterator();
+			while(j.hasNext()) {
+				if(j.next().equalsIgnoreCase(p_CountryName)) {
+					j.remove();
+					break;
+				}
+			}
+		}
 	}
 
 	public void saveFile(String p_FileName) throws Exception {

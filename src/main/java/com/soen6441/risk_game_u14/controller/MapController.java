@@ -34,7 +34,7 @@ public class MapController {
 					l_WordIndex += 3;
 				} else if (l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove")
 						&& l_WordIndex + 1 < l_CommandSplitLength) {
-					System.out.println("Handle remove");
+					System.out.println("handle remove continent");
 					l_WordIndex += 2;
 				} else {
 					// throw new Exception("Invalid Command");
@@ -63,7 +63,11 @@ public class MapController {
 					l_WordIndex += 3;
 				} else if (l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove")
 						&& l_WordIndex + 1 < l_CommandSplitLength) {
-					System.out.println("Handle remove");
+						try {
+							d_Map.removeCountry(l_CommandSplit[l_WordIndex+1]);
+						} catch (Exception e) {
+							return e.getMessage();
+						}
 					l_WordIndex += 2;
 				} else {
 					System.out.println("Invalid Command");
@@ -92,7 +96,7 @@ public class MapController {
 				} else if (l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove")
 						&& l_WordIndex + 2 < l_CommandSplitLength) {
 					try {
-						d_Map.removeNeighbor(l_CommandSplit[l_WordIndex + 1], l_CommandSplit[l_WordIndex + 2]);
+						d_Map.removeNeighbor(l_CommandSplit[l_WordIndex + 1], l_CommandSplit[l_WordIndex + 2],false);
 					} catch (Exception e) {
 						return e.getMessage();
 					}
