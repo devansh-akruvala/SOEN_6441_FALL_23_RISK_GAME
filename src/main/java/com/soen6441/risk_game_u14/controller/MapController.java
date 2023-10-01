@@ -171,6 +171,16 @@ public class MapController {
 		return "Map file loaded successfully!!";
 	}
 
+	public String editMap(String p_Command){
+		String l_FileName[] = p_Command.split(" ");
+		try {
+			d_Map.loadFile(l_FileName[1]);
+		} catch (Exception e) {
+			return e.getMessage()+"\n You can create a new map.";
+		}
+		return "Map file loaded successfully!! Now you can edit it";
+	}
+
 	public void showMap() {
 		d_Map.showMap();
 	}
