@@ -54,7 +54,7 @@ public class MapControllerTest {
 
 		}
 		String command = "editcountry -add Country1 A";
-		String ans="Countries added successfully";
+		String ans="Countries command execueted successfully";
 		
 		try {
 			assertEquals(ans, d_MapController.addCountryCommand(command));

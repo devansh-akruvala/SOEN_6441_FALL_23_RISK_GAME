@@ -34,7 +34,11 @@ public class MapController {
 					l_WordIndex += 3;
 				} else if (l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove")
 						&& l_WordIndex + 1 < l_CommandSplitLength) {
-					System.out.println("handle remove continent");
+					try {
+						d_Map.removeContinent(l_CommandSplit[l_WordIndex+1]);
+					} catch (Exception e) {
+						return e.getMessage();
+					}
 					l_WordIndex += 2;
 				} else {
 					// throw new Exception("Invalid Command");
@@ -74,7 +78,7 @@ public class MapController {
 					return "Invalid Command";
 				}
 			}
-			return "Countries added successfully";
+			return "Countries command execueted successfully";
 		} else {
 			return "Invalid Command";
 		}

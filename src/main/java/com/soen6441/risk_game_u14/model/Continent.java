@@ -22,6 +22,7 @@ public class Continent {
 		setD_ContinentId(++D_Count);
 		this.d_ContinentName = d_ContinentName;
 		this.d_ContinentValue = d_ContinentValue;
+		d_CountryList=new ArrayList();
 		
 	}
 	
