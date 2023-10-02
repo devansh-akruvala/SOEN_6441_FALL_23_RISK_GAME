@@ -43,7 +43,7 @@ public class GameEngine {
 				break;
 			
 			case "showmap":
-				System.out.println("Output: ");
+				System.out.println("Output:  ");
 				d_MapController.showMap();
 				break;
 			case "savemap":
