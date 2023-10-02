@@ -47,10 +47,15 @@ public class GameEngine {
 				d_MapController.showMap();
 				break;
 			case "savemap":
+				System.out.println(d_MapController.validateMap());
 				System.out.println("Output: "+d_MapController.saveMap(l_Command));
 				break;
 			case "loadmap":
 				System.out.println("Output: "+d_MapController.loadMap(l_Command));
+				System.out.println(d_MapController.validateMap());
+				break;
+			case "validatemap":
+				System.out.println("Output: "+d_MapController.validateMap());
 				break;
 			case "quit":
 				l_StopGame=!l_StopGame;

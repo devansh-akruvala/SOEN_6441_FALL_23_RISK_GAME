@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class Map {
 	private ArrayList<Continent> d_ContinentObjects;
 	private ArrayList<Country> d_CountryObjects;
-	private HashMap<Integer, ArrayList<Integer>> d_Neighbors;
+	private HashMap<Integer, ArrayList<Integer>> d_AdjList;
 	private HashMap<Integer, Integer> d_PreviousSave;
 	private HashMap<String, Integer> d_CountryNameIdMap;
 	private HashMap<Integer, String> d_CountryIdNameMap;
@@ -29,7 +29,7 @@ public class Map {
 	public Map() {
 		d_CountryObjects = new ArrayList<Country>();
 		d_ContinentObjects = new ArrayList<Continent>();
-		d_Neighbors = new HashMap<Integer, ArrayList<Integer>>();
+		d_AdjList = new HashMap<Integer, ArrayList<Integer>>();
 		d_PreviousSave = new HashMap<Integer, Integer>();
 		d_CountryNameIdMap = new HashMap<>();
 		d_ContinentIdNameMap = new HashMap<>();
@@ -53,11 +53,11 @@ public class Map {
 	}
 
 	public HashMap<Integer, ArrayList<Integer>> getD_Neighbors() {
-		return d_Neighbors;
+		return d_AdjList;
 	}
 
 	public void setD_Neighbors(HashMap<Integer, ArrayList<Integer>> p_Neighbors) {
-		this.d_Neighbors = p_Neighbors;
+		this.d_AdjList = p_Neighbors;
 	}
 
 	public HashMap<Integer, Integer> getD_PreviousSave() {
@@ -71,7 +71,7 @@ public class Map {
 	public void reset() {
 		d_CountryObjects.clear();
 		d_ContinentObjects.clear();
-		d_Neighbors.clear();
+		d_AdjList.clear();
 		d_PreviousSave.clear();
 		d_CountryNameIdMap.clear();
 		d_ContinentIdNameMap.clear();
@@ -86,14 +86,14 @@ public class Map {
 			this.d_ContinentObjects.add(new Continent(p_ContinentName, p_ContinentValue));
 		}
 	}
-	
+
 	public void removeContinent(String p_ContinentName) throws Exception {
 		if (!continentAlreadyExist(p_ContinentName)) {
 			throw new Exception("Continent Doesnt exist!!");
 		} else {
-			Continent l_TempContinent =  findContinentByName(p_ContinentName);
+			Continent l_TempContinent = findContinentByName(p_ContinentName);
 			List<Country> l_ContinentsCountries = new ArrayList(l_TempContinent.getD_CountryList());
-			for(Country l_country: l_ContinentsCountries) {
+			for (Country l_country : l_ContinentsCountries) {
 				removeCountry(l_country.getD_CountryName());
 			}
 			this.d_ContinentObjects.remove(l_TempContinent);
@@ -115,18 +115,17 @@ public class Map {
 				throw new Exception("Country Already Exist!!");
 			} else {
 				Country l_TempCountry = new Country(p_CountryName, p_ContinentName);
-				this.d_CountryIdNameMap.put(l_TempCountry.getD_CountryId(),l_TempCountry.getD_CountryName());
-				this.d_CountryNameIdMap.put(l_TempCountry.getD_CountryName(),l_TempCountry.getD_CountryId());
-				Continent l_CountrysContinent =  findContinentByName(p_ContinentName);
+				this.d_CountryIdNameMap.put(l_TempCountry.getD_CountryId(), l_TempCountry.getD_CountryName());
+				this.d_CountryNameIdMap.put(l_TempCountry.getD_CountryName(), l_TempCountry.getD_CountryId());
+				Continent l_CountrysContinent = findContinentByName(p_ContinentName);
 				l_CountrysContinent.getD_CountryList().add(l_TempCountry);
+				d_AdjList.putIfAbsent(l_TempCountry.getD_CountryId(), new ArrayList<Integer>());
 				this.d_CountryObjects.add(l_TempCountry);
 			}
 		} else {
 			throw new Exception("Continent Doesnt Exist");
 		}
 	}
-	
-	
 
 	public boolean countryAlreadyExist(String p_CountryName) {
 		for (Country l_CountryIterator : this.d_CountryObjects) {
@@ -140,16 +139,12 @@ public class Map {
 	public void addCountryNeighbour(String p_CountryName, String p_NeighborName) throws Exception {
 		if (countryAlreadyExist(p_CountryName) && countryAlreadyExist(p_NeighborName)) {
 			// find country object and add neighbor
-			Country l_CountryObject = null;
-			for (Country l_CountryIterator : this.d_CountryObjects) {
-				if (l_CountryIterator.getD_CountryName().equalsIgnoreCase(p_CountryName)) {
-					l_CountryObject = l_CountryIterator;
-					break;
-				}
-			}
-			
+			Country l_CountryObject = findCountryByName(p_CountryName);
+
 			Country l_NeighborCountryObject = findCountryByName(p_NeighborName);
-			//this.d_Neighbors.get(l_CountryObject.getD_CountryId()).add(l_NeighborCountryObject.getD_CountryId());
+			// this.d_Neighbors.get(l_CountryObject.getD_CountryId()).add(l_NeighborCountryObject.getD_CountryId());
+			d_AdjList.putIfAbsent(l_CountryObject.getD_CountryId(), new ArrayList<Integer>());
+			d_AdjList.get(l_CountryObject.getD_CountryId()).add(l_NeighborCountryObject.getD_CountryId());
 			l_CountryObject.addNeighbours(p_NeighborName);
 
 		} else {
@@ -166,24 +161,22 @@ public class Map {
 		if (!countryAlreadyExist(p_CountryName)) {
 			throw new Exception("Country Doesnt exist!!");
 		}
-		
+
 		Country l_CountryObject = findCountryByName(p_CountryName);
-		
 		Continent l_CountrysContinent = findContinentByName(l_CountryObject.getD_CountryContinent());
 		l_CountrysContinent.getD_CountryList().remove(l_CountryObject);
-		
-		
+
 		List<String> l1 = new ArrayList(l_CountryObject.getD_Neighbors());
-		for(String l_CountrysNeighbor : l1) {
-			removeNeighbor(p_CountryName,l_CountrysNeighbor, true);
-		
+		for (String l_CountrysNeighbor : l1) {
+			removeNeighbor(p_CountryName, l_CountrysNeighbor, true);
+
 		}
-		
+
+		d_AdjList.remove(Integer.valueOf(l_CountryObject.getD_CountryId()));
 		this.d_CountryObjects.remove(l_CountryObject);
 	}
-	
-	
-	public void removeNeighbor(String p_CountryName, String p_NeighborName , boolean p_Both ) throws Exception {
+
+	public void removeNeighbor(String p_CountryName, String p_NeighborName, boolean p_Both) throws Exception {
 		// 1 check country exits
 		// 2 check neighbor exist
 		// 3. check if they are neighbors
@@ -196,16 +189,17 @@ public class Map {
 		}
 
 		Country p_TempCountry = findCountryByName(p_CountryName);
-		p_TempCountry.getD_Neighbors().remove(p_NeighborName); 
+		p_TempCountry.getD_Neighbors().remove(p_NeighborName);
+		Country p_TempNeighborCountry = findCountryByName(p_NeighborName);
+		d_AdjList.get(p_TempCountry.getD_CountryId()).remove(Integer.valueOf(p_TempNeighborCountry.getD_CountryId()));
 		
-		if(p_Both==true) {
-			Country p_TempNeighborCountry = findCountryByName(p_NeighborName);
+		if (p_Both == true) {
 			p_TempNeighborCountry.getD_Neighbors().remove(p_CountryName);
+			d_AdjList.get(p_TempNeighborCountry.getD_CountryId()).remove(Integer.valueOf(p_TempCountry.getD_CountryId()));
 		}
 	}
 
 	public void saveFile(String p_FileName) throws Exception {
-
 		String l_Path = "saved_maps\\";
 		File l_File = new File(l_Path + p_FileName);
 		FileWriter l_FileWriterObject = new FileWriter(l_File);
@@ -319,6 +313,108 @@ public class Map {
 			}
 		}
 		l_Sc.close();
+	}
+
+	public void ValidateMap() throws Exception {
+		// 1 generate adjacency list
+		// 2 check all COUNTRIES INSIDE continents is connected
+		// 3. check whole map is connected
+		if (checkCountriesInsideContinentIsConnected() && checkWholeMapIsConnectedSubGraph()) {
+			
+		}
+		else
+			throw new Exception("");
+	}
+
+	public boolean checkCountriesInsideContinentIsConnected() throws Exception {
+		for (Continent l_Continent : this.d_ContinentObjects) {
+			ArrayList<Country> l_ContinentsCountry = l_Continent.getD_CountryList();
+			if (l_ContinentsCountry.size() == 0) {
+				throw new Exception("Continent "+l_Continent.getD_ContinentName()+" doesnt contain any country");
+			}
+			if (!checkCountriesIsConnected(l_ContinentsCountry))
+				return false;
+		}
+		return true;
+	}
+
+	public boolean checkCountriesIsConnected(ArrayList<Country> p_Countries) {
+		
+		HashMap<Integer, ArrayList<Integer>> l_AdjListCountries = new HashMap<>();
+		for (Country l_Country : p_Countries) {
+			l_AdjListCountries.putIfAbsent(l_Country.getD_CountryId(), new ArrayList<Integer>());			
+			for (String l_Neighbor : l_Country.getD_Neighbors()) {
+				Country l_neighbor = findCountryByName(l_Neighbor);
+				if (p_Countries.indexOf(l_neighbor) >= 0)
+					l_AdjListCountries.get(l_Country.getD_CountryId())
+							.add(findCountryByName(l_Neighbor).getD_CountryId());
+			}
+		}
+		// creating visited array
+		HashMap<Integer, Boolean> l_Visited = new HashMap<>();
+
+		for (java.util.Map.Entry<Integer, ArrayList<Integer>> es : l_AdjListCountries.entrySet()) {
+			l_Visited.put(es.getKey(), false);
+		}
+		// checking
+		int l_NoOfComponents = 0;
+		for (java.util.Map.Entry<Integer, ArrayList<Integer>> es : l_AdjListCountries.entrySet()) {
+			if (!l_Visited.get(es.getKey())) {
+				DFS(es.getKey(), l_Visited, l_AdjListCountries);
+				l_NoOfComponents++;
+			}
+		}
+		if (l_NoOfComponents != 1) {
+			return false;
+		}
+//		else {
+//			System.out.println("Map is Valid");
+//		}
+		return true;
+
+	}
+
+	public boolean checkWholeMapIsConnectedSubGraph() {
+		HashMap<Integer, Boolean> l_Visited = new HashMap<>();
+
+		for (java.util.Map.Entry<Integer, ArrayList<Integer>> es : d_AdjList.entrySet()) {
+			l_Visited.put(es.getKey(), false);
+		}
+		int l_NoOfComponents = 0;
+		for (java.util.Map.Entry<Integer, ArrayList<Integer>> es : d_AdjList.entrySet()) {
+			if (!l_Visited.get(es.getKey())) {
+				DFS(es.getKey(), l_Visited);
+				l_NoOfComponents++;
+			}
+		}
+		if (l_NoOfComponents != 1) {
+			return false;
+		}
+//				else {
+//					System.out.println("Map is Valid");
+//				}
+		return true;
+	}
+
+	public void DFS(int pStartNode, HashMap<Integer, Boolean> p_Visited,
+			HashMap<Integer, ArrayList<Integer>> p_AdjList) {
+		p_Visited.put(pStartNode, true);
+		for (int l_NeighborNode : p_AdjList.get(pStartNode)) {
+			if (!p_Visited.get(l_NeighborNode)) {
+				DFS(l_NeighborNode, p_Visited);
+			}
+		}
+
+	}
+
+	public void DFS(int pStartNode, HashMap<Integer, Boolean> p_Visited) {
+		p_Visited.put(pStartNode, true);
+		for (int l_NeighborNode : d_AdjList.get(pStartNode)) {
+			if (!p_Visited.get(l_NeighborNode)) {
+				DFS(l_NeighborNode, p_Visited);
+			}
+		}
+
 	}
 
 	public void showMap() {
