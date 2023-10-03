@@ -14,7 +14,7 @@ import java.util.Scanner;
 /**
  * 
  * 
- * @author Devansh Smridhi Meshva Aditya
+ * @author Devansh, Smridhi, Meshva, Aditya, Karandeep, Gowtham
  * 
  */
 public class Map {

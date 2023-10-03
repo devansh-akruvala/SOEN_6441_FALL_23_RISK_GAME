@@ -3,7 +3,7 @@ package com.soen6441.risk_game_u14.controller;
 import com.soen6441.risk_game_u14.model.Map;
 
 /**
- * 
+ * This is the controller class for maps of the game
  * 
  * @author Devansh Meshva Smridhi Aditya
  * 
@@ -15,6 +15,11 @@ public class MapController {
 		this.d_Map = map;
 	}
 
+	/***
+	 * This method adds the continents to the map, as entered by the user
+	 * @param p_Command pass the input command from the user
+	 * @return the outcome of the user command
+	 */
 	public String addContinentCommand(String p_Command) {
 		String l_CommandSplit[] = p_Command.split(" ");
 		int l_CommandSplitLength = l_CommandSplit.length;
@@ -52,6 +57,11 @@ public class MapController {
 		}
 	}
 
+	/***
+	 * This method adds the countries and the continent they belong to, in the map, as entered by the user
+	 * @param p_Command pass the input command from the user
+	 * @return the outcome of the user command
+	 */
 	public String addCountryCommand(String p_Command) {
 		String l_CommandSplit[] = p_Command.split(" ");
 		int l_CommandSplitLength = l_CommandSplit.length;
@@ -84,6 +94,11 @@ public class MapController {
 		}
 	}
 
+	/***
+	 * This method declares a country as neighbor to the specified country, as decided by the user.
+	 * @param p_Command pass the input command from the user
+	 * @return the outcome of the user command
+	 */
 	public String addNeighborsCommand(String p_Command) {
 		String l_CommandSplit[] = p_Command.split(" ");
 		int l_CommandSplitLength = l_CommandSplit.length;
@@ -116,6 +131,12 @@ public class MapController {
 		}
 	}
 
+	/***
+	 * This method removes a country  in the map, as chosen by the user
+	 * @param p_Command pass the input command from the user
+	 * @return the outcome of the user command
+	 * @throws Exception in case of the country or neighbor to be removed is invalid
+	 */
 	public String removeCountryCommand(String p_Command) throws Exception {
 
 		String l_CommandSplit[] = p_Command.split(" ");
@@ -148,6 +169,11 @@ public class MapController {
 		}
 	}
 
+	/***
+	 * This method creates a local copy of the map that can be loaded later on.
+	 * @param p_Command pass the input command from the user
+	 * @return the outcome of the command
+	 */
 	public String saveMap(String p_Command) {
 		String l_FileName[] = p_Command.split(" ");
 		try {
@@ -158,6 +184,11 @@ public class MapController {
 		return "Map file saved successfully in saved_map directory!";
 	}
 
+	/***
+	 * This method loads the locally saved map file from the saveMap() method to the current game instance.
+	 * @param p_Command pass the input command from the user
+	 * @return the outcome of the command
+	 */
 	public String loadMap(String p_Command) {
 		String l_FileName[] = p_Command.split(" ");
 		try {
@@ -167,7 +198,11 @@ public class MapController {
 		}
 		return "Map file loaded successfully!!";
 	}
-	
+
+	/***
+	 * This method checks if the map is valid based on the game rules
+	 * @return the outcome of the command
+	 */
 	public String validateMap() {
 		try {
 			d_Map.ValidateMap();
@@ -177,6 +212,11 @@ public class MapController {
 		return "Map is Valid";
 	}
 
+	/***
+	 * This method can edit the map until load map phase
+	 * @param p_Command pass the input command from the user
+	 * @return the outcome of the command
+	 */
 	public String editMap(String p_Command){
 		String l_FileName[] = p_Command.split(" ");
 		try {
@@ -187,6 +227,9 @@ public class MapController {
 		return "Map file loaded successfully!! Now you can edit it";
 	}
 
+	/***
+	 * This is the display method for the game map
+	 */
 	public void showMap() {
 		d_Map.showMap();
 	}

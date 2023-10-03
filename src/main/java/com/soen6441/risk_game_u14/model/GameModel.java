@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
+/***
+ * @author Karandeep, Devansh
+ */
 public class GameModel {
 	private Map d_Map;
 	private ArrayList<Player> d_Players;

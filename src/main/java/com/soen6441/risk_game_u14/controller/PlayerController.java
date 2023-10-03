@@ -10,6 +10,12 @@ import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Orders;
 import com.soen6441.risk_game_u14.model.Player;
 
+/***
+ * This class adds players to the game and randomly assigns countries amongst players
+ * It also allocates armies to the players according to the WarZone rules
+ * Each player is asked to enter their orders in a round-robin fashion until their reinforcements are exhausted
+ * @author Devansh, Aditya
+ */
 public class PlayerController {
 	private GameModel d_GameModel;
 
@@ -17,10 +23,19 @@ public class PlayerController {
 
 	}
 
+	/***
+	 * Constructor for initializing the game
+	 * @param d_GameModel
+	 */
 	public PlayerController(GameModel d_GameModel) {
 		this.d_GameModel = d_GameModel;
 	}
 
+	/***
+	 * Adds the players to the game
+	 * @param p_Command pass the input command from the user
+	 * @return the outcome of the command
+	 */
 	public String gamePlayerCommand(String p_Command) {
 		String l_CommandSplit[] = p_Command.split(" ");
 		int l_CommandSplitLength = l_CommandSplit.length;
@@ -56,6 +71,9 @@ public class PlayerController {
 
 	}
 
+	/***
+	 * Ask orders from the players in a round-robin fashion and store them in an order queue
+	 */
 	public void playerIssueOrder() {
 		// loop through player
 		// ask for order
@@ -109,6 +127,9 @@ public class PlayerController {
 		}
 	}
 
+	/***
+	 * Executes the orders from the queue in FIFO order
+	 */
 	public void playerExecuteOrder() {
 		System.out.println("Executing Orders:");
 		List<Player> l_PlayerList = d_GameModel.getD_Players();
@@ -127,6 +148,9 @@ public class PlayerController {
 		}
 	}
 
+	/***
+	 * This is the display method for the game map
+	 */
 	public void show() {
 		d_GameModel.showplayer();
 	}

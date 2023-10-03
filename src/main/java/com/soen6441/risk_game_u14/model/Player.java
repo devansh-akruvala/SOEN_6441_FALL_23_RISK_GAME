@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
+/***
+ * @author Aditya, Karandeep, Devansh
+ */
 public class Player {
 	private static int D_PlayerCount = 0;
 	private int d_Playerid;

@@ -1,5 +1,8 @@
 package com.soen6441.risk_game_u14.model;
 
+/***
+ * @author Aditya, Karandeep
+ */
 public class Orders {
 	private String d_Orders;
 	private Map d_Map;

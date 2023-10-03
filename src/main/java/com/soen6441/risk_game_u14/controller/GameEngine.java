@@ -18,10 +18,15 @@ import com.soen6441.risk_game_u14.model.Map;
 public class GameEngine {
 
     private GameModel d_GameModel;
-    private MapController d_MapController;// =new MapController(new Map());
+    private MapController d_MapController;
     private PlayerController d_PlayerController;
     int l_PhaseController;
 
+    /***
+     * This is the main game engine constructor method which is responsible for controlling the map and player controllers
+     * and the game and map models in case of assign-counties.
+     * @param p_GameModel instance for a game
+     */
     public GameEngine(GameModel p_GameModel) {
         d_GameModel = p_GameModel;
         d_MapController = new MapController(p_GameModel.getD_Map());
@@ -32,7 +37,12 @@ public class GameEngine {
     public GameEngine() {
 
     }
-
+    /***
+     * This method is responsible for mapping the inputs from the user interface to the game engine
+     * @throws Exception handles the exception at startup phase during assign-countries
+     * where the number of players is only one
+     * Or, more than the total number of countries
+     */
     public void listenCommand() throws Exception {
         showCommands();
         // 1 = edit phase
@@ -141,6 +151,11 @@ public class GameEngine {
         }
     }
 
+    /***
+     * This method identifies the current game stage in order for the different sections of the game to work properly
+     * @param p_PhaseController contains the code for current phase of game
+     * @return the current game stage
+     */
     public String returnPhase(int p_PhaseController) {
         if (p_PhaseController == 1)
             return "Edit Phase";
@@ -149,6 +164,9 @@ public class GameEngine {
         return "Game Loop Phase";
     }
 
+    /***
+     * This method lists the valid game commands to the user
+     */
     public void showCommands() {
         System.out.println("Edit Phase Command:\n\n" + "editcontinent -add continentID continentvalue -remove continentID\r\n"
                 + "editcountry -add countryID continentID -remove countryID\r\n"
