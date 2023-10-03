@@ -22,10 +22,18 @@ public class Continent {
 		setD_ContinentId(++D_Count);
 		this.d_ContinentName = d_ContinentName;
 		this.d_ContinentValue = d_ContinentValue;
-		d_CountryList=new ArrayList();
+		d_CountryList=new ArrayList<>();
 		
 	}
 	
+	public static int getD_Count() {
+		return D_Count;
+	}
+
+	public static void setD_Count(int d_Count) {
+		D_Count = d_Count;
+	}
+
 	public int getD_ContinentId() {
 		return d_ContinentId;
 	}
