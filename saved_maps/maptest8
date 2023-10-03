@@ -1,0 +1,28 @@
+Continents
+Asia 10
+Europe 5
+
+Countries
+Nepal 1
+Pakistan 1
+India 1
+Bhutan 1
+Maldives 1
+France 2
+Ukraine 2
+Germany 2
+Bulgaria 2
+Spain 2
+
+Neighbors
+1 3 4 
+2 3 7 
+3 1 2 4 5 
+4 1 3 
+5 3 
+6 8 10 
+7 9 2 
+8 6 9 
+9 8 7 
+10 6 
+

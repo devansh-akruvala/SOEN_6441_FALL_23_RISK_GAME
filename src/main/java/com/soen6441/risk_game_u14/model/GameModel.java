@@ -48,10 +48,10 @@ public class GameModel {
 
 	public void addPlayers(String p_PlayerName) throws Exception {
 		if ((d_Players.size() >= d_Map.getD_CountryObjects().size())) {
-			throw new Exception("Reached Max Number of Players can be added to the game");
+			throw new Exception("Reached max number of players can be added to the game");
 		}
 		if (duplicatePlayerExist(p_PlayerName)) {
-			throw new Exception("Please enter a differnt Player name as this name already exists");
+			throw new Exception("Please enter a different player name as this name already exists");
 		}
 		Player l_TempPlayer = new Player(p_PlayerName);
 		d_Players.add(l_TempPlayer);
