@@ -5,7 +5,7 @@ import com.soen6441.risk_game_u14.model.Map;
 /**
  * 
  * 
- * @author Devansh Meshva Smridhi
+ * @author Devansh Meshva Smridhi Aditya
  * 
  */
 public class MapController {
@@ -45,7 +45,7 @@ public class MapController {
 					return "Invalid Command";
 				}
 			}
-			return "Continents command executed succcessfully";
+			return "Continents command executed successfully";
 		} else {
 			System.out.println("Invalid Command");
 			return "Invalid Command";
@@ -78,7 +78,7 @@ public class MapController {
 					return "Invalid Command";
 				}
 			}
-			return "Countries command execueted successfully";
+			return "Countries command executed successfully";
 		} else {
 			return "Invalid Command";
 		}
@@ -109,7 +109,7 @@ public class MapController {
 					return "Invalid Command";
 				}
 			}
-			return "Neighbors command executed succcessfully";
+			return "Neighbors command executed successfully";
 		} else {
 			return "Invalid Command";
 			// System.out.println("Invalid Command Country");
@@ -136,8 +136,6 @@ public class MapController {
 					// index forward by 2 to skip the removed country name
 					l_WordIndex += 2;
 				} else {
-
-					System.out.println("Invalid Command");
 					return "Invalid Command";
 				}
 			}
@@ -146,7 +144,6 @@ public class MapController {
 			return "Countries removed successfully";
 		} else {
 			// If the first word is not "editcountry"
-			System.out.println("Invalid Command");
 			return "Invalid Command";
 		}
 	}
@@ -158,7 +155,7 @@ public class MapController {
 		} catch (Exception e) {
 			return e.getMessage();
 		}
-		return "map file saved successfully in saved_map directory!!";
+		return "Map file saved successfully in saved_map directory!";
 	}
 
 	public String loadMap(String p_Command) {

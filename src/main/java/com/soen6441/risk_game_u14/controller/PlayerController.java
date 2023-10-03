@@ -48,7 +48,7 @@ public class PlayerController {
 					return "Invalid Command";
 				}
 			}
-			return "Players command executed succcessfully";
+			return "Players command executed successfully";
 		} else {
 			System.out.println("Invalid Command");
 			return "Invalid Command";
@@ -59,7 +59,7 @@ public class PlayerController {
 	public void playerIssueOrder() {
 		// loop through player
 		// ask for order
-		// check oredr format
+		// check order format
 		// check country exist
 		// check country belongs to player
 		// if everything is ok then add player order to his queue;
@@ -90,7 +90,7 @@ public class PlayerController {
 									// update player armies
 									l_Player.setD_ArmiesCount(l_PlayerArmies - l_noOfArmiesToBeDeployed);
 								} else {
-									System.out.println("Player Doesnt have enough armies!!");
+									System.out.println("Player doesn't have enough armies!!");
 
 								}
 							} else {
@@ -98,7 +98,7 @@ public class PlayerController {
 
 							}
 						} else {
-							System.out.println("Input Country Doesnt Exist!!");
+							System.out.println("Input Country doesn't exist!!");
 
 						}
 					} else {

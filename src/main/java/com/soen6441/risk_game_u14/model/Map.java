@@ -14,7 +14,7 @@ import java.util.Scanner;
 /**
  * 
  * 
- * @author Devansh Smridhi Meshva
+ * @author Devansh Smridhi Meshva Aditya
  * 
  */
 public class Map {
@@ -122,7 +122,7 @@ public class Map {
 				this.d_CountryNameIdMap.put(l_TempCountry.getD_CountryName(), l_TempCountry.getD_CountryId());
 				Continent l_CountrysContinent = findContinentByName(p_ContinentName);
 				l_CountrysContinent.getD_CountryList().add(l_TempCountry);
-				d_AdjList.putIfAbsent(l_TempCountry.getD_CountryId(), new ArrayList<Integer>());
+				d_AdjList.putIfAbsent(Integer.valueOf(l_TempCountry.getD_CountryId()), new ArrayList<Integer>());
 				this.d_CountryObjects.add(l_TempCountry);
 			}
 		} else {
@@ -145,9 +145,9 @@ public class Map {
 			Country l_CountryObject = findCountryByName(p_CountryName);
 
 			Country l_NeighborCountryObject = findCountryByName(p_NeighborName);
-			// this.d_Neighbors.get(l_CountryObject.getD_CountryId()).add(l_NeighborCountryObject.getD_CountryId());
-			d_AdjList.putIfAbsent(l_CountryObject.getD_CountryId(), new ArrayList<Integer>());
-			d_AdjList.get(l_CountryObject.getD_CountryId()).add(l_NeighborCountryObject.getD_CountryId());
+
+			d_AdjList.putIfAbsent(Integer.valueOf(l_CountryObject.getD_CountryId()), new ArrayList<Integer>());
+			d_AdjList.get(Integer.valueOf(l_CountryObject.getD_CountryId())).add(l_NeighborCountryObject.getD_CountryId());
 			l_CountryObject.addNeighbours(p_NeighborName);
 
 		} else {
@@ -157,9 +157,9 @@ public class Map {
 	}
 
 	public void removeCountry(String p_CountryName) throws Exception {
-		// 1 cehck country exist
+		// 1 check country exist
 		// 2 remove from country list
-		// 3 remove country from contiennst country list
+		// 3 remove country from continent country list
 		// 4 remove neighbors;
 		if (!countryAlreadyExist(p_CountryName)) {
 			throw new Exception("Country Doesnt exist!!");
@@ -194,11 +194,11 @@ public class Map {
 		Country p_TempCountry = findCountryByName(p_CountryName);
 		p_TempCountry.getD_Neighbors().remove(p_NeighborName);
 		Country p_TempNeighborCountry = findCountryByName(p_NeighborName);
-		d_AdjList.get(p_TempCountry.getD_CountryId()).remove(Integer.valueOf(p_TempNeighborCountry.getD_CountryId()));
+		d_AdjList.get(Integer.valueOf(p_TempCountry.getD_CountryId())).remove(Integer.valueOf(p_TempNeighborCountry.getD_CountryId()));
 		
 		if (p_Both == true) {
 			p_TempNeighborCountry.getD_Neighbors().remove(p_CountryName);
-			d_AdjList.get(p_TempNeighborCountry.getD_CountryId()).remove(Integer.valueOf(p_TempCountry.getD_CountryId()));
+			d_AdjList.get(Integer.valueOf(p_TempNeighborCountry.getD_CountryId())).remove(Integer.valueOf(p_TempCountry.getD_CountryId()));
 		}
 	}
 
@@ -236,7 +236,7 @@ public class Map {
 			l_PrintWriterObject.print(l_Country.getD_CountryId() + " ");
 			List<String> l_CountrysNeighbors = l_Country.getD_Neighbors();
 			for (String l_NeighborIter : l_CountrysNeighbors) {
-				int l_NeighborCountryId = this.d_CountryNameIdMap.get(l_NeighborIter);
+				int l_NeighborCountryId = this.d_CountryNameIdMap.get(Integer.valueOf(l_NeighborIter));
 				l_PrintWriterObject.print(l_NeighborCountryId + " ");
 			}
 			l_PrintWriterObject.println("");
@@ -282,7 +282,7 @@ public class Map {
 				while (!l_LineInput.equalsIgnoreCase("") && l_Sc.hasNextLine()) {
 					String l_LineSplit[] = l_LineInput.split(" ");
 					Continent l_TempContinent = new Continent(l_LineSplit[0], Integer.parseInt(l_LineSplit[1]));
-					this.d_ContinentIdNameMap.put(l_TempContinent.getD_ContinentId(),
+					this.d_ContinentIdNameMap.put(Integer.valueOf(l_TempContinent.getD_ContinentId()),
 							l_TempContinent.getD_ContinentName());
 					this.d_ContinentObjects.add(l_TempContinent);
 					l_LineInput = l_Sc.nextLine();
@@ -297,7 +297,7 @@ public class Map {
 					
 					Continent l_TemoContinent = findContinentByName(l_ContinentName);
 					l_TemoContinent.getD_CountryList().add(l_TempCountry);
-					this.d_CountryIdNameMap.put(l_TempCountry.getD_CountryId(), l_TempCountry.getD_CountryName());
+					this.d_CountryIdNameMap.put(Integer.valueOf(l_TempCountry.getD_CountryId()), l_TempCountry.getD_CountryName());
 					this.d_CountryObjects.add(l_TempCountry);
 					l_LineInput = l_Sc.nextLine();
 				}
@@ -346,7 +346,7 @@ public class Map {
 		
 		HashMap<Integer, ArrayList<Integer>> l_AdjListCountries = new HashMap<>();
 		for (Country l_Country : p_Countries) {
-			l_AdjListCountries.putIfAbsent(l_Country.getD_CountryId(), new ArrayList<Integer>());			
+			l_AdjListCountries.putIfAbsent(Integer.valueOf(l_Country.getD_CountryId()), new ArrayList<Integer>());
 			for (String l_Neighbor : l_Country.getD_Neighbors()) {
 				Country l_neighbor = findCountryByName(l_Neighbor);
 				if (p_Countries.indexOf(l_neighbor) >= 0)
@@ -358,8 +358,9 @@ public class Map {
 		HashMap<Integer, Boolean> l_Visited = new HashMap<>();
 
 		for (java.util.Map.Entry<Integer, ArrayList<Integer>> es : l_AdjListCountries.entrySet()) {
-			l_Visited.put(es.getKey(), false);
+			l_Visited.put(Integer.valueOf(es.getKey()), false);
 		}
+
 		// checking
 		int l_NoOfComponents = 0;
 		for (java.util.Map.Entry<Integer, ArrayList<Integer>> es : l_AdjListCountries.entrySet()) {
@@ -371,9 +372,6 @@ public class Map {
 		if (l_NoOfComponents != 1) {
 			return false;
 		}
-//		else {
-//			System.out.println("Map is Valid");
-//		}
 		return true;
 
 	}
@@ -382,11 +380,11 @@ public class Map {
 		HashMap<Integer, Boolean> l_Visited = new HashMap<>();
 
 		for (java.util.Map.Entry<Integer, ArrayList<Integer>> es : d_AdjList.entrySet()) {
-			l_Visited.put(es.getKey(), false);
+			l_Visited.put(Integer.valueOf(es.getKey()), false);
 		}
 		int l_NoOfComponents = 0;
 		for (java.util.Map.Entry<Integer, ArrayList<Integer>> es : d_AdjList.entrySet()) {
-			if (!l_Visited.get(es.getKey())) {
+			if (!l_Visited.get(Integer.valueOf(es.getKey()))) {
 				DFS(es.getKey(), l_Visited);
 				l_NoOfComponents++;
 			}
@@ -394,27 +392,24 @@ public class Map {
 		if (l_NoOfComponents != 1) {
 			return false;
 		}
-//				else {
-//					System.out.println("Map is Valid");
-//				}
-		return true;
+			return true;
 	}
 
 	public void DFS(int pStartNode, HashMap<Integer, Boolean> p_Visited,
 			HashMap<Integer, ArrayList<Integer>> p_AdjList) {
-		p_Visited.put(pStartNode, true);
+		p_Visited.put(Integer.valueOf(pStartNode), true);
 		for (int l_NeighborNode : p_AdjList.get(pStartNode)) {
-			if (!p_Visited.get(l_NeighborNode)) {
-				DFS(l_NeighborNode, p_Visited);
+			if (!p_Visited.get(Integer.valueOf(l_NeighborNode))) {
+				DFS(l_NeighborNode, p_Visited,p_AdjList);
 			}
 		}
 
 	}
 
 	public void DFS(int pStartNode, HashMap<Integer, Boolean> p_Visited) {
-		p_Visited.put(pStartNode, true);
-		for (int l_NeighborNode : d_AdjList.get(pStartNode)) {
-			if (!p_Visited.get(l_NeighborNode)) {
+		p_Visited.put(Integer.valueOf(pStartNode), true);
+		for (int l_NeighborNode : d_AdjList.get(Integer.valueOf(pStartNode))) {
+			if (!p_Visited.get(Integer.valueOf(l_NeighborNode))) {
 				DFS(l_NeighborNode, p_Visited);
 			}
 		}
