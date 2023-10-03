@@ -170,6 +170,15 @@ public class MapController {
 		}
 		return "Map file loaded successfully!!";
 	}
+	
+	public String validateMap() {
+		try {
+			d_Map.ValidateMap();
+		} catch (Exception e) {
+			return e.getMessage() + " Map is not valid!!";
+		}
+		return "Map is Valid";
+	}
 
 	public String editMap(String p_Command){
 		String l_FileName[] = p_Command.split(" ");
