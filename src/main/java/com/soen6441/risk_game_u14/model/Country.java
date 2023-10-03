@@ -25,6 +25,14 @@ public class Country {
 		this.d_NoOfArmies=0;
 	}
 
+	public static int getD_Count() {
+		return D_Count;
+	}
+
+	public static void setD_Count(int d_Count) {
+		D_Count = d_Count;
+	}
+
 	public int getD_CountryId() {
 		return d_CountryId;
 	}

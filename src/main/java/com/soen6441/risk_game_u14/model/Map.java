@@ -76,6 +76,9 @@ public class Map {
 		d_CountryNameIdMap.clear();
 		d_ContinentIdNameMap.clear();
 		d_CountryIdNameMap.clear();
+		Continent.setD_Count(0);
+		Country.setD_Count(0);
+		
 	}
 
 	public void addContinent(String p_ContinentName, int p_ContinentValue) throws Exception {
@@ -290,7 +293,10 @@ public class Map {
 				while (!l_LineInput.equalsIgnoreCase("") && l_Sc.hasNextLine()) {
 					String l_LineSplit[] = l_LineInput.split(" ");
 					String l_ContinentName = this.d_ContinentIdNameMap.get(Integer.parseInt(l_LineSplit[1]));
+					System.out.println(l_ContinentName);
+					System.out.println(d_ContinentIdNameMap);
 					Country l_TempCountry = new Country(l_LineSplit[0], l_ContinentName);
+					
 					Continent l_TemoContinent = findContinentByName(l_ContinentName);
 					l_TemoContinent.getD_CountryList().add(l_TempCountry);
 					this.d_CountryIdNameMap.put(l_TempCountry.getD_CountryId(), l_TempCountry.getD_CountryName());
