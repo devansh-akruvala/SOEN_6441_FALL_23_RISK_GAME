@@ -23,7 +23,7 @@ public class MapControllerTest {
 	@Test
 	public void checkContinentCommand() {
 		String command = "editcontinent -add A 1";
-		String ans="Continents added succcessfully";
+		String ans="Continents command executed succcessfully";
 		
 		try {
 			assertEquals(ans, d_MapController.addContinentCommand(command));

@@ -39,8 +39,7 @@ public class GameEngine {
 		// 2 = edit done load player gamestart
 		// 3 = gameloop starts
 
-
-		System.out.print("In "+returnPhase(l_PhaseController));
+		System.out.print("In " + returnPhase(l_PhaseController));
 		System.out.println(" Waiting for Input:");
 		System.out.println("----------------------------------------");
 		Scanner l_ScannerObj = new Scanner(System.in);
@@ -84,7 +83,7 @@ public class GameEngine {
 				d_MapController.showMap();
 				if (l_PhaseController > 1)
 					System.out.println("\n\nGame Status: ");
-					d_GameModel.showplayer();
+				d_GameModel.showplayer();
 				break;
 			case "savemap":
 				if (l_PhaseController == 1) {
@@ -99,7 +98,7 @@ public class GameEngine {
 					System.out.println("Output: " + d_MapController.loadMap(l_Command));
 					System.out.println(d_MapController.validateMap());
 					l_PhaseController = 2;
-					System.out.println("In "+returnPhase(l_PhaseController));
+					System.out.println("In " + returnPhase(l_PhaseController));
 				} else {
 					System.out.println("Invalid command in " + returnPhase(l_PhaseController));
 				}
@@ -121,7 +120,7 @@ public class GameEngine {
 			case "assigncountries":
 				if (l_PhaseController == 2) {
 					l_PhaseController = 3;
-					System.out.println("In "+returnPhase(l_PhaseController));
+					System.out.println("In " + returnPhase(l_PhaseController));
 					d_GameModel.startUpPhase();
 					d_GameModel.showplayer();
 					d_PlayerController.playerIssueOrder();
@@ -150,9 +149,14 @@ public class GameEngine {
 	}
 
 	public void showCommands() {
-		System.out.println("editcontinent -add continentID continentvalue -remove continentID\r\n"
+		System.out.println("Edit Phase Command:\n\n"+"editcontinent -add continentID continentvalue -remove continentID\r\n"
 				+ "editcountry -add countryID continentID -remove countryID\r\n"
-				+ "editneighbor -add countryID neighborcountryID -remove countryID neighborcountryID\n");
+				+ "editneighbor -add countryID neighborcountryID -remove countryID neighborcountryID\n"
+				+ "savemap filename\r\n" + "editmap filename\r\n" + "validatemap\r\n" +"----------------------------------------------\n"+"StartUp Phase Commands:\n\n"+"loadmap filename\r\n"
+				+ "gameplayer -add playername -remove playername\r\n" + "assigncountries\r\n"
+				+"----------------------------------------------\n"
+				+"In Game Phase Command\n\n"
+				+ "deploy countryID num\r\n");
 
 	}
 

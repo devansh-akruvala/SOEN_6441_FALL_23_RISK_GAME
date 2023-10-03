@@ -45,7 +45,7 @@ public class MapController {
 					return "Invalid Command";
 				}
 			}
-			return "Continents added succcessfully";
+			return "Continents command executed succcessfully";
 		} else {
 			System.out.println("Invalid Command");
 			return "Invalid Command";
