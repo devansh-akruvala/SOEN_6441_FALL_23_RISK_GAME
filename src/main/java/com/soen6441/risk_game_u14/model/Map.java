@@ -293,8 +293,6 @@ public class Map {
 				while (!l_LineInput.equalsIgnoreCase("") && l_Sc.hasNextLine()) {
 					String l_LineSplit[] = l_LineInput.split(" ");
 					String l_ContinentName = this.d_ContinentIdNameMap.get(Integer.parseInt(l_LineSplit[1]));
-					System.out.println(l_ContinentName);
-					System.out.println(d_ContinentIdNameMap);
 					Country l_TempCountry = new Country(l_LineSplit[0], l_ContinentName);
 					
 					Continent l_TemoContinent = findContinentByName(l_ContinentName);
