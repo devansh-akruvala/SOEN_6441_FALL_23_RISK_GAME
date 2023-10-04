@@ -14,9 +14,9 @@ import com.soen6441.risk_game_u14.model.Map;
 import com.soen6441.risk_game_u14.model.Orders;
 import com.soen6441.risk_game_u14.model.Player;
 
-
 /**
  * This Class tests the methods of GameModel class
+ * 
  * @author Meshva
  */
 public class GameModelTest {
@@ -25,24 +25,25 @@ public class GameModelTest {
 	List<String> d_Names;
 	ArrayList<Player> d_List;
 	List<String> d_CheckNames;
-	Player d_C1,d_C2;
+	Player d_C1, d_C2;
 	private Map d_Map;
-	
+
 	/**
 	 * To set up the context for test cases
+	 * 
 	 * @throws Exception relevant for the map creation phase
-	 */   
+	 */
 	@BeforeEach
 	public void initTestContext() throws Exception {
 
-		d_Check =  new ArrayList<Player>();
+		d_Check = new ArrayList<Player>();
 		d_Names = new ArrayList<>();
 		d_CheckNames = new ArrayList<>();
 		d_Map = new Map();
-		d_Map.addContinent("asia",4);
-		d_Map.addCountries("India","asia");
-		d_Map.addCountries("Singapore","asia");
-		d_Map.addCountries("Japan","asia");
+		d_Map.addContinent("asia", 4);
+		d_Map.addCountries("India", "asia");
+		d_Map.addCountries("Singapore", "asia");
+		d_Map.addCountries("Japan", "asia");
 		d_GameModel = new GameModel(d_Map);
 		d_GameModel.addPlayers("Devansh");
 		d_GameModel.addPlayers("Meshva");
@@ -51,41 +52,44 @@ public class GameModelTest {
 		d_Check.add(d_C1);
 		d_Check.add(d_C2);
 	}
+
 	/**
-	 * This test case checks the functionality of adding  method
+	 * This test case checks the functionality of adding method
 	 *
 	 */
-	@Test 
+	@Test
 	public void testAddPlayer() {
-		for(Player l_Player:d_Check) {
+		for (Player l_Player : d_Check) {
 			d_Names.add(l_Player.getD_PlayerName());
 		}
-		for(Player l_Player:d_GameModel.getD_Players()) {
+		for (Player l_Player : d_GameModel.getD_Players()) {
 			d_CheckNames.add(l_Player.getD_PlayerName());
 		}
-		assertEquals(d_CheckNames,d_Names);
+		assertEquals(d_CheckNames, d_Names);
 	}
+
 	/**
 	 * To test if player already exists or not
-	 */	
-	@Test 
+	 */
+	@Test
 	public void testAddPlayerAlreadyExist() {
-		String l_ExpectedMessage="Please enter a different player name as this name already exists";
+		String l_ExpectedMessage = "Please enter a different player name as this name already exists";
 		String l_ActualMessage = "";
 		try {
 			d_GameModel.addPlayers("Devansh");
 		} catch (Exception p_E) {
 			l_ActualMessage = p_E.getMessage();
 		}
-		assertEquals(l_ExpectedMessage,l_ActualMessage);
+		assertEquals(l_ExpectedMessage, l_ActualMessage);
 	}
+
 	/**
 	 * To test if maximum players have been reached or not
 	 */
 
-	@Test 
+	@Test
 	public void testAddPlayerReachedMax() {
-		String l_ExpectedMessage="Reached max number of players can be added to the game";
+		String l_ExpectedMessage = "Reached max number of players can be added to the game";
 		String l_ActualMessage = "";
 		try {
 			d_GameModel.addPlayers("Smridhi");
@@ -95,64 +99,67 @@ public class GameModelTest {
 		} catch (Exception p_E) {
 			l_ActualMessage = p_E.getMessage();
 		}
-		assertEquals(l_ExpectedMessage,l_ActualMessage);
+		assertEquals(l_ExpectedMessage, l_ActualMessage);
 	}
 
 	/**
 	 * This test case checks the functionality of RemovePlayer method
+	 * 
 	 * @throws Exception Player to be removed does not exist
 	 */
-	@Test 
+	@Test
 	public void testRemovePlayer() throws Exception {
 		d_GameModel.removePlayers("Meshva");
-		for(Player l_Player:d_Check) {
+		for (Player l_Player : d_Check) {
 			d_Names.add(l_Player.getD_PlayerName());
 		}
-		for(Player l_Player:d_GameModel.getD_Players()) {
+		for (Player l_Player : d_GameModel.getD_Players()) {
 			d_CheckNames.add(l_Player.getD_PlayerName());
 		}
 		assertFalse(d_CheckNames.equals(d_Names));
 	}
+
 	/**
 	 * To test player to be removed exist or not
 	 */
-	@Test 
+	@Test
 	public void testRemovePlayerNotExists() {
-		String l_ExpectedMessage="Player Doesnt Exist!!";
+		String l_ExpectedMessage = "Player Doesnt Exist!!";
 		String l_ActualMessage = "";
 		try {
 			d_GameModel.removePlayers("Smridhi");
-		}catch (Exception p_E) {
+		} catch (Exception p_E) {
 			l_ActualMessage = p_E.getMessage();
 		}
-		assertEquals(l_ExpectedMessage,l_ActualMessage);
+		assertEquals(l_ExpectedMessage, l_ActualMessage);
 
 	}
+
 	/**
-	 * This checks if player is deploying more armies than he has in its reinforcement pool
+	 * This checks if player is deploying more armies than he has in its
+	 * reinforcement pool
 	 * 
 	 */
-	@Test 
+	@Test
 	public void testIssueOrderArmySize() {
 
-		String l_Command3="deploy India 4";
-		String l_Expected3="Player doesn't have enough armies!!";
+		String l_Command3 = "deploy India 4";
+		String l_Expected3 = "Player doesn't have enough armies!!";
 		d_C1.setD_ArmiesCount(3);
 		d_C1.getD_PlayerOwnedCountries().add(d_Map.getD_CountryObjects().get(0));
-		d_C1.setD_CurrentCommand(
-				new Orders(l_Command3, this.d_GameModel.getD_Map()));
+		d_C1.setD_CurrentCommand(new Orders(l_Command3, this.d_GameModel.getD_Map()));
 		d_C1.issueOrder();
-		String l_Result3=d_C1.getD_Result();
-		
+		String l_Result3 = d_C1.getD_Result();
+
 		assertEquals(l_Expected3, l_Result3);
 	}
-	
-	@Test 
+
+	@Test
 	public void testAssignReinforcements() throws Exception {
 		d_GameModel.startUpPhase();
-		for(Player l_Player:d_GameModel.getD_Players()) {
-			int l_Value=l_Player.getD_ArmiesCount();
-			assertFalse(3<l_Value);
+		for (Player l_Player : d_GameModel.getD_Players()) {
+			int l_Value = l_Player.getD_ArmiesCount();
+			assertFalse(3 < l_Value);
 
 		}
 	}

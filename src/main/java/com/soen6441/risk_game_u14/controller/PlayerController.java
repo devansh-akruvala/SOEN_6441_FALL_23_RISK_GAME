@@ -11,9 +11,11 @@ import com.soen6441.risk_game_u14.model.Orders;
 import com.soen6441.risk_game_u14.model.Player;
 
 /***
- * This class adds players to the game and randomly assigns countries amongst players
- * It also allocates armies to the players according to the WarZone rules
- * Each player is asked to enter their orders in a round-robin fashion until their reinforcements are exhausted
+ * This class adds players to the game and randomly assigns countries amongst
+ * players It also allocates armies to the players according to the WarZone
+ * rules Each player is asked to enter their orders in a round-robin fashion
+ * until their reinforcements are exhausted
+ * 
  * @author Devansh, Aditya
  */
 public class PlayerController {
@@ -25,7 +27,8 @@ public class PlayerController {
 
 	/***
 	 * Constructor for initializing the game
-	 * @param d_GameModel
+	 * 
+	 * @param d_GameModel model object
 	 */
 	public PlayerController(GameModel d_GameModel) {
 		this.d_GameModel = d_GameModel;
@@ -33,6 +36,7 @@ public class PlayerController {
 
 	/***
 	 * Adds the players to the game
+	 * 
 	 * @param p_Command pass the input command from the user
 	 * @return the outcome of the command
 	 */
@@ -71,7 +75,8 @@ public class PlayerController {
 	}
 
 	/***
-	 * Ask orders from the players in a round-robin fashion and store them in an order queue
+	 * Ask orders from the players in a round-robin fashion and store them in an
+	 * order queue
 	 */
 	public void playerIssueOrder() {
 		// loop through player

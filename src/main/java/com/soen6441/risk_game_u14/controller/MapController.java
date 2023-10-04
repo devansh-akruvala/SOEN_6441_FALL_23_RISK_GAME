@@ -17,10 +17,11 @@ public class MapController {
 
 	/***
 	 * This method adds the continents to the map, as entered by the user
+	 * 
 	 * @param p_Command pass the input command from the user
 	 * @return the outcome of the user command
 	 */
-	public String addContinentCommand(String p_Command) {
+	public String editContinentCommand(String p_Command) {
 		String l_CommandSplit[] = p_Command.split(" ");
 		int l_CommandSplitLength = l_CommandSplit.length;
 
@@ -40,7 +41,7 @@ public class MapController {
 				} else if (l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove")
 						&& l_WordIndex + 1 < l_CommandSplitLength) {
 					try {
-						d_Map.removeContinent(l_CommandSplit[l_WordIndex+1]);
+						d_Map.removeContinent(l_CommandSplit[l_WordIndex + 1]);
 					} catch (Exception e) {
 						return e.getMessage();
 					}
@@ -58,11 +59,13 @@ public class MapController {
 	}
 
 	/***
-	 * This method adds the countries and the continent they belong to, in the map, as entered by the user
+	 * This method adds the countries and the continent they belong to, in the map,
+	 * as entered by the user
+	 * 
 	 * @param p_Command pass the input command from the user
 	 * @return the outcome of the user command
 	 */
-	public String addCountryCommand(String p_Command) {
+	public String editCountryCommand(String p_Command) {
 		String l_CommandSplit[] = p_Command.split(" ");
 		int l_CommandSplitLength = l_CommandSplit.length;
 		if (l_CommandSplit[0].equalsIgnoreCase("editcountry")) {
@@ -77,11 +80,11 @@ public class MapController {
 					l_WordIndex += 3;
 				} else if (l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove")
 						&& l_WordIndex + 1 < l_CommandSplitLength) {
-						try {
-							d_Map.removeCountry(l_CommandSplit[l_WordIndex+1]);
-						} catch (Exception e) {
-							return e.getMessage();
-						}
+					try {
+						d_Map.removeCountry(l_CommandSplit[l_WordIndex + 1]);
+					} catch (Exception e) {
+						return e.getMessage();
+					}
 					l_WordIndex += 2;
 				} else {
 					System.out.println("Invalid Command");
@@ -95,11 +98,13 @@ public class MapController {
 	}
 
 	/***
-	 * This method declares a country as neighbor to the specified country, as decided by the user.
+	 * This method declares a country as neighbor to the specified country, as
+	 * decided by the user.
+	 * 
 	 * @param p_Command pass the input command from the user
 	 * @return the outcome of the user command
 	 */
-	public String addNeighborsCommand(String p_Command) {
+	public String editNeighborsCommand(String p_Command) {
 		String l_CommandSplit[] = p_Command.split(" ");
 		int l_CommandSplitLength = l_CommandSplit.length;
 		if (l_CommandSplit[0].equalsIgnoreCase("editneighbor")) {
@@ -115,7 +120,7 @@ public class MapController {
 				} else if (l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove")
 						&& l_WordIndex + 2 < l_CommandSplitLength) {
 					try {
-						d_Map.removeNeighbor(l_CommandSplit[l_WordIndex + 1], l_CommandSplit[l_WordIndex + 2],false);
+						d_Map.removeNeighbor(l_CommandSplit[l_WordIndex + 1], l_CommandSplit[l_WordIndex + 2], false);
 					} catch (Exception e) {
 						return e.getMessage();
 					}
@@ -132,7 +137,8 @@ public class MapController {
 	}
 
 	/***
-	 * This method removes a country  in the map, as chosen by the user
+	 * This method removes a country in the map, as chosen by the user
+	 * 
 	 * @param p_Command pass the input command from the user
 	 * @return the outcome of the user command
 	 * @throws Exception in case of the country or neighbor to be removed is invalid
@@ -149,8 +155,7 @@ public class MapController {
 			while (l_WordIndex < l_CommandSplitLength) {
 				// Check if the current word is "-remove" and there is at least one more word in
 				// the command
-				if (l_WordIndex + 1 < l_CommandSplitLength &&
-						l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove")) {
+				if (l_WordIndex + 1 < l_CommandSplitLength && l_CommandSplit[l_WordIndex].equalsIgnoreCase("-remove")) {
 					// Call method d_Map.removeCountry to remove a country
 					d_Map.removeCountry(l_CommandSplit[l_WordIndex + 1]);
 
@@ -171,6 +176,7 @@ public class MapController {
 
 	/***
 	 * This method creates a local copy of the map that can be loaded later on.
+	 * 
 	 * @param p_Command pass the input command from the user
 	 * @return the outcome of the command
 	 */
@@ -185,7 +191,9 @@ public class MapController {
 	}
 
 	/***
-	 * This method loads the locally saved map file from the saveMap() method to the current game instance.
+	 * This method loads the locally saved map file from the saveMap() method to the
+	 * current game instance.
+	 * 
 	 * @param p_Command pass the input command from the user
 	 * @return the outcome of the command
 	 */
@@ -201,6 +209,7 @@ public class MapController {
 
 	/***
 	 * This method checks if the map is valid based on the game rules
+	 * 
 	 * @return the outcome of the command
 	 */
 	public String validateMap() {
@@ -214,15 +223,16 @@ public class MapController {
 
 	/***
 	 * This method can edit the map until load map phase
+	 * 
 	 * @param p_Command pass the input command from the user
 	 * @return the outcome of the command
 	 */
-	public String editMap(String p_Command){
+	public String editMap(String p_Command) {
 		String l_FileName[] = p_Command.split(" ");
 		try {
 			d_Map.loadFile(l_FileName[1]);
 		} catch (Exception e) {
-			return e.getMessage()+"\n You can create a new map.";
+			return e.getMessage() + "\n You can create a new map.";
 		}
 		return "Map file loaded successfully!! Now you can edit it";
 	}
@@ -232,5 +242,9 @@ public class MapController {
 	 */
 	public void showMap() {
 		d_Map.showMap();
+	}
+
+	public void resetMap() {
+		d_Map.reset();
 	}
 }
