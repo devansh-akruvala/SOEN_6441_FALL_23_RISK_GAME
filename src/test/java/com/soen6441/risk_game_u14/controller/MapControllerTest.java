@@ -10,6 +10,9 @@ import com.soen6441.risk_game_u14.model.Continent;
 import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.Map;
 
+/**
+ * This Class test the map controller
+ * */
 public class MapControllerTest {
 	
 	MapController d_MapController=null;
@@ -20,6 +23,11 @@ public class MapControllerTest {
 		d_Map = new Map();
 		d_MapController = new MapController(d_Map); 
 	}
+	
+	/**
+	 * This method checks that a continent with correct command format works properly or not
+	 * 
+	 * */
 	@Test
 	public void checkContinentCommand() {
 		String command = "editcontinent -add A 1";
@@ -33,6 +41,9 @@ public class MapControllerTest {
 		}	
 	}
 	
+	/**
+	 * This method checks that a continent with incorrect command format (non integer value as continent value) works properly or not
+	 * */
 	
 	@Test
 	public void checkContinentCommandInteger() {
@@ -45,7 +56,9 @@ public class MapControllerTest {
 			assertTrue(false);
 		}
 	}
-	
+	/**
+	 * This method checks that a country with correct command format works properly or not
+	 * */
 	@Test
 	public void checkCountry() {
 		try {
@@ -64,6 +77,9 @@ public class MapControllerTest {
 		}
 	}
 	
+	/**
+	 * This method checks that a country with incorrect command format(no continent name) works properly or not
+	 * */
 	@Test
 	public void checkCountryInvalid() {
 		String command = "editcountry -add Country1 ";
