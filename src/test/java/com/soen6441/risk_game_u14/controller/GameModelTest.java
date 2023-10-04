@@ -146,4 +146,14 @@ public class GameModelTest {
 		
 		assertEquals(l_Expected3, l_Result3);
 	}
+	
+	@Test 
+	public void testAssignReinforcements() throws Exception {
+		d_GameModel.startUpPhase();
+		for(Player l_Player:d_GameModel.getD_Players()) {
+			int l_Value=l_Player.getD_ArmiesCount();
+			assertFalse(3<l_Value);
+
+		}
+	}
 }
