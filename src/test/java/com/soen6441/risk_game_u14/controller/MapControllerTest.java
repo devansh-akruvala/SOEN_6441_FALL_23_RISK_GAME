@@ -93,7 +93,6 @@ public class MapControllerTest {
 	}
 
 
-	
 	@Test
 	public void checkRemoveCountry() {
 		try {
@@ -105,7 +104,7 @@ public class MapControllerTest {
 
 		// Add a country
 		String addCommand = "editcountry -add Country1 A";
-		String expectedAddResult = "Countries command execueted successfully";
+		String expectedAddResult = "Countries command executed successfully";
 
 		try {
 			// Add the country
@@ -132,9 +131,9 @@ public class MapControllerTest {
 			String addCountry1Command = "editcountry -add Country1 A";
 			String addCountry2Command = "editcountry -add Country2 A";
 
-			assertEquals("Countries command execueted successfully",
+			assertEquals("Countries command executed successfully",
 					d_MapController.addCountryCommand(addCountry1Command));
-			assertEquals("Countries command execueted successfully",
+			assertEquals("Countries command executed successfully",
 					d_MapController.addCountryCommand(addCountry2Command));
 		} catch (Exception e) {
 			assertTrue(false);
@@ -142,7 +141,7 @@ public class MapControllerTest {
 
 		// Add a neighbor
 		String addNeighborCommand = "editneighbor -add Country1 Country2";
-		String expectedAddResult = "Neighbors command executed succcessfully";
+		String expectedAddResult = "Neighbors command executed successfully";
 
 		try {
 			// Add the neighbor
@@ -158,6 +157,7 @@ public class MapControllerTest {
 		}
 	}
 
+	
 
 	}
 
