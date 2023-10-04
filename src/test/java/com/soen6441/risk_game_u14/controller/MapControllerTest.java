@@ -168,8 +168,8 @@ public class MapControllerTest {
 	}
 
 	/**
-	 * Checks that if two continent is not connected than map is invalid
-	 * (Here continent is a connnected subgraph but the two continents are not)
+	 * Checks that if two continent is not connected than map is invalid (Here
+	 * continent is a connnected subgraph but the two continents are not)
 	 * 
 	 * @throws Exception if map is not valid
 	 */

@@ -8,25 +8,31 @@ import java.util.Random;
 
 /***
  * 
- * This Is the Model class for game it has reference of map and players, it assign armies according to warzone rules and add/remove player from the game 
+ * This Is the Model class for game it has reference of map and players, it
+ * assign armies according to warzone rules and add/remove player from the game
+ * 
  * @author Karandeep, Devansh
  */
 public class GameModel {
 	private Map d_Map;
 	private ArrayList<Player> d_Players;
 	private Queue<Player> d_PlayersQueue;
-/***
- * 
- *   This is the default constructor which initializes the map, players list and player queue
- */
+
+	/***
+	 * 
+	 * This is the default constructor which initializes the map, players list and
+	 * player queue
+	 */
 	public GameModel() {
 		this.d_Map = new Map();
 		this.d_Players = new ArrayList<Player>();
 		d_PlayersQueue = new LinkedList<Player>();
 	}
-	
+
 	/***
-	 * This is the default constructor which initializes the map, players list and player queue
+	 * This is the default constructor which initializes the map, players list and
+	 * player queue
+	 * 
 	 * @param p_Map Map object for initialization
 	 */
 
@@ -36,35 +42,70 @@ public class GameModel {
 		d_PlayersQueue = new LinkedList<Player>();
 	}
 
+	/**
+	 * Getter for map
+	 * 
+	 * @return Map object
+	 *
+	 */
 	public Map getD_Map() {
 		return d_Map;
 	}
 
+	/**
+	 * setter for
+	 * 
+	 * @param d_Map Map object
+	 */
 	public void setD_Map(Map d_Map) {
 		this.d_Map = d_Map;
 	}
 
+	/**
+	 * Getter for list of game players
+	 * 
+	 * @return list of game players
+	 *
+	 */
 	public ArrayList<Player> getD_Players() {
 		return d_Players;
 	}
 
+	/**
+	 * setter for list of players
+	 * 
+	 * @param d_Players list of players
+	 */
 	public void setD_Players(ArrayList<Player> d_Players) {
 		this.d_Players = d_Players;
 	}
 
+	/**
+	 * Getter for Queue of game players
+	 * 
+	 * @return Queue of game players
+	 *
+	 */
 	public Queue<Player> getD_PlayersQueue() {
 		return d_PlayersQueue;
 	}
 
+	/**
+	 * setter for queue of players
+	 * 
+	 * @param d_PlayersQueue Queue of players
+	 */
 	public void setD_PlayersQueue(Queue<Player> d_PlayersQueue) {
 		this.d_PlayersQueue = d_PlayersQueue;
 	}
-	
+
 	/**
-	 * This method handles add player command and add player to the list of game players
+	 * This method handles add player command and add player to the list of game
+	 * players
+	 * 
 	 * @param p_PlayerName Name of the player to be added
 	 * @throws Exception if player already exist or more players cannot be added
-	 * */
+	 */
 	public void addPlayers(String p_PlayerName) throws Exception {
 		if ((d_Players.size() >= d_Map.getD_CountryObjects().size())) {
 			throw new Exception("Reached max number of players can be added to the game");
@@ -75,12 +116,15 @@ public class GameModel {
 		Player l_TempPlayer = new Player(p_PlayerName);
 		d_Players.add(l_TempPlayer);
 	}
-	
+
 	/**
-	 * This method handles remove player command and removes player from the list of players
+	 * This method handles remove player command and removes player from the list of
+	 * players
+	 * 
 	 * @param p_PlayerName Name of the player to be removed
-	 * @throws Exception if there is no players in the game or Player with given name does not exist
-	 * */
+	 * @throws Exception if there is no players in the game or Player with given
+	 *                   name does not exist
+	 */
 
 	public void removePlayers(String p_PlayerName) throws Exception {
 		if ((d_Players.size() == 0)) {
@@ -99,11 +143,13 @@ public class GameModel {
 			throw new Exception("Player Doesnt Exist!!");
 		}
 	}
+
 	/**
 	 * This method checks that player already exist in the game
+	 * 
 	 * @param p_PlayerName Name of the player
 	 * @return 'true' if player exist else 'false'
-	 * */
+	 */
 	public boolean duplicatePlayerExist(String p_PlayerName) {
 		for (Player l_Player : d_Players) {
 			if (l_Player.getD_PlayerName().equalsIgnoreCase(p_PlayerName))
@@ -113,9 +159,12 @@ public class GameModel {
 	}
 
 	/**
-	 * This method handles assigncountries command and takes game to 'gameplay' phase. It randomly assigns countries to gameplayers and then assign them reinforcement armies to them according to warzone rule
+	 * This method handles assigncountries command and takes game to 'gameplay'
+	 * phase. It randomly assigns countries to gameplayers and then assign them
+	 * reinforcement armies to them according to warzone rule
+	 * 
 	 * @throws Exception if there is 0 or 1 players
-	 * */
+	 */
 	public void startUpPhase() throws Exception {
 		if (d_Players.size() > 1) {
 			d_PlayersQueue.addAll(d_Players);
@@ -142,10 +191,11 @@ public class GameModel {
 			}
 		}
 	}
+
 	/**
 	 * This method randomly assign armies to all players according to warzone rules
 	 * 
-	 * */
+	 */
 	public void assignReinforcementArmies() throws Exception {
 		if (d_Players.size() > 0) {
 			for (Player l_Player : d_Players) {
@@ -163,9 +213,11 @@ public class GameModel {
 	}
 
 	/**
-	 * This method shows info of each players like their Reinforcement Armies, continents and countries owned by them along with number of armies deployed in the country
+	 * This method shows info of each players like their Reinforcement Armies,
+	 * continents and countries owned by them along with number of armies deployed
+	 * in the country
 	 * 
-	 * */
+	 */
 	public void showplayer() {
 		for (Player l_player : d_Players) {
 			System.out.println("---------------------------------------");

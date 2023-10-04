@@ -6,9 +6,9 @@ import org.junit.platform.suite.api.Suite;
 /**
  * This Class is the test suite, it calls all the tests
  * 
- * */
+ */
 @Suite
-@SelectClasses({MapControllerTest.class})
+@SelectClasses({ MapControllerTest.class, GameModelTest.class })
 public class AllTests {
 
 }
