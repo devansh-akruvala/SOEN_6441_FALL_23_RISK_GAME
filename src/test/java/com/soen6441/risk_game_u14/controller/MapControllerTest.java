@@ -75,5 +75,74 @@ public class MapControllerTest {
 			assertTrue(false);
 		}
 	}
+
+
 	
-}
+	@Test
+	public void checkRemoveCountry() {
+		try {
+			// Add a continent
+			d_Map.addContinent("A", 10);
+		} catch (Exception e) {
+			assertTrue(false);
+		}
+
+		// Add a country
+		String addCommand = "editcountry -add Country1 A";
+		String expectedAddResult = "Countries command execueted successfully";
+
+		try {
+			// Add the country
+			assertEquals(expectedAddResult, d_MapController.addCountryCommand(addCommand));
+
+			// Remove the country
+			String removeCommand = "editcountry -remove Country1";
+			String expectedRemoveResult = "Countries removed successfully";
+
+			assertEquals(expectedRemoveResult, d_MapController.removeCountryCommand(removeCommand));
+		} catch (Exception e) {
+			assertTrue(false);
+		}
+	}
+
+
+	@Test
+	public void checkAddNeighbor() {
+		try {
+			// Add a continent
+			d_Map.addContinent("A", 10);
+
+			// Add two countries
+			String addCountry1Command = "editcountry -add Country1 A";
+			String addCountry2Command = "editcountry -add Country2 A";
+
+			assertEquals("Countries command execueted successfully",
+					d_MapController.addCountryCommand(addCountry1Command));
+			assertEquals("Countries command execueted successfully",
+					d_MapController.addCountryCommand(addCountry2Command));
+		} catch (Exception e) {
+			assertTrue(false);
+		}
+
+		// Add a neighbor
+		String addNeighborCommand = "editneighbor -add Country1 Country2";
+		String expectedAddResult = "Neighbors command executed succcessfully";
+
+		try {
+			// Add the neighbor
+			assertEquals(expectedAddResult, d_MapController.addNeighborsCommand(addNeighborCommand));
+
+			// Checking if Country1 has Country2 as a neighbor
+			assertTrue(d_Map.findCountryByName("Country1").getD_Neighbors().contains("Country2"));
+
+			
+			
+		} catch (Exception e) {
+			assertTrue(false);
+		}
+	}
+
+
+	}
+
+	
