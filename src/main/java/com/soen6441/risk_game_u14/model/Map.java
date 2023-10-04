@@ -27,7 +27,7 @@ public class Map {
 	private HashMap<Integer, String> d_ContinentIdNameMap;
 
 	/***
-	 * This constructor initialises the map
+	 * This constructor initializes the map
 	 */
 	public Map() {
 		d_CountryObjects = new ArrayList<Country>();

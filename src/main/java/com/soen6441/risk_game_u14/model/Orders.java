@@ -10,7 +10,7 @@ public class Orders {
 	public Orders() {}
 
 	/***
-	 * This constructor initialises the order and map
+	 * This constructor initializes the order and map
 	 * @param p_Orders this is the order string given by the player
 	 * @param p_Map this is the map object where the order has to be performed
 	 */
