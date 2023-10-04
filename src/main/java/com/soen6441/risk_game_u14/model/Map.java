@@ -12,10 +12,10 @@ import java.util.ListIterator;
 import java.util.Scanner;
 
 /**
- * 
- * 
- * @author Devansh, Smridhi, Meshva, Aditya, Karandeep, Gowtham
- * 
+ * This is a map model class which stores all the countries and continents of the map.
+ * It handles operations like adding and removing continents, countries and their neighbors.
+ * It also handles 'savemap' and 'loadmap' functionalities as well as validates that each all continents and the map a
+ * @author Devansh, Smridhi, Meshva
  */
 public class Map {
 	private ArrayList<Continent> d_ContinentObjects;
@@ -26,6 +26,9 @@ public class Map {
 	private HashMap<Integer, String> d_CountryIdNameMap;
 	private HashMap<Integer, String> d_ContinentIdNameMap;
 
+	/***
+	 * This constructor initialises the map
+	 */
 	public Map() {
 		d_CountryObjects = new ArrayList<Country>();
 		d_ContinentObjects = new ArrayList<Continent>();
@@ -68,6 +71,9 @@ public class Map {
 		this.d_PreviousSave = p_PreviousSave;
 	}
 
+	/***
+	 * This function empties every data structure when called and initialises the country and continent 0.
+	 */
 	public void reset() {
 		d_CountryObjects.clear();
 		d_ContinentObjects.clear();
@@ -81,6 +87,12 @@ public class Map {
 		
 	}
 
+	/***
+	 * This method handles continent input and adds the continent to the list of the list of continents object.
+	 * @param p_ContinentName this is the name of the continent
+	 * @param p_ContinentValue this is the value of the continent
+	 * @throws Exception it throws an exception if the continent is already present in the map
+	 */
 	public void addContinent(String p_ContinentName, int p_ContinentValue) throws Exception {
 		// check continent already Exist
 		if (continentAlreadyExist(p_ContinentName)) {
@@ -90,6 +102,11 @@ public class Map {
 		}
 	}
 
+	/***
+	 * This method removes a continent, all the countries in that continent along cuts the ties of those countries with their neighbors.
+	 * @param p_ContinentName this is the name of the continent
+	 * @throws Exception it throws an exception if the continent does not exist
+	 */
 	public void removeContinent(String p_ContinentName) throws Exception {
 		if (!continentAlreadyExist(p_ContinentName)) {
 			throw new Exception("Continent Doesnt exist!!");
@@ -103,6 +120,11 @@ public class Map {
 		}
 	}
 
+	/***
+	 * This is a method to check whether the continent exists in the map or not
+	 * @param p_ContinentName this is the name of the continent
+	 * @return 'true' if the continent exists, otherwise 'false'
+	 */
 	public boolean continentAlreadyExist(String p_ContinentName) {
 		for (Continent l_ContinentIterator : this.d_ContinentObjects) {
 			if (l_ContinentIterator.getD_ContinentName().equalsIgnoreCase(p_ContinentName)) {
@@ -112,6 +134,12 @@ public class Map {
 		return false;
 	}
 
+	/***
+	 * This method handles countries input and adds the countries to the list of the list of countries object
+	 * @param p_CountryName this is the name of the country
+	 * @param p_ContinentName this is the name of the continent where the country is located
+	 * @throws Exception throws an exception if the country already exists or the given continent does not exist
+	 */
 	public void addCountries(String p_CountryName, String p_ContinentName) throws Exception {
 		if (continentAlreadyExist(p_ContinentName)) {
 			if (countryAlreadyExist(p_CountryName)) {
@@ -130,6 +158,11 @@ public class Map {
 		}
 	}
 
+	/***
+	 * This is a method to check whether the country exists in the map or not
+	 * @param p_CountryName this is the name of the country
+	 * @return 'true' if the country exists, otherwise 'false'
+	 */
 	public boolean countryAlreadyExist(String p_CountryName) {
 		for (Country l_CountryIterator : this.d_CountryObjects) {
 			if (l_CountryIterator.getD_CountryName().equalsIgnoreCase(p_CountryName)) {
@@ -139,6 +172,12 @@ public class Map {
 		return false;
 	}
 
+	/***
+	 * This is a method to establish a neighboring connection between two countries
+	 * @param p_CountryName this is the name of the first country
+	 * @param p_NeighborName this is the name of the country to be added as a neighbor
+	 * @throws Exception if the country name is wrong
+	 */
 	public void addCountryNeighbour(String p_CountryName, String p_NeighborName) throws Exception {
 		if (countryAlreadyExist(p_CountryName) && countryAlreadyExist(p_NeighborName)) {
 			// find country object and add neighbor
@@ -156,6 +195,11 @@ public class Map {
 
 	}
 
+	/***
+	 * This method is used to remove a country and cut its ties with the neighbors
+	 * @param p_CountryName it is the name of the country to be deleted
+	 * @throws Exception if the country does not exist on the map
+	 */
 	public void removeCountry(String p_CountryName) throws Exception {
 		// 1 check country exist
 		// 2 remove from country list
@@ -179,6 +223,13 @@ public class Map {
 		this.d_CountryObjects.remove(l_CountryObject);
 	}
 
+	/***
+	 * IThis method is used to remove country's neighbor
+	 * @param p_CountryName this is the name of the country
+	 * @param p_NeighborName this is the name of its neighbor country
+	 * @param p_Both if 'true', it removes the connection from both the countries else, only removes the connection from the country itself
+	 * @throws Exception throws an exception if the country or its neighbor does not exist
+	 */
 	public void removeNeighbor(String p_CountryName, String p_NeighborName, boolean p_Both) throws Exception {
 		// 1 check country exits
 		// 2 check neighbor exist
@@ -202,6 +253,11 @@ public class Map {
 		}
 	}
 
+	/***
+	 * This method saves the map file
+	 * @param p_FileName this is the map file name
+	 * @throws Exception throws exception if the map is not valid
+	 */
 	public void saveFile(String p_FileName) throws Exception {
 		String l_Path = "saved_maps\\";
 		File l_File = new File(l_Path + p_FileName);
@@ -247,6 +303,11 @@ public class Map {
 
 	}
 
+	/***
+	 * This method finds the continent object
+	 * @param p_ContinentName this is the name of the continent to be found
+	 * @return This method returns the continent object if it exists else 'null'
+	 */
 	public Continent findContinentByName(String p_ContinentName) {
 		Continent l_Continent = null;
 		for (Continent l_ContIter : this.d_ContinentObjects) {
@@ -258,6 +319,12 @@ public class Map {
 		return l_Continent;
 	}
 
+	/***
+	 * This method finds the country object
+	 * @param p_CountryName this is the name of the country to be found
+	 * @return This method returns the country object if it exists else 'null'
+	 *
+	 */
 	public Country findCountryByName(String p_CountryName) {
 		Country l_Country = null;
 		for (Country l_ContIter : this.d_CountryObjects) {
@@ -269,6 +336,11 @@ public class Map {
 		return l_Country;
 	}
 
+	/***
+	 * This method loads the map file from the storage
+	 * @param p_FileName the file name to be loaded
+	 * @throws Exception if the file name does not exist or if it is corrupted
+	 */
 	public void loadFile(String p_FileName) throws Exception {
 		reset();
 		String l_Path = "saved_maps\\";
@@ -319,6 +391,10 @@ public class Map {
 		l_Sc.close();
 	}
 
+	/***
+	 * This method validates the map
+	 * @throws Exception if map is invalid
+	 */
 	public void ValidateMap() throws Exception {
 		// 1 generate adjacency list
 		// 2 check all COUNTRIES INSIDE continents is connected
@@ -330,6 +406,11 @@ public class Map {
 			throw new Exception("");
 	}
 
+	/***
+	 * This method checks that each continent is a connected component or not
+	 * @return 'true' if it is a connected component, else 'false'
+	 * @throws Exception if the continent does not have any country
+	 */
 	public boolean checkCountriesInsideContinentIsConnected() throws Exception {
 		for (Continent l_Continent : this.d_ContinentObjects) {
 			ArrayList<Country> l_ContinentsCountry = l_Continent.getD_CountryList();
@@ -342,6 +423,11 @@ public class Map {
 		return true;
 	}
 
+	/***
+	 * This method checks the countries present within a continent is a connected graph or not
+	 * @param p_Countries this is a list of countries present in the continent
+	 * @return 'true' if it is a connected component, else 'false'
+	 */
 	public boolean checkCountriesIsConnected(ArrayList<Country> p_Countries) {
 		
 		HashMap<Integer, ArrayList<Integer>> l_AdjListCountries = new HashMap<>();
@@ -376,6 +462,10 @@ public class Map {
 
 	}
 
+	/***
+	 * This method checks the whole map is a connected graph or not
+	 * @return 'true if is connected, else 'false'
+	 */
 	public boolean checkWholeMapIsConnectedSubGraph() {
 		HashMap<Integer, Boolean> l_Visited = new HashMap<>();
 
@@ -395,6 +485,12 @@ public class Map {
 			return true;
 	}
 
+	/***
+	 * This is a utility method to perform DFS traversal on map
+	 * @param pStartNode this is the starting node
+	 * @param p_Visited this is the list of visited node
+	 * @param p_AdjList this is the adjacency list of the continent
+	 */
 	public void DFS(int pStartNode, HashMap<Integer, Boolean> p_Visited,
 			HashMap<Integer, ArrayList<Integer>> p_AdjList) {
 		p_Visited.put(Integer.valueOf(pStartNode), true);
@@ -406,6 +502,11 @@ public class Map {
 
 	}
 
+	/***
+	 * This is a utility method to perform DFS traversal on map
+	 * @param pStartNode this is the starting node
+	 * @param p_Visited this is the list of visited node
+	 */
 	public void DFS(int pStartNode, HashMap<Integer, Boolean> p_Visited) {
 		p_Visited.put(Integer.valueOf(pStartNode), true);
 		for (int l_NeighborNode : d_AdjList.get(Integer.valueOf(pStartNode))) {
@@ -416,6 +517,9 @@ public class Map {
 
 	}
 
+	/***
+	 * This method shows the players and the countries and continents owned by them along with the reinforcement armies and deployed armies
+	 */
 	public void showMap() {
 		System.out.println("------------------------------------------------");
 		for (Continent l_ContinentIterator : d_ContinentObjects) {
