@@ -65,7 +65,6 @@ public class PlayerController {
 			}
 			return "Players command executed successfully";
 		} else {
-			System.out.println("Invalid Command");
 			return "Invalid Command";
 		}
 
@@ -137,11 +136,11 @@ public class PlayerController {
 		while (!l_AllPlayerDone) {
 			l_AllPlayerDone = true;
 			for (Player l_Player : l_PlayerList) {
-				System.out.println(l_Player.getD_PlayerName() + "'s order: ");
+//				System.out.println(l_Player.getD_PlayerName() + "'s order: ");
 				if (l_Player.getD_PlayerOrderQueue().size() > 0) {
 					l_AllPlayerDone = false;
 					Orders l_nextOrder = l_Player.nextOrder();
-					System.out.println(l_nextOrder.getD_Orders());
+//					System.out.println(l_nextOrder.getD_Orders());
 					l_nextOrder.execute();
 				}
 			}

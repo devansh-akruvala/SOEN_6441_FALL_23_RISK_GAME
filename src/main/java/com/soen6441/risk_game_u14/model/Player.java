@@ -7,7 +7,7 @@ import java.util.Queue;
 
 /***
  * This is a model class for the game players
- * @author Aditya, Karandeep, Devansh
+ * @author Devansh, Aditya, Karandeep
  */
 public class Player {
     private static int D_PlayerCount = 0;
@@ -15,6 +15,7 @@ public class Player {
     private String d_PlayerName;
     private int d_ArmiesCount;
     private Orders d_CurrentOrder;
+    private String d_Result;
     private List<Country> d_PlayerOwnedCountries;
     private List<Continent> d_PlayerOwnedContinent;
     private Queue<Orders> d_PlayerOrderQueue;
@@ -29,6 +30,7 @@ public class Player {
         d_PlayerOwnedCountries = new ArrayList<>();
         d_PlayerOwnedContinent = new ArrayList<>();
         d_PlayerOrderQueue = new LinkedList<>();
+        d_Result="";
     }
 
 
@@ -69,7 +71,27 @@ public class Player {
     }
 
 
-    public void setD_CurrentCommand(Orders p_CurrentOredr) {
+    public Orders getD_CurrentOrder() {
+		return d_CurrentOrder;
+	}
+
+
+	public void setD_CurrentOrder(Orders d_CurrentOrder) {
+		this.d_CurrentOrder = d_CurrentOrder;
+	}
+
+
+	public String getD_Result() {
+		return d_Result;
+	}
+
+
+	public void setD_Result(String d_Result) {
+		this.d_Result = d_Result;
+	}
+
+
+	public void setD_CurrentCommand(Orders p_CurrentOredr) {
         this.d_CurrentOrder = p_CurrentOredr;
     }
 
@@ -119,7 +141,11 @@ public class Player {
      * This method adds an order to the player's order queue
      */
     public void issueOrder() {
-        d_PlayerOrderQueue.add(d_CurrentOrder);
+    	String l_InputCommandSplit[] = d_CurrentOrder.getD_Orders().split(" ");
+    	if(Integer.parseInt(l_InputCommandSplit[2])<=d_ArmiesCount)
+    		d_PlayerOrderQueue.add(d_CurrentOrder);
+    	else
+    		setD_Result("Player doesn't have enough armies!!"); ;
     }
 	
     /***
