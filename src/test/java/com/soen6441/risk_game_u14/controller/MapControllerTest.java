@@ -1,7 +1,9 @@
 package com.soen6441.risk_game_u14.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,153 +14,185 @@ import com.soen6441.risk_game_u14.model.Map;
 
 /**
  * This Class test the map controller
- * */
+ */
 public class MapControllerTest {
-	
-	MapController d_MapController=null;
-	Map d_Map = null;
-	
+
+	private Continent d_C0, d_C1;
+	private Country d_Country1, d_Country2, d_Country3, d_Country4, d_Country5;
+	private ArrayList<Country> d_Check;
+	private ArrayList<Continent> d_CheckContinent;
+	private Map d_Map;
+	private MapController d_MapController;
+
 	@BeforeEach
-	public void initTest() {
+	public void initMapcontrollerTest() throws Exception {
+		d_C0 = new Continent("Asia", 3);
+		d_C1 = new Continent("Europe", 5);
+		d_Country1 = new Country("India", "Asia");
+		d_Country2 = new Country("Singapore", "Asia");
+		d_Country3 = new Country("Japan", "Asia");
+		d_Country4 = new Country("France", "Europe");
+		d_Country5 = new Country("Spain", "Europe");
+		d_Check = new ArrayList<Country>();
+		d_CheckContinent = new ArrayList<Continent>();
 		d_Map = new Map();
-		d_MapController = new MapController(d_Map); 
+		d_MapController = new MapController(d_Map);
+		d_CheckContinent.add(d_C0);
+		d_CheckContinent.add(d_C1);
+		d_Check.add(d_Country1);
+		d_Check.add(d_Country2);
+		d_Check.add(d_Country3);
+		d_Check.add(d_Country4);
+		d_Check.add(d_Country5);
+		d_Map.addContinent(d_C0.getD_ContinentName(), d_C0.getD_ContinentValue());
+		d_Map.addContinent(d_C1.getD_ContinentName(), d_C1.getD_ContinentValue());
+		d_Map.addCountries("India", "Asia");
+		d_Map.addCountries("Singapore", "Asia");
+		d_Map.addCountries("Japan", "Asia");
+		d_Map.addCountries("France", "Europe");
+		d_Map.addCountries("Spain", "Europe");
+		d_Map.addCountryNeighbour("France", "Spain");
+		d_Map.addCountryNeighbour("France", "Japan");
+		d_Map.addCountryNeighbour("Japan", "Singapore");
+		d_Map.addCountryNeighbour("Singapore", "India");
+
 	}
-	
+
 	/**
-	 * This method checks that a continent with correct command format works properly or not
+	 * This test checks the functionality of addCountry() to see if it adds a
+	 * country to the continent that does not exists
+	 */
+	@Test
+	public void testAddCountryContinentNotExists() {
+		String l_ExpectedMessage = "Continent Doesnt Exist";
+		String l_ActualMessage = "";
+		try {
+			d_Map.addCountries("brazil", "SA");
+		} catch (Exception p_Exception) {
+			l_ActualMessage = p_Exception.getMessage();
+		}
+		assertEquals(l_ExpectedMessage, l_ActualMessage);
+	}
+
+	/**
+	 * Checks if country already exists then it cannot be added
+	 */
+	@Test
+	public void testAddCountryCountryExists() {
+		String l_ExpectedMessage = "Country Already Exist!!";
+		String l_ActualMessage = "";
+		try {
+			d_Map.addCountries("India", "Asia");
+		} catch (Exception p_Exception) {
+			l_ActualMessage = p_Exception.getMessage();
+		}
+		assertEquals(l_ExpectedMessage, l_ActualMessage);
+	}
+
+	/**
+	 * Checks that if country exist it can be removed
 	 * 
-	 * */
+	 * @throws Exception If country does not exists
+	 */
 	@Test
-	public void checkContinentCommand() {
-		String command = "editcontinent -add A 1";
-		String ans="Continents command executed successfully";
-		
-		try {
-			assertEquals(ans, d_MapController.addContinentCommand(command));
-		} catch (Exception e) {
-			assertTrue(false);
-			e.printStackTrace();
-		}	
+	public void testRemoveCountry() throws Exception {
+		d_Map.removeCountry("India");
+		assertFalse(d_Map.getD_CountryObjects().contains(d_Country5));
 	}
-	
+
 	/**
-	 * This method checks that a continent with incorrect command format (non integer value as continent value) works properly or not
-	 * */
-	
+	 * This test checks the functionality of removeCountry() to see if the exception
+	 * is thrown for country does not exists
+	 */
 	@Test
-	public void checkContinentCommandInteger() {
-		String command = "editcontinent -add A a";
-		String ans="Enter integer for Continent value";
-		
+	public void testRemoveCountryThatDoesNotExists() {
+		String l_ExpectedMessage = "Country Doesnt exist!!";
+		String l_ActualMessage = "";
 		try {
-			assertEquals(ans, d_MapController.addContinentCommand(command));
-		} catch (Exception e) {
-			assertTrue(false);
+			d_Map.removeCountry("Pakistan");
+		} catch (Exception p_Exception) {
+			l_ActualMessage = p_Exception.getMessage();
 		}
+		assertEquals(l_ExpectedMessage, l_ActualMessage);
 	}
+
 	/**
-	 * This method checks that a country with correct command format works properly or not
-	 * */
+	 * checks that if neighbor doesnt exist then connection between countries cant
+	 * be made
+	 * 
+	 */
 	@Test
-	public void checkCountry() {
+	public void testAddBorderNeighborDoesNotExist() {
+		String l_ExpectedMessage = "Invalid Command Check country names";
+		String l_ActualMessage = "";
 		try {
-			d_Map.addContinent("A", 10);
-		} catch (Exception e) {
-
+			d_Map.addCountryNeighbour("India", "Pakistan");
+		} catch (Exception p_Exception) {
+			l_ActualMessage = p_Exception.getMessage();
 		}
-		String command = "editcountry -add Country1 A";
-		String ans="Countries command executed successfully";
-		
-		try {
-			assertEquals(ans, d_MapController.addCountryCommand(command));
-		} catch (Exception e) {
 
-			assertTrue(false);
-		}
+		assertEquals(l_ExpectedMessage, l_ActualMessage);
 	}
-	
+
 	/**
-	 * This method checks that a country with incorrect command format(no continent name) works properly or not
-	 * */
+	 * Checks that if continent already exists then new continent with same name
+	 * cant be added..
+	 */
 	@Test
-	public void checkCountryInvalid() {
-		String command = "editcountry -add Country1 ";
-		String ans="Invalid Command";
-		
+	public void testAddContinentContinentExists() {
+		String l_ExpectedMessage = "Continent Already Exist!!";
+		String l_ActualMessage = "";
 		try {
-			assertEquals(ans, d_MapController.addCountryCommand(command));
-		} catch (Exception e) {
-			assertTrue(false);
+			d_Map.addContinent("Asia", 1);
+		} catch (Exception p_Exception) {
+			l_ActualMessage = p_Exception.getMessage();
 		}
+		assertEquals(l_ExpectedMessage, l_ActualMessage);
 	}
 
-
+	/**
+	 * To test the Validation of Map and Check whether it is a connected graph or
+	 * not
+	 * 
+	 * @throws Exception if map is not connected
+	 */
 	@Test
-	public void checkRemoveCountry() {
-		try {
-			// Add a continent
-			d_Map.addContinent("A", 10);
-		} catch (Exception e) {
-			assertTrue(false);
-		}
-
-		// Add a country
-		String addCommand = "editcountry -add Country1 A";
-		String expectedAddResult = "Countries command executed successfully";
-
-		try {
-			// Add the country
-			assertEquals(expectedAddResult, d_MapController.addCountryCommand(addCommand));
-
-			// Remove the country
-			String removeCommand = "editcountry -remove Country1";
-			String expectedRemoveResult = "Countries removed successfully";
-
-			assertEquals(expectedRemoveResult, d_MapController.removeCountryCommand(removeCommand));
-		} catch (Exception e) {
-			assertTrue(false);
-		}
+	public void testValidateMap() throws Exception {
+		String l_Actual = "", l_Expected = "Map is Valid";
+		d_Map.addCountryNeighbour("Spain", "France");
+		d_Map.addCountryNeighbour("Japan", "France");
+		d_Map.addCountryNeighbour("Singapore", "Japan");
+		d_Map.addCountryNeighbour("India", "Singapore");
+		l_Actual = d_MapController.validateMap();
+		assertEquals(l_Expected, l_Actual);
 	}
 
-
+	/**
+	 * Checks that if two continent is not connected than map is invalid
+	 * (Here continent is a connnected subgraph but the two continents are not)
+	 * 
+	 * @throws Exception if map is not valid
+	 */
 	@Test
-	public void checkAddNeighbor() {
-		try {
-			// Add a continent
-			d_Map.addContinent("A", 10);
-
-			// Add two countries
-			String addCountry1Command = "editcountry -add Country1 A";
-			String addCountry2Command = "editcountry -add Country2 A";
-
-			assertEquals("Countries command executed successfully",
-					d_MapController.addCountryCommand(addCountry1Command));
-			assertEquals("Countries command executed successfully",
-					d_MapController.addCountryCommand(addCountry2Command));
-		} catch (Exception e) {
-			assertTrue(false);
-		}
-
-		// Add a neighbor
-		String addNeighborCommand = "editneighbor -add Country1 Country2";
-		String expectedAddResult = "Neighbors command executed successfully";
-
-		try {
-			// Add the neighbor
-			assertEquals(expectedAddResult, d_MapController.addNeighborsCommand(addNeighborCommand));
-
-			// Checking if Country1 has Country2 as a neighbor
-			assertTrue(d_Map.findCountryByName("Country1").getD_Neighbors().contains("Country2"));
-
-			
-			
-		} catch (Exception e) {
-			assertTrue(false);
-		}
+	public void testValidateMapFalse() throws Exception {
+		String l_Actual = "", l_Expected = " Map is not valid!!";
+		d_Map.addCountryNeighbour("Spain", "France");
+		d_Map.addCountryNeighbour("India", "Japan");
+		l_Actual = d_MapController.validateMap();
+		assertEquals(l_Expected, l_Actual);
 	}
 
-	
+	/**
+	 * Checks that if continent is not a sub graph
+	 * 
+	 * 
+	 * @throws Exception if continent is not a subgraph
+	 */
+	@Test
+	public void testValidateMapForContinents() throws Exception {
+		boolean l_Result = true; // true means its valid
 
+		l_Result = d_Map.checkCountriesInsideContinentIsConnected();
+		assertFalse(l_Result);
 	}
-
-	
+}
