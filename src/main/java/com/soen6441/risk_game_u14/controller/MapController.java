@@ -53,7 +53,6 @@ public class MapController {
 			}
 			return "Continents command executed successfully";
 		} else {
-			System.out.println("Invalid Command");
 			return "Invalid Command";
 		}
 	}

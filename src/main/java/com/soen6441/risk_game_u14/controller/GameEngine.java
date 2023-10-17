@@ -103,8 +103,14 @@ public class GameEngine {
 				break;
 			case "savemap":
 				if (l_PhaseController == 1) {
-					System.out.println(d_MapController.validateMap());
-					System.out.println("Output: " + d_MapController.saveMap(l_Command));
+					String l_ValidResult = d_MapController.validateMap();
+					System.out.println(l_ValidResult);
+					if (d_MapController.validateMap().equalsIgnoreCase(" Map is not valid!!")) {
+						System.out.println("Map cannot be saved!!");
+					} else {
+						System.out.println("Output: " + d_MapController.saveMap(l_Command));
+						l_PhaseController = 2;
+					}
 				} else {
 					System.out.println("Invalid command in " + returnPhase(l_PhaseController));
 				}
@@ -162,7 +168,7 @@ public class GameEngine {
 				l_ScannerObj.close();
 				break;
 			default:
-				System.out.println("Enter Valid Command");
+				System.out.println("Output: Invalid Comamnd!!");
 
 			}
 		}
