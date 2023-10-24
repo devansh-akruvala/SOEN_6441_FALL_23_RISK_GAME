@@ -68,7 +68,7 @@ public abstract class Phase {
 	 * This method deals with validatemap command and returns results
 	 * 
 	 * 
-	 * @param p_command Command that has been entered by the player
+	 * 
 	 * @return String which gives the proper acknowledgement to player
 	 */
 		
@@ -111,7 +111,6 @@ public abstract class Phase {
 	 * This method returns the current phase names
 	 * 
 	 * 
-	 * @param p_command Command that has been entered by the player
 	 * @return String which gives the proper acknowledgement to player
 	 */
 	abstract public String getPhaseName();
