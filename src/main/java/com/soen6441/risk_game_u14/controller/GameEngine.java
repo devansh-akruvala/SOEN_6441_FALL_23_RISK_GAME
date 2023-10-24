@@ -2,6 +2,7 @@ package com.soen6441.risk_game_u14.controller;
 
 import java.util.Scanner;
 
+import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Map;
 
@@ -21,6 +22,7 @@ public class GameEngine {
 	private MapController d_MapController;
 	private PlayerController d_PlayerController;
 	int l_PhaseController;
+	private LogEntryBuffer d_LEB;
 
 	/***
 	 * This is the main game engine constructor method which is responsible for
@@ -34,6 +36,7 @@ public class GameEngine {
 		d_MapController = new MapController(p_GameModel.getD_Map());
 		d_PlayerController = new PlayerController(p_GameModel);
 		l_PhaseController = 1;
+		d_LEB=new LogEntryBuffer();
 	}
 
 	public GameEngine() {
@@ -61,7 +64,7 @@ public class GameEngine {
 		boolean l_StopGame = false;
 		while (!l_StopGame) {
 			String l_Command = l_ScannerObj.nextLine();
-
+			d_LEB.setResult(l_Command);
 			String l_CommandSection = l_Command.split(" ")[0];
 
 			switch (l_CommandSection) {
