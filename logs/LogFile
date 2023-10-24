@@ -1,3 +1,7 @@
 
-editcontinent -add c1 10
-showmap
+In Edit Phase
+loadmap map1
+In Startup Phase
+gameplayer -add p1 -add p2
+assigncountries
+In Startup Phase
