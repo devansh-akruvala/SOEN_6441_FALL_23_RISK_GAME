@@ -113,7 +113,7 @@ public class GameModel {
 		if (duplicatePlayerExist(p_PlayerName)) {
 			throw new Exception("Please enter a different player name as this name already exists");
 		}
-		Player l_TempPlayer = new Player(p_PlayerName,d_Map);
+		Player l_TempPlayer = new Player(p_PlayerName, this);
 		d_Players.add(l_TempPlayer);
 	}
 
@@ -191,7 +191,7 @@ public class GameModel {
 			}
 		}
 		// adding neutral player
-		this.d_Players.add(new Player("Neutral Player",d_Map));
+		this.d_Players.add(new Player("Neutral Player", this));
 	}
 
 	/**
@@ -207,11 +207,11 @@ public class GameModel {
 					for (Continent l_Continent : l_Player.getD_PlayerOwnedContinent()) {
 						l_ContinentValue += l_Continent.getD_ContinentValue();
 					}
-					l_ArmyCount = Math.max(l_ArmyCount,3);
+					l_ArmyCount = Math.max(l_ArmyCount, 3);
 					l_Player.setD_ArmiesCount(l_ArmyCount + l_ContinentValue);
-					System.out.println(l_Player.getD_ArmiesCount()+ " Assigncountries" );
-					
-				}else {
+					System.out.println(l_Player.getD_ArmiesCount() + " Assigncountries");
+
+				} else {
 					l_Player.setD_ArmiesCount(0);
 				}
 			}

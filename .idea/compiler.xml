@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="risk_game_u14" />
+        <module name="SOEN_6441_FALL_23_RISK_GAME" />
       </profile>
     </annotationProcessing>
   </component>
