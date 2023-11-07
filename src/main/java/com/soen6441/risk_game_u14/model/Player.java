@@ -328,7 +328,7 @@ public class Player {
 				break;
 			case "advance":
 				Country l_SourceCountry = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
-				Country l_TargetCountry = d_GameMap.findCountryByName(l_InputCommandSplit[2]);
+				Country l_TargetCountry = d_GameModel.getD_Map().findCountryByName(l_InputCommandSplit[2]);
 				int l_NumArmies1 = Integer.parseInt(l_InputCommandSplit[3]);
 				getD_PlayerOrderQueue().add(new Advance(this, l_SourceCountry, l_TargetCountry, l_NumArmies1));
 				break;
