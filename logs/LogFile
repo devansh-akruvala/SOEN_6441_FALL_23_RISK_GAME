@@ -1,9 +1,2 @@
 
 In Edit Phase
-loadmap map1
-In Startup Phase
-gameplayer -add p1 -add p2
-assigncountries
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
