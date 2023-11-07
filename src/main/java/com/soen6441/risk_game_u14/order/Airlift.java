@@ -35,8 +35,13 @@ public class Airlift implements Order {
         if(isValid()) {
             d_SourceCountry.setD_NoOfArmies(d_SourceCountry.getD_NoOfArmies()-d_NumArmies);
             d_TargetCountry.setD_NoOfArmies(d_TargetCountry.getD_NoOfArmies()+d_NumArmies);
+            d_Player.getD_Cards().remove("Airlift");
         }
-        d_Player.getD_Cards().remove("Airlift");
+        else {
+			d_Player.setD_SkipCommands(true);
+			System.out.println("Skipping all the following commands of " + d_Player.getD_PlayerName());
+		}
+     
     }
 
     /**
