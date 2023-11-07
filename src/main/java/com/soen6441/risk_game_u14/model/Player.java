@@ -27,6 +27,7 @@ public class Player {
 	private Map d_GameMap;
 	private ArrayList<Player> d_NegotiatedPlayers;
 	private boolean d_AtleastOneBattleWon;
+	private ArrayList<String> d_Cards;
 	
 	
 	/***
@@ -45,6 +46,28 @@ public class Player {
 		d_SkipCommands=false;
 		d_NegotiatedPlayers = new ArrayList<Player>();
 		d_AtleastOneBattleWon=false;
+		 d_Cards = new ArrayList<String>();
+	}
+
+
+
+
+	public ArrayList<String> getD_Cards() {
+		return d_Cards;
+	}
+
+
+
+
+	public void setD_Cards(ArrayList<String> d_Cards) {
+		this.d_Cards = d_Cards;
+	}
+
+
+
+
+	public boolean isD_AtleastOneBattleWon() {
+		return d_AtleastOneBattleWon;
 	}
 
 
