@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import com.soen6441.risk_game_u14.order.Advance;
+import com.soen6441.risk_game_u14.order.Deploy;
+
 /***
  * This is a model class for the game players
  * 
@@ -15,25 +18,86 @@ public class Player {
 	private int d_Playerid;
 	private String d_PlayerName;
 	private int d_ArmiesCount;
-	private Orders d_CurrentOrder;
+	private Order d_CurrentOrder;
 	private String d_Result;
 	private List<Country> d_PlayerOwnedCountries;
 	private List<Continent> d_PlayerOwnedContinent;
-	private Queue<Orders> d_PlayerOrderQueue;
-
+	private Queue<Order> d_PlayerOrderQueue;
+	private Boolean d_SkipCommands;
+	private Map d_GameMap;
+	private ArrayList<Player> d_NegotiatedPlayers;
+	private boolean d_AtleastOneBattleWon;
+	
+	
 	/***
 	 * This constructor initializes the player
 	 * 
 	 * @param p_PlayerName this is the game player name
 	 */
-	public Player(String p_PlayerName) {
+	public Player(String p_PlayerName, Map p_GameMap) {
 		setD_Playerid(++D_PlayerCount);
 		this.d_PlayerName = p_PlayerName;
+		d_GameMap = p_GameMap;
 		d_PlayerOwnedCountries = new ArrayList<>();
 		d_PlayerOwnedContinent = new ArrayList<>();
 		d_PlayerOrderQueue = new LinkedList<>();
 		d_Result = "";
+		d_SkipCommands=false;
+		d_NegotiatedPlayers = new ArrayList<Player>();
+		d_AtleastOneBattleWon=false;
 	}
+
+
+
+
+	public ArrayList<Player> getD_NegotiatedPlayers() {
+		return d_NegotiatedPlayers;
+	}
+
+
+
+
+	public void setD_NegotiatedPlayers(ArrayList<Player> d_NegotiatedPlayers) {
+		this.d_NegotiatedPlayers = d_NegotiatedPlayers;
+	}
+
+
+
+
+	public boolean setD_AtleastOneBattleWon() {
+		return d_AtleastOneBattleWon;
+	}
+
+
+
+
+	public void setD_AtleastOneBattleWon(boolean d_AtleastOneBattleWon) {
+		this.d_AtleastOneBattleWon = d_AtleastOneBattleWon;
+	}
+
+
+
+
+	public Map getD_GameMap() {
+		return d_GameMap;
+	}
+
+	public void setD_GameMap(Map d_GameMap) {
+		this.d_GameMap = d_GameMap;
+	}
+
+
+
+
+	public Boolean getD_SkipCommands() {
+		return d_SkipCommands;
+	}
+
+
+	public void setD_SkipCommands(Boolean d_SkipCommands) {
+		this.d_SkipCommands = d_SkipCommands;
+	}
+
 
 	/**
 	 * Getter for d_PlayerCount
@@ -114,7 +178,7 @@ public class Player {
 	 * 
 	 * @return Player corrent command
 	 */
-	public Orders getD_CurrentCommand() {
+	public Order getD_CurrentCommand() {
 		return d_CurrentOrder;
 	}
 
@@ -123,7 +187,7 @@ public class Player {
 	 * 
 	 * @param p_CurrentOredr
 	 */
-	public void setD_CurrentCommand(Orders p_CurrentOredr) {
+	public void setD_CurrentCommand(Order p_CurrentOredr) {
 		this.d_CurrentOrder = p_CurrentOredr;
 	}
 
@@ -132,7 +196,7 @@ public class Player {
 	 * 
 	 * @return current order
 	 */
-	public Orders getD_CurrentOrder() {
+	public Order getD_CurrentOrder() {
 		return d_CurrentOrder;
 	}
 
@@ -141,7 +205,7 @@ public class Player {
 	 * 
 	 * @param d_CurrentOrder
 	 */
-	public void setD_CurrentOrder(Orders d_CurrentOrder) {
+	public void setD_CurrentOrder(Order d_CurrentOrder) {
 		this.d_CurrentOrder = d_CurrentOrder;
 	}
 
@@ -188,7 +252,7 @@ public class Player {
 	 * @return queue of players
 	 */
 
-	public Queue<Orders> getD_PlayerOrderQueue() {
+	public Queue<Order> getD_PlayerOrderQueue() {
 		return d_PlayerOrderQueue;
 	}
 
@@ -197,7 +261,7 @@ public class Player {
 	 * 
 	 * @param d_PlayerOrderQueue player queue
 	 */
-	public void setD_PlayerOrderQueue(Queue<Orders> d_PlayerOrderQueue) {
+	public void setD_PlayerOrderQueue(Queue<Order> d_PlayerOrderQueue) {
 		this.d_PlayerOrderQueue = d_PlayerOrderQueue;
 	}
 
@@ -234,17 +298,46 @@ public class Player {
 				d_PlayerOwnedContinent.add(l_continent);
 		}
 	}
+	public Country checkCountryBelongstoPlayer(String p_Country) {
+		for(Country l_country : d_PlayerOwnedCountries) {
+			if(l_country.getD_CountryName().equalsIgnoreCase(p_Country))
+				return l_country;
+		}
+		return null;
+	}
+	
+	
+	public void addCountry(Country p_Country) {
+		d_PlayerOwnedCountries.add(p_Country);
+	}
+	/**
+	 * removeCountry removes the given country from the player's country list
+	 * @param p_Country Name of the country to be removed
+	 */
+	public void removeCountry(Country p_Country) {
+		d_PlayerOwnedCountries.remove(p_Country);
+	}
 
+	
 	/***
 	 * This method adds an order to the player's order queue
 	 */
-	public void issueOrder() {
-		String l_InputCommandSplit[] = d_CurrentOrder.getD_Orders().split(" ");
-		if (Integer.parseInt(l_InputCommandSplit[2]) <= d_ArmiesCount)
-			d_PlayerOrderQueue.add(d_CurrentOrder);
-		else
-			setD_Result("Player doesn't have enough armies!!");
-		;
+	public void issueOrder(String p_Orders) {
+		String l_InputCommandSplit[] = p_Orders.split(" ");
+		
+		switch(l_InputCommandSplit[0]) {
+		
+		case "deploy":
+			Country l_TargetCountryObject = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
+			getD_PlayerOrderQueue().add(new Deploy(this,l_TargetCountryObject, Integer.parseInt(l_InputCommandSplit[2])));
+			break;
+		case "advance":
+			Country l_SourceCountry = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
+			Country l_TargetCountry =  d_GameMap.findCountryByName(l_InputCommandSplit[2]);
+			int l_NumArmies1 = Integer.parseInt(l_InputCommandSplit[3]);
+			getD_PlayerOrderQueue().add(new Advance(this,l_SourceCountry,l_TargetCountry,l_NumArmies1));
+			break;
+		}
 	}
 
 	/***
@@ -252,7 +345,7 @@ public class Player {
 	 * 
 	 * @return it returns the order
 	 */
-	public Orders nextOrder() {
+	public Order nextOrder() {
 		return d_PlayerOrderQueue.remove();
 	}
 }

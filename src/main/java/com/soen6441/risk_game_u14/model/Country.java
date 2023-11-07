@@ -15,6 +15,7 @@ public class Country {
 	private String d_CountryContinent;
 	private ArrayList<String> d_Neighbors;
 	private int d_NoOfArmies;
+	private Player d_Owner;
 
 	/**
 	 * 
@@ -25,12 +26,22 @@ public class Country {
 	 * 
 	 */
 
+	
+	
 	public Country(String p_countryName, String p_continent) {
 		setD_CountryId(++D_Count);
 		this.d_CountryName = p_countryName;
 		this.d_CountryContinent = p_continent;
 		this.d_Neighbors = new ArrayList<>();
 		this.d_NoOfArmies = 0;
+	}
+
+	public Player getD_Owner() {
+		return d_Owner;
+	}
+
+	public void setD_Owner(Player d_Owner) {
+		this.d_Owner = d_Owner;
 	}
 
 	/**
