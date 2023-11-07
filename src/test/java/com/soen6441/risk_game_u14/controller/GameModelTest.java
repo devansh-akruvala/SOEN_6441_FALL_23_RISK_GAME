@@ -47,8 +47,8 @@ public class GameModelTest {
 		d_GameModel = new GameModel(d_Map);
 		d_GameModel.addPlayers("Devansh");
 		d_GameModel.addPlayers("Meshva");
-		d_C1 = new Player("Devansh",d_Map);
-		d_C2 = new Player("Meshva",d_Map);
+		d_C1 = new Player("Devansh", d_GameModel);
+		d_C2 = new Player("Meshva", d_GameModel);
 		d_Check.add(d_C1);
 		d_Check.add(d_C2);
 	}
@@ -140,19 +140,19 @@ public class GameModelTest {
 	 * reinforcement pool
 	 * 
 	 */
-//	@Test
-//	public void testIssueOrderArmySize() {
-//
-//		String l_Command3 = "deploy India 4";
-//		String l_Expected3 = "Player doesn't have enough armies!!";
-//		d_C1.setD_ArmiesCount(3);
-//		d_C1.getD_PlayerOwnedCountries().add(d_Map.getD_CountryObjects().get(0));
-//		d_C1.setD_CurrentCommand(new Order(l_Command3, this.d_GameModel.getD_Map()));
-//		d_C1.issueOrder();
-//		String l_Result3 = d_C1.getD_Result();
-//
-//		assertEquals(l_Expected3, l_Result3);
-//	}
+	// @Test
+	// public void testIssueOrderArmySize() {
+	//
+	// String l_Command3 = "deploy India 4";
+	// String l_Expected3 = "Player doesn't have enough armies!!";
+	// d_C1.setD_ArmiesCount(3);
+	// d_C1.getD_PlayerOwnedCountries().add(d_Map.getD_CountryObjects().get(0));
+	// d_C1.setD_CurrentCommand(new Order(l_Command3, this.d_GameModel.getD_Map()));
+	// d_C1.issueOrder();
+	// String l_Result3 = d_C1.getD_Result();
+	//
+	// assertEquals(l_Expected3, l_Result3);
+	// }
 
 	@Test
 	public void testAssignReinforcements() throws Exception {

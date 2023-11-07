@@ -24,103 +24,73 @@ public class Player {
 	private List<Continent> d_PlayerOwnedContinent;
 	private Queue<Order> d_PlayerOrderQueue;
 	private Boolean d_SkipCommands;
-	private Map d_GameMap;
+	private GameModel d_GameModel;
 	private ArrayList<Player> d_NegotiatedPlayers;
 	private boolean d_AtleastOneBattleWon;
 	private ArrayList<String> d_Cards;
-	
-	
+
 	/***
 	 * This constructor initializes the player
 	 * 
 	 * @param p_PlayerName this is the game player name
 	 */
-	public Player(String p_PlayerName, Map p_GameMap) {
+	public Player(String p_PlayerName, GameModel p_GameModel) {
 		setD_Playerid(++D_PlayerCount);
 		this.d_PlayerName = p_PlayerName;
-		d_GameMap = p_GameMap;
+		d_GameModel = p_GameModel;
 		d_PlayerOwnedCountries = new ArrayList<>();
 		d_PlayerOwnedContinent = new ArrayList<>();
 		d_PlayerOrderQueue = new LinkedList<>();
 		d_Result = "";
-		d_SkipCommands=false;
+		d_SkipCommands = false;
 		d_NegotiatedPlayers = new ArrayList<Player>();
-		d_AtleastOneBattleWon=false;
-		 d_Cards = new ArrayList<String>();
+		d_AtleastOneBattleWon = false;
+		d_Cards = new ArrayList<String>();
 	}
-
-
-
 
 	public ArrayList<String> getD_Cards() {
 		return d_Cards;
 	}
 
-
-
-
 	public void setD_Cards(ArrayList<String> d_Cards) {
 		this.d_Cards = d_Cards;
 	}
 
+	public GameModel getD_GameModel() {
+		return d_GameModel;
+	}
 
-
+	public void setD_Cards(GameModel p_GameModel) {
+		this.d_GameModel = p_GameModel;
+	}
 
 	public boolean isD_AtleastOneBattleWon() {
 		return d_AtleastOneBattleWon;
 	}
 
-
-
-
 	public ArrayList<Player> getD_NegotiatedPlayers() {
 		return d_NegotiatedPlayers;
 	}
-
-
-
 
 	public void setD_NegotiatedPlayers(ArrayList<Player> d_NegotiatedPlayers) {
 		this.d_NegotiatedPlayers = d_NegotiatedPlayers;
 	}
 
-
-
-
 	public boolean setD_AtleastOneBattleWon() {
 		return d_AtleastOneBattleWon;
 	}
-
-
-
 
 	public void setD_AtleastOneBattleWon(boolean d_AtleastOneBattleWon) {
 		this.d_AtleastOneBattleWon = d_AtleastOneBattleWon;
 	}
 
-
-
-
-	public Map getD_GameMap() {
-		return d_GameMap;
-	}
-
-	public void setD_GameMap(Map d_GameMap) {
-		this.d_GameMap = d_GameMap;
-	}
-
-
-
-
 	public Boolean getD_SkipCommands() {
 		return d_SkipCommands;
 	}
 
-
 	public void setD_SkipCommands(Boolean d_SkipCommands) {
 		this.d_SkipCommands = d_SkipCommands;
 	}
-
 
 	/**
 	 * Getter for d_PlayerCount
@@ -321,45 +291,47 @@ public class Player {
 				d_PlayerOwnedContinent.add(l_continent);
 		}
 	}
+
 	public Country checkCountryBelongstoPlayer(String p_Country) {
-		for(Country l_country : d_PlayerOwnedCountries) {
-			if(l_country.getD_CountryName().equalsIgnoreCase(p_Country))
+		for (Country l_country : d_PlayerOwnedCountries) {
+			if (l_country.getD_CountryName().equalsIgnoreCase(p_Country))
 				return l_country;
 		}
 		return null;
 	}
-	
-	
+
 	public void addCountry(Country p_Country) {
 		d_PlayerOwnedCountries.add(p_Country);
 	}
+
 	/**
 	 * removeCountry removes the given country from the player's country list
+	 * 
 	 * @param p_Country Name of the country to be removed
 	 */
 	public void removeCountry(Country p_Country) {
 		d_PlayerOwnedCountries.remove(p_Country);
 	}
 
-	
 	/***
 	 * This method adds an order to the player's order queue
 	 */
 	public void issueOrder(String p_Orders) {
 		String l_InputCommandSplit[] = p_Orders.split(" ");
-		
-		switch(l_InputCommandSplit[0]) {
-		
-		case "deploy":
-			Country l_TargetCountryObject = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
-			getD_PlayerOrderQueue().add(new Deploy(this,l_TargetCountryObject, Integer.parseInt(l_InputCommandSplit[2])));
-			break;
-		case "advance":
-			Country l_SourceCountry = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
-			Country l_TargetCountry =  d_GameMap.findCountryByName(l_InputCommandSplit[2]);
-			int l_NumArmies1 = Integer.parseInt(l_InputCommandSplit[3]);
-			getD_PlayerOrderQueue().add(new Advance(this,l_SourceCountry,l_TargetCountry,l_NumArmies1));
-			break;
+
+		switch (l_InputCommandSplit[0]) {
+
+			case "deploy":
+				Country l_TargetCountryObject = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
+				getD_PlayerOrderQueue()
+						.add(new Deploy(this, l_TargetCountryObject, Integer.parseInt(l_InputCommandSplit[2])));
+				break;
+			case "advance":
+				Country l_SourceCountry = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
+				Country l_TargetCountry = d_GameMap.findCountryByName(l_InputCommandSplit[2]);
+				int l_NumArmies1 = Integer.parseInt(l_InputCommandSplit[3]);
+				getD_PlayerOrderQueue().add(new Advance(this, l_SourceCountry, l_TargetCountry, l_NumArmies1));
+				break;
 		}
 	}
 
