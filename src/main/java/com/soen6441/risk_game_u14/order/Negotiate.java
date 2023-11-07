@@ -38,6 +38,9 @@ public class Negotiate implements Order {
         }
         else{
             System.out.println("\n"+getSourcePlayer().getD_PlayerName()+" does not own Negotiate Card for Diplomacy with "+d_TargetPlayer.getD_PlayerName());
+            d_TargetPlayer.setD_SkipCommands(true);
+			System.out.println("Skipping all the following commands of " + d_TargetPlayer.getD_PlayerName());
+
         }
 
     }

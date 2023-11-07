@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Queue;
 
 import com.soen6441.risk_game_u14.order.Advance;
+import com.soen6441.risk_game_u14.order.Airlift;
+import com.soen6441.risk_game_u14.order.Blockade;
 import com.soen6441.risk_game_u14.order.Deploy;
+import com.soen6441.risk_game_u14.order.Negotiate;
 
 /***
  * This is a model class for the game players
@@ -313,25 +316,75 @@ public class Player {
 		d_PlayerOwnedCountries.remove(p_Country);
 	}
 
+	/**
+	 * get method for the card if the player owns it or not.
+	 * 
+	 * @param p_TypeOfCard the string that indicates the type of card
+	 * @return true if the card type exists in the list of player.
+	 */
+	public boolean getCard(String p_TypeOfCard) {
+		return d_Cards.contains(p_TypeOfCard);
+	}
+
+	/**
+	 * set method for adding the card to the card list belonging to the player
+	 * 
+	 * @param p_Card the Card object that belongs to the player
+	 */
+	public void setCard(String p_Card) {
+		d_Cards.add(p_Card);
+	}
+
+	/**
+	 * This method clears the negotiated players list
+	 */
+	public void removeNegotiatedPlayer() {
+		if (d_NegotiatedPlayers.size() > 0)
+			d_NegotiatedPlayers.clear();
+	}
+
+	public Player findPlayerByName(String p_name) {
+		for(Player l_tp:d_GameModel.getD_Players()) {
+			if(l_tp.getD_PlayerName().equalsIgnoreCase(p_name)) {
+				return l_tp;
+			}
+		}
+		return null;
+	}
+	
+	
 	/***
 	 * This method adds an order to the player's order queue
 	 */
 	public void issueOrder(String p_Orders) {
+		
+		
+		
 		String l_InputCommandSplit[] = p_Orders.split(" ");
-
-		switch (l_InputCommandSplit[0]) {
-
-			case "deploy":
-				Country l_TargetCountryObject = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
-				getD_PlayerOrderQueue()
-						.add(new Deploy(this, l_TargetCountryObject, Integer.parseInt(l_InputCommandSplit[2])));
-				break;
-			case "advance":
-				Country l_SourceCountry = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
-				Country l_TargetCountry = d_GameModel.getD_Map().findCountryByName(l_InputCommandSplit[2]);
-				int l_NumArmies1 = Integer.parseInt(l_InputCommandSplit[3]);
-				getD_PlayerOrderQueue().add(new Advance(this, l_SourceCountry, l_TargetCountry, l_NumArmies1));
-				break;
+		String l_command = l_InputCommandSplit[0];
+		if (l_command.equalsIgnoreCase("deploy")) {
+			Country l_TargetCountryObject = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
+			getD_PlayerOrderQueue()
+					.add(new Deploy(this, l_TargetCountryObject, Integer.parseInt(l_InputCommandSplit[2])));
+		} else if (l_command.equalsIgnoreCase("advance")) {
+			Country l_SourceCountry = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
+			Country l_TargetCountry = d_GameModel.getD_Map().findCountryByName(l_InputCommandSplit[2]);
+			int l_NumArmies1 = Integer.parseInt(l_InputCommandSplit[3]);
+			getD_PlayerOrderQueue().add(new Advance(this, l_SourceCountry, l_TargetCountry, l_NumArmies1));
+		} else if (l_command.equalsIgnoreCase("bomb")) {
+//				Country l_TargetCountry = d_GameModel.getD_Map().findCountryByName(l_InputCommandSplit[2]);
+//				getD_PlayerOrderQueue().add(new Bomb(this,l_TargetCountry));
+		} else if (l_command.equalsIgnoreCase("blockade")) {
+			Country l_SourceCountry = d_GameModel.getD_Map().findCountryByName(l_InputCommandSplit[1]);
+			getD_PlayerOrderQueue().add(new Blockade(this, l_SourceCountry));
+		} else if (l_command.equalsIgnoreCase("airlift")) {
+			Country l_SourceCountry = checkCountryBelongstoPlayer(l_InputCommandSplit[1]);
+			Country l_TargetCountry = checkCountryBelongstoPlayer(l_InputCommandSplit[2]);
+			int l_NumArmies1 = Integer.parseInt(l_InputCommandSplit[3]);
+			getD_PlayerOrderQueue().add(new Airlift(this, l_SourceCountry, l_TargetCountry, l_NumArmies1));
+		} else if (l_command.equalsIgnoreCase("negotiate")) {
+			Player l_TempPlayer = findPlayerByName(l_InputCommandSplit[1]);
+			getD_PlayerOrderQueue().add(new Negotiate(this, l_TempPlayer));
 		}
 	}
 
