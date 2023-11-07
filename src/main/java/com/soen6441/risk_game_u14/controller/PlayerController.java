@@ -2,6 +2,7 @@ package com.soen6441.risk_game_u14.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -37,10 +38,10 @@ public class PlayerController {
 	public PlayerController(GameModel d_GameModel) {
 		this.d_GameModel = d_GameModel;
 		d_AllCards= new HashMap<>();
-		d_AllCards.put(1, "Bomb");
-		d_AllCards.put(2, "Blockade");
-		d_AllCards.put(3, "Negotiate");
-		d_AllCards.put(4,"Airlift");
+		d_AllCards.put(0, "Bomb");
+		d_AllCards.put(1, "Blockade");
+		d_AllCards.put(2, "Negotiate");
+		d_AllCards.put(3,"Airlift");
 		d_Rand = new Random();
 	}
 
@@ -94,6 +95,7 @@ public class PlayerController {
 			Integer.parseInt(number);
 			return true;
 		} catch (Exception e) {
+			System.out.println("Enter Integer Value");
 			return false;
 		}
 	}
@@ -108,6 +110,16 @@ public class PlayerController {
 		}
 	}
 
+	public Boolean isPlayerExist(String p_name) {
+		for(Player l_tp:d_GameModel.getD_Players()) {
+			if(l_tp.getD_PlayerName().equalsIgnoreCase(p_name)) {
+				return true;
+			}
+		}
+		System.out.println("Player with "+p_name+"Doesnot Exist");
+		return false;
+	}
+	
 	public boolean isCommandValid(String p_Command) {
 
 		String l_CommandSplit[] = p_Command.split(" ");
@@ -131,7 +143,7 @@ public class PlayerController {
 				&& isIntParsable(l_CommandSplit[3])) {
 			return true;
 		} else if (l_CommandSplit[0].equalsIgnoreCase("negotiate") && l_CommandLength == 2
-				&& isCountryExist(l_CommandSplit[1])) {
+				&& isPlayerExist(l_CommandSplit[1])) {
 			return true;
 		} else if (l_CommandSplit[0].equalsIgnoreCase("exit")) {
 			return true;
@@ -210,15 +222,85 @@ public class PlayerController {
 		while (!l_AllPlayerDone) {
 			l_AllPlayerDone = true;
 			for (Player l_Player : l_PlayerList) {
+				System.out.println(l_Player.getD_PlayerName());
 				if (!l_Player.getD_PlayerName().equalsIgnoreCase("Neutral Player")) {
 					if (l_Player.getD_PlayerOrderQueue().size() > 0 && l_Player.getD_SkipCommands() == false) {
 						l_AllPlayerDone = false;
 						Order l_nextOrder = l_Player.nextOrder();
+						System.out.println(l_nextOrder.getClass());
 						l_nextOrder.execute();
 					}
 				}
 			}
 		}
+		// Assigning cards to players that have won a battle in this round.
+				for(Player l_TempPlayer : l_PlayerList)
+				{
+					if(l_TempPlayer.isD_AtleastOneBattleWon())
+					{
+						int l_cardInteger = d_Rand.nextInt(4);
+						
+						String l_TempCard = d_AllCards.get(l_cardInteger);
+						l_TempPlayer.setCard(l_TempCard);
+						System.out.println("Player "+l_TempPlayer.getD_PlayerName()+" got "+l_TempCard);
+						l_TempPlayer.setD_AtleastOneBattleWon(false);
+					}
+				}
+			
+				clearNegotiatedPlayerList();
+				removePlayerWithNoCountry();
+				
+				// DO IT IN LAST
+				
+				//checkTheWinner();
+	}
+	/**
+	 * This method is used to remove the player with no countries on its name.
+	 */
+	public void removePlayerWithNoCountry() {
+		Iterator<Player> l_PlayerIterator  = d_GameModel.getD_Players().iterator();
+		while(l_PlayerIterator.hasNext()) {
+			Player l_TempPlayer = (Player)l_PlayerIterator.next();
+			if(l_TempPlayer.getD_PlayerOwnedCountries().size()<=0 && !l_TempPlayer.getD_PlayerName().equals("Neutral Player")) {
+				l_PlayerIterator.remove();
+			}
+		}
+	}
+	/**
+	 * This method is used to clear all the individual players' negotiated players list after each round of issuing and execution of orders.
+	 */
+	public void clearNegotiatedPlayerList()
+	{
+
+		for(Player l_TempPlayer: d_GameModel.getD_Players())
+		{
+			l_TempPlayer.removeNegotiatedPlayer();
+
+		}
+
+	}
+	/**
+	 * This method is used to check if one player owns all the countries of the map and hence can be declared as the winner of the game.
+	 */
+	public int checkTheWinner()
+	{
+		ArrayList <Country> l_CountryList = d_GameModel.getD_Map().getD_CountryObjects();
+		Iterator<Country>itr = l_CountryList.iterator();
+		Player l_CheckPlayer = (Player)((Country) itr.next()).getD_Owner();
+		int l_flag= 0;
+		while(itr.hasNext())
+		{
+			if(!((Player)((Country) itr.next()).getD_Owner()==l_CheckPlayer))
+			{
+				l_flag=1;
+				break;
+			}
+		}
+		if(l_flag==0)
+		{
+			System.out.println("\n"+l_CheckPlayer.getD_PlayerName()+" is the winner of the game!");
+		}
+		return l_flag;
 	}
 
 	/***

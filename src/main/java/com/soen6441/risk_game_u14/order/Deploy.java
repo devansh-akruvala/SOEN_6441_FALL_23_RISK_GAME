@@ -40,8 +40,7 @@ public class Deploy implements Order {
 						+ d_Country.getD_CountryName() + " was successful");
 				return true;
 			} else {
-				System.out.println("\n"+ d_Player.getD_PlayerName() +"This country  doesnot belongs to "
-						+ d_Player.getD_PlayerName());
+				System.out.println("\n"+ d_Player.getD_PlayerName() +": This country  doesnot belongs to you");
 				return false;
 			}
 		} else {

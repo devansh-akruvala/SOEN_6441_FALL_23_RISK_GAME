@@ -23,8 +23,7 @@ public class ExecuteOrder extends Phase {
 			System.out.println("Do you want to continue y=Yes n = NO");
 			String inpString = s.nextLine();
 			if(inpString.equalsIgnoreCase("y")) {
-				p_Ge.getD_GameModel().assignReinforcementArmies();
-				p_Ge.setD_GamePhase(new IssueOrder(p_Ge));
+				p_Ge.setD_GamePhase(new Reinforcement(p_Ge));
 			}
 			else {
 				System.out.println("Byee");
