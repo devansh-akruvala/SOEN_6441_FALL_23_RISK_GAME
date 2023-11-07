@@ -94,7 +94,7 @@ public class PlayerController {
 		if(l_isExist)
 			return true;
 		else {
-			System.out.println("Country "+p_CountryName+ "Doesn't Exist");
+			System.out.println("Country "+p_CountryName+ " Doesn't Exist");
 			return false;
 		}
 	}
@@ -105,10 +105,11 @@ public class PlayerController {
 		int l_CommandLength = l_CommandSplit.length;
 
 		if (l_CommandSplit[0].equalsIgnoreCase("deploy") && l_CommandLength == 3 && isCountryExist(l_CommandSplit[1])
-				&& isCountryExist(l_CommandSplit[2]) && isIntParsable(l_CommandSplit[2])) {
+				&& isIntParsable(l_CommandSplit[2])) {
 			return true;
 		} else if (l_CommandSplit[0].equalsIgnoreCase("advance") && l_CommandLength == 4
-				&& isCountryExist(l_CommandSplit[1]) && isIntParsable(l_CommandSplit[3])) {
+				&& isCountryExist(l_CommandSplit[1])
+				&& isCountryExist(l_CommandSplit[2]) && isIntParsable(l_CommandSplit[3])) {
 			return true;
 		} else if (l_CommandSplit[0].equalsIgnoreCase("bomb") && l_CommandLength == 2
 				&& isCountryExist(l_CommandSplit[1])) {
