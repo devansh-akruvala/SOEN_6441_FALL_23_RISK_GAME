@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 import com.soen6441.risk_game_u14.model.Country;
@@ -21,7 +22,9 @@ import com.soen6441.risk_game_u14.model.Player;
  */
 public class PlayerController {
 	private GameModel d_GameModel;
-
+	private HashMap<Integer, String> d_AllCards;
+	private Random d_Rand;
+	
 	public PlayerController() {
 
 	}
@@ -33,6 +36,12 @@ public class PlayerController {
 	 */
 	public PlayerController(GameModel d_GameModel) {
 		this.d_GameModel = d_GameModel;
+		d_AllCards= new HashMap<>();
+		d_AllCards.put(1, "Bomb");
+		d_AllCards.put(2, "Blockade");
+		d_AllCards.put(3, "Negotiate");
+		d_AllCards.put(4,"Airlift");
+		d_Rand = new Random();
 	}
 
 	/***
