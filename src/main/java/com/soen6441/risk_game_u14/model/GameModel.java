@@ -113,7 +113,7 @@ public class GameModel {
 		if (duplicatePlayerExist(p_PlayerName)) {
 			throw new Exception("Please enter a different player name as this name already exists");
 		}
-		Player l_TempPlayer = new Player(p_PlayerName);
+		Player l_TempPlayer = new Player(p_PlayerName,d_Map);
 		d_Players.add(l_TempPlayer);
 	}
 
@@ -176,13 +176,13 @@ public class GameModel {
 				int l_Index = l_Random.nextInt(l_CountryList.size());
 				Player l_TempPlayer = d_PlayersQueue.remove();
 				l_TempPlayer.getD_PlayerOwnedCountries().add(l_CountryList.get(l_Index));
+				l_CountryList.get(l_Index).setD_Owner(l_TempPlayer);
 				d_PlayersQueue.add(l_TempPlayer);
 				l_CountryList.remove(l_Index);
 			}
 			for (Player l_Player : d_Players) {
 				l_Player.setPlayerContinent(d_Map);
 			}
-			assignReinforcementArmies();
 		} else {
 			if (d_Players.size() == 0) {
 				throw new Exception("Please enter players using gameplayer add command");
@@ -190,6 +190,8 @@ public class GameModel {
 				throw new Exception("One Player Found. Please enter more players using gameplayer add command");
 			}
 		}
+		// adding neutral player
+		this.d_Players.add(new Player("Neutral Player",d_Map));
 	}
 
 	/**
@@ -199,13 +201,19 @@ public class GameModel {
 	public void assignReinforcementArmies() throws Exception {
 		if (d_Players.size() > 0) {
 			for (Player l_Player : d_Players) {
-				int l_ContinentValue = 0;
-				int l_ArmyCount = ((l_Player.getD_PlayerOwnedCountries().size()) / 3);
-				for (Continent l_Continent : l_Player.getD_PlayerOwnedContinent()) {
-					l_ContinentValue += l_Continent.getD_ContinentValue();
+				if (!l_Player.getD_PlayerName().equalsIgnoreCase("Neutral Player")) {
+					int l_ContinentValue = 0;
+					int l_ArmyCount = ((l_Player.getD_PlayerOwnedCountries().size()) / 3);
+					for (Continent l_Continent : l_Player.getD_PlayerOwnedContinent()) {
+						l_ContinentValue += l_Continent.getD_ContinentValue();
+					}
+					l_ArmyCount = Math.max(l_ArmyCount,3);
+					l_Player.setD_ArmiesCount(l_ArmyCount + l_ContinentValue);
+					System.out.println(l_Player.getD_ArmiesCount()+ " Assigncountries" );
+					
+				}else {
+					l_Player.setD_ArmiesCount(0);
 				}
-				l_ArmyCount = Math.max(l_ArmyCount, 3);
-				l_Player.setD_ArmiesCount(l_ArmyCount + l_ContinentValue);
 			}
 		} else {
 			throw new Exception("\"Please enter players using gameplayer add command");

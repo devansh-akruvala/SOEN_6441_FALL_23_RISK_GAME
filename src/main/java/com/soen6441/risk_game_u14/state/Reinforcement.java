@@ -3,23 +3,24 @@ package com.soen6441.risk_game_u14.state;
 import com.soen6441.risk_game_u14.controller.GameEngine;
 import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
 
-public class IssueOrder extends Phase {
+public class Reinforcement extends Phase{
+
 	private LogEntryBuffer d_LEB;
-
-	public IssueOrder(GameEngine p_Ge) {
+	
+	public Reinforcement(GameEngine p_Ge) {
 		super(p_Ge);
-
-		try {
-			d_LEB = new LogEntryBuffer();
-			d_LEB.setResult("In Issue Order Phase");
-			p_Ge.getD_PlayerController().playerIssueOrder();
-			p_Ge.setD_GamePhase(new ExecuteOrder(p_Ge));
-			}catch(Exception p_E) {
-				d_LEB.setResult(p_E.getMessage());
+		d_LEB = new LogEntryBuffer();
+		d_LEB.setResult("In Reinforcement Phase");
+		try{
+			d_GameEngine.getD_GameModel().assignReinforcementArmies();
+			d_GameEngine.getD_GameModel().showplayer();
+			d_GameEngine.setD_GamePhase(new IssueOrder(d_GameEngine));
+			}catch(Exception e){
+				d_LEB.setResult(e.getMessage().toString());
 			}
-		
 	}
-
+	
+	
 	@Override
 	public String editContinent(String p_command) {
 		// TODO Auto-generated method stub
@@ -77,13 +78,14 @@ public class IssueOrder extends Phase {
 	@Override
 	public void showMap() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public String getPhaseName() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Reinforcement Phase";
 	}
 
+	
 }

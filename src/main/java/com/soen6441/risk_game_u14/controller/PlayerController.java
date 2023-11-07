@@ -3,11 +3,12 @@ package com.soen6441.risk_game_u14.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
-import com.soen6441.risk_game_u14.model.Orders;
+import com.soen6441.risk_game_u14.model.Order;
 import com.soen6441.risk_game_u14.model.Player;
 
 /***
@@ -78,6 +79,56 @@ public class PlayerController {
 	 * Ask orders from the players in a round-robin fashion and store them in an
 	 * order queue
 	 */
+
+	public boolean isIntParsable(String number) {
+		try {
+			Integer.parseInt(number);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean isCountryExist(String p_CountryName) {
+		boolean l_isExist = d_GameModel.getD_Map().countryAlreadyExist(p_CountryName);
+		if(l_isExist)
+			return true;
+		else {
+			System.out.println("Country "+p_CountryName+ "Doesn't Exist");
+			return false;
+		}
+	}
+
+	public boolean isCommandValid(String p_Command) {
+
+		String l_CommandSplit[] = p_Command.split(" ");
+		int l_CommandLength = l_CommandSplit.length;
+
+		if (l_CommandSplit[0].equalsIgnoreCase("deploy") && l_CommandLength == 3 && isCountryExist(l_CommandSplit[1])
+				&& isCountryExist(l_CommandSplit[2]) && isIntParsable(l_CommandSplit[2])) {
+			return true;
+		} else if (l_CommandSplit[0].equalsIgnoreCase("advance") && l_CommandLength == 4
+				&& isCountryExist(l_CommandSplit[1]) && isIntParsable(l_CommandSplit[3])) {
+			return true;
+		} else if (l_CommandSplit[0].equalsIgnoreCase("bomb") && l_CommandLength == 2
+				&& isCountryExist(l_CommandSplit[1])) {
+			return true;
+		} else if (l_CommandSplit[0].equalsIgnoreCase("blockade") && l_CommandLength == 2
+				&& isCountryExist(l_CommandSplit[1])) {
+			return true;
+		} else if (l_CommandSplit[0].equalsIgnoreCase("airlift") && l_CommandLength == 4
+				&& isCountryExist(l_CommandSplit[1]) && isCountryExist(l_CommandSplit[2])
+				&& isIntParsable(l_CommandSplit[3])) {
+			return true;
+		} else if (l_CommandSplit[0].equalsIgnoreCase("negotiate") && l_CommandLength == 2
+				&& isCountryExist(l_CommandSplit[1])) {
+			return true;
+		} else if (l_CommandSplit[0].equalsIgnoreCase("exit")) {
+			return true;
+		}
+		return false;
+	}
+
 	public void playerIssueOrder() {
 		// loop through player
 		// ask for order
@@ -87,47 +138,55 @@ public class PlayerController {
 		// if everything is ok then add player order to his queue;
 
 		List<Player> l_PlayerList = d_GameModel.getD_Players();
+
+		Map<Player, Boolean> l_IsPlayerExit = new HashMap<>();
+		for (Player l_Player : l_PlayerList) {
+			l_Player.setD_SkipCommands(false);
+			l_IsPlayerExit.put(l_Player, false);
+		}
+
 		boolean l_AllPlayerDone = false;
+
 		while (!l_AllPlayerDone) {
+
 			l_AllPlayerDone = true;
 			for (Player l_Player : l_PlayerList) {
-				if (l_Player.getD_ArmiesCount() > 0) {
-					l_AllPlayerDone = false;
-					System.out.println(l_Player.getD_PlayerName() + "'s turn:");
-					int l_PlayerArmies = l_Player.getD_ArmiesCount();
-					Scanner sc = new Scanner(System.in);
-					String l_InputCommand = sc.nextLine();
-					String l_InputCommandSplit[] = l_InputCommand.split(" ");
-					int l_InputCommandsize = l_InputCommandSplit.length;
-					if (l_InputCommandSplit[0].equalsIgnoreCase("deploy") && l_InputCommandsize == 3) {
-						String l_Country = l_InputCommandSplit[1];
-						int l_noOfArmiesToBeDeployed = Integer.parseInt(l_InputCommandSplit[2]);
-						Country l_TargetCountry = d_GameModel.getD_Map().findCountryByName(l_Country);
-						if (l_TargetCountry != null) {
-							if (l_Player.getD_PlayerOwnedCountries().indexOf(l_TargetCountry) >= 0) {
-								if (l_PlayerArmies >= l_noOfArmiesToBeDeployed) {
-									l_Player.setD_CurrentCommand(
-											new Orders(l_InputCommand, this.d_GameModel.getD_Map()));
-									l_Player.issueOrder();
-									// update player armies
-									l_Player.setD_ArmiesCount(l_PlayerArmies - l_noOfArmiesToBeDeployed);
-								} else {
-									System.out.println("Player doesn't have enough armies!!");
 
-								}
+				if (!l_Player.getD_PlayerName().equalsIgnoreCase("Neutral Player")) {
+
+					if (l_IsPlayerExit.get(l_Player) == false) {
+
+						l_AllPlayerDone = false;
+						System.out.println(l_Player.getD_PlayerName() + "'s turn:");
+
+						int l_PlayerArmies = l_Player.getD_ArmiesCount();
+						boolean l_CorrectCommand = false;
+
+						// if correct command then dongt ask again
+						String l_InputCommand = "";
+						Scanner sc = new Scanner(System.in);
+
+						while (!l_CorrectCommand) {
+
+							String l_EnteredComamnd = sc.nextLine();
+
+							if (isCommandValid(l_EnteredComamnd)) {
+								l_CorrectCommand = true;
+								l_InputCommand = l_EnteredComamnd;
 							} else {
-								System.out.println(l_Player.getD_PlayerName() + " is not owner of " + l_Country);
-
+								System.out.println("Invalid Command!!");
 							}
-						} else {
-							System.out.println("Input Country doesn't exist!!");
-
 						}
-					} else {
-						System.out.println("Invalid Command");
+						if (l_InputCommand.equalsIgnoreCase("exit")) {
+							l_IsPlayerExit.put(l_Player, true);
+						} else {
+							l_Player.issueOrder(l_InputCommand);
+						}
+
 					}
 				}
 			}
+
 		}
 	}
 
@@ -141,12 +200,12 @@ public class PlayerController {
 		while (!l_AllPlayerDone) {
 			l_AllPlayerDone = true;
 			for (Player l_Player : l_PlayerList) {
-//				System.out.println(l_Player.getD_PlayerName() + "'s order: ");
-				if (l_Player.getD_PlayerOrderQueue().size() > 0) {
-					l_AllPlayerDone = false;
-					Orders l_nextOrder = l_Player.nextOrder();
-//					System.out.println(l_nextOrder.getD_Orders());
-					l_nextOrder.execute();
+				if (!l_Player.getD_PlayerName().equalsIgnoreCase("Neutral Player")) {
+					if (l_Player.getD_PlayerOrderQueue().size() > 0 && l_Player.getD_SkipCommands() == false) {
+						l_AllPlayerDone = false;
+						Order l_nextOrder = l_Player.nextOrder();
+						l_nextOrder.execute();
+					}
 				}
 			}
 		}

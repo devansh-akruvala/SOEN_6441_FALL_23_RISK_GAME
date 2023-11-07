@@ -56,12 +56,10 @@ public class Startup extends Phase{
 	public String assignCountries() {
 		try {
 			d_GameEngine.getD_GameModel().startUpPhase();
-			d_GameEngine.getD_PlayerController().show();
-			
-			d_GameEngine.setD_GamePhase(new IssueOrder(d_GameEngine));
 		} catch (Exception e) {
 			return e.getMessage();
 		}
+		d_GameEngine.setD_GamePhase(new Reinforcement(d_GameEngine));
 		return "";
 		
 	}
