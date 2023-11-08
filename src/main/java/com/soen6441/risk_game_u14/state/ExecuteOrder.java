@@ -7,7 +7,7 @@ import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
 
 public class ExecuteOrder extends Phase {
 
-	private LogEntryBuffer d_LEB;
+	 LogEntryBuffer d_LEB;
 
 	public ExecuteOrder(GameEngine p_Ge) {
 		super(p_Ge);
