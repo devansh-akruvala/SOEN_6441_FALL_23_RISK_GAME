@@ -6,17 +6,20 @@ import com.soen6441.risk_game_u14.model.Order;
 import com.soen6441.risk_game_u14.model.Player;
 
 import java.util.Iterator;
-
+/**
+ * The Blockade class implements the Order interface and overrides the execute method.
+ * It is used when a player issues a blockade command.
+ */
 public class Blockade implements Order {
     private Player d_Player;
     private Country d_Country;
     private GameModel d_GameObj;
 
     /**
-     * Constructor which is called when the object of the blockade is created.
+     * Constructor called when creating a Blockade object.
      * 
-     * @param p_Player      The player who issues the blockade card
-     * @param p_TempCountry The country on which blockade to be created
+     * @param p_Player The player issuing the blockade card.
+     * @param p_TempCountry The country on which the blockade is applied.
      */
     public Blockade(Player p_Player, Country p_TempCountry) {
         setPlayer(p_Player);
@@ -25,10 +28,10 @@ public class Blockade implements Order {
     }
 
     /**
-     * This method is called in the execute order phase.
-     * If blockade order is valid, it triples the number of armies to the country
-     * and makes the country neutral. (assigns to neutral player)
-     * It also removes the blockade card from the player's list.
+     * This method is called during the execute order phase.
+     * If the blockade order is valid, it triples the number of armies in the
+     * country and makes it neutral.
+     * It also removes the blockade card from the player's inventory.
      */
     @Override
     public void execute() {
@@ -52,11 +55,11 @@ public class Blockade implements Order {
     }
 
     /**
-     * This method checks the validity of the blockade order issued by the player.
-     * This method returns false if the country doesn't belong to the player or
-     * player does not have blockade card.
+     * Checks the validity of the blockade order issued by the player.
+     * Returns false if the country doesn't belong to the player or the player does
+     * not have a blockade card.
      * 
-     * @return true if the order is valid, else false.
+     * @return true if the order is valid, otherwise false.
      */
     public boolean isValid() {
         
@@ -87,7 +90,7 @@ public class Blockade implements Order {
     /**
      * Sets the player who issues the blockade order.
      * 
-     * @param d_Player Player who issues the blockade order.
+     * @param d_Player The player who issues the blockade order.
      */
     public void setPlayer(Player d_Player) {
         this.d_Player = d_Player;
