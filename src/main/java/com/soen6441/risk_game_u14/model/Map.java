@@ -389,7 +389,7 @@ public class Map {
 	 */
 	public void loadFile(String p_FileName) throws Exception {
 		reset();
-		String l_Path = "saved_maps\\";
+		String l_Path = "saved_maps//";
 		File l_File = new File(l_Path + p_FileName);
 		Scanner l_Sc = new Scanner(l_File);
 		while (l_Sc.hasNextLine()) {
