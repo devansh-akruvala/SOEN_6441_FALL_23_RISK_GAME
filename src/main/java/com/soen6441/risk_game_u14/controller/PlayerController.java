@@ -226,7 +226,6 @@ public class PlayerController {
 					if (l_Player.getD_PlayerOrderQueue().size() > 0 && l_Player.getD_SkipCommands() == false) {
 						l_AllPlayerDone = false;
 						Order l_nextOrder = l_Player.nextOrder();
-						System.out.println(l_nextOrder.getClass());
 						l_nextOrder.execute();
 					}
 				}
