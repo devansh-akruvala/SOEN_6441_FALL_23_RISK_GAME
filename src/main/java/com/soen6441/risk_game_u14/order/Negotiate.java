@@ -7,6 +7,7 @@ import com.soen6441.risk_game_u14.model.Player;
  * The Negotiate class implements the Order interface and is responsible for executing negotiation commands between players in the game.
  * During the Issue Order phase, when a player issues a negotiate command, it is stored in the orders list.
  * During the Execute Order phase, the execute method of this class is invoked.
+ *
  * @author Aditya Gupta
  */
 public class Negotiate implements Order {
@@ -32,16 +33,15 @@ public class Negotiate implements Order {
     @Override
     public void execute() {
         /*If Player has negotiate card, then it will add target player to negotiatedPlayerList and then remove that card*/
-        if(this.getSourcePlayer().getD_Cards().contains("Negotiate")) {
+        if (this.getSourcePlayer().getD_Cards().contains("Negotiate")) {
             this.getSourcePlayer().getD_NegotiatedPlayers().add(d_TargetPlayer);
             this.d_TargetPlayer.getD_NegotiatedPlayers().add(getSourcePlayer());
             getSourcePlayer().getD_Cards().remove("Negotiate");
-            d_SourcePlayer.setD_Result("Negotiation with "+d_TargetPlayer.getD_PlayerName()+" successfull.");
-        }
-        else{
-            d_SourcePlayer.setD_Result("\n"+getSourcePlayer().getD_PlayerName()+" does not own Negotiate Card for Diplomacy with "+d_TargetPlayer.getD_PlayerName());
+            d_SourcePlayer.setD_Result("Negotiation with " + d_TargetPlayer.getD_PlayerName() + " successfull.");
+        } else {
+            d_SourcePlayer.setD_Result("\n" + getSourcePlayer().getD_PlayerName() + " does not own Negotiate Card for Diplomacy with " + d_TargetPlayer.getD_PlayerName());
             d_SourcePlayer.setD_SkipCommands(true);
-			d_SourcePlayer.setD_Result(d_SourcePlayer.getD_Result()+"\nSkipping all the following commands of " + d_SourcePlayer.getD_PlayerName());
+            d_SourcePlayer.setD_Result(d_SourcePlayer.getD_Result() + "\nSkipping all the following commands of " + d_SourcePlayer.getD_PlayerName());
 
         }
 
