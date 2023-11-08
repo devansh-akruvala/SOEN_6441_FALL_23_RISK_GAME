@@ -19,6 +19,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\Dell\Documents\risk_game_u14"/>
 			<item value="D:\Concordia\APP Project\SOEN_6441_FALL_23_RISK_GAME"/>
 		</list>
 	</section>
