@@ -36,7 +36,8 @@ public class Player {
     /***
      * This constructor initializes the player
      *
-     * @param p_PlayerName this is the game player name
+     * @param p_PlayerName This is the game player name
+     * @param p_GameModel  This is the game model
      */
     public Player(String p_PlayerName, GameModel p_GameModel) {
         setD_Playerid(++D_PlayerCount);
@@ -51,47 +52,91 @@ public class Player {
         d_AtleastOneBattleWon = false;
         d_Cards = new ArrayList<String>();
     }
-
+    /**
+     * Retrieves the list of cards owned by the player.
+     *
+     * @return An ArrayList of Strings representing the player's cards.
+     */
     public ArrayList<String> getD_Cards() {
         return d_Cards;
     }
-
+    /**
+     * Sets the list of cards owned by the player.
+     *
+     * @param d_Cards An ArrayList of Strings representing the player's cards to be set.
+     */
     public void setD_Cards(ArrayList<String> d_Cards) {
         this.d_Cards = d_Cards;
     }
-
+    /**
+     * Retrieves the game model associated with the player.
+     *
+     * @return The GameModel object associated with the player.
+     */
     public GameModel getD_GameModel() {
         return d_GameModel;
     }
-
+    /**
+     * Sets the game model for the player.
+     *
+     * @param p_GameModel The GameModel to be associated with the player.
+     */
     public void setD_Cards(GameModel p_GameModel) {
         this.d_GameModel = p_GameModel;
     }
-
+    /**
+     * Checks if the player has won at least one battle.
+     *
+     * @return A boolean indicating whether the player has won at least one battle.
+     */
     public boolean isD_AtleastOneBattleWon() {
         return d_AtleastOneBattleWon;
     }
-
+    /**
+     * Retrieves the list of players negotiated with by the current player.
+     *
+     * @return An ArrayList of Player objects negotiated with by the player.
+     */
     public ArrayList<Player> getD_NegotiatedPlayers() {
         return d_NegotiatedPlayers;
     }
-
+    /**
+     * Sets the list of players negotiated with by the player.
+     *
+     * @param d_NegotiatedPlayers An ArrayList of Player objects negotiated with by the player.
+     */
     public void setD_NegotiatedPlayers(ArrayList<Player> d_NegotiatedPlayers) {
         this.d_NegotiatedPlayers = d_NegotiatedPlayers;
     }
-
+    /**
+     * Checks if the player has won at least one battle and returns a boolean value.
+     *
+     * @return A boolean value indicating whether the player has won at least one battle.
+     */
     public boolean setD_AtleastOneBattleWon() {
         return d_AtleastOneBattleWon;
     }
-
+    /**
+     * Sets the status of whether the player has won at least one battle.
+     *
+     * @param d_AtleastOneBattleWon A boolean value indicating whether the player has won at least one battle.
+     */
     public void setD_AtleastOneBattleWon(boolean d_AtleastOneBattleWon) {
         this.d_AtleastOneBattleWon = d_AtleastOneBattleWon;
     }
-
+    /**
+     * Retrieves the status of skipping commands by the player.
+     *
+     * @return A Boolean value representing the status of skipping commands by the player.
+     */
     public Boolean getD_SkipCommands() {
         return d_SkipCommands;
     }
-
+    /**
+     * Sets the status of skipping commands by the player.
+     *
+     * @param d_SkipCommands A Boolean value representing the status of skipping commands by the player.
+     */
     public void setD_SkipCommands(Boolean d_SkipCommands) {
         this.d_SkipCommands = d_SkipCommands;
     }
@@ -109,7 +154,7 @@ public class Player {
     /**
      * Setter for d_playercount
      *
-     * @param d_PlayerCount
+     * @param d_PlayerCount The player count
      */
     public static void setD_PlayerCount(int d_PlayerCount) {
         D_PlayerCount = d_PlayerCount;
@@ -127,7 +172,7 @@ public class Player {
     /**
      * Setter for player id
      *
-     * @param d_Playerid
+     * @param d_Playerid Id of the player
      */
     public void setD_Playerid(int d_Playerid) {
         this.d_Playerid = d_Playerid;
@@ -146,7 +191,7 @@ public class Player {
     /**
      * Setter for d_PlayerName
      *
-     * @param d_PlayerName
+     * @param d_PlayerName The name of a player
      */
     public void setD_PlayerName(String d_PlayerName) {
         this.d_PlayerName = d_PlayerName;
@@ -164,7 +209,7 @@ public class Player {
     /**
      * Setter for Armies count
      *
-     * @param d_ArmiesCount
+     * @param d_ArmiesCount Indicate the number of armies
      */
     public void setD_ArmiesCount(int d_ArmiesCount) {
         this.d_ArmiesCount = d_ArmiesCount;
@@ -182,7 +227,7 @@ public class Player {
     /**
      * Setter for current order
      *
-     * @param p_CurrentOredr
+     * @param p_CurrentOredr The current order
      */
     public void setD_CurrentCommand(Order p_CurrentOredr) {
         this.d_CurrentOrder = p_CurrentOredr;
@@ -200,7 +245,7 @@ public class Player {
     /**
      * Setter for current order String
      *
-     * @param d_CurrentOrder
+     * @param d_CurrentOrder The curent order
      */
     public void setD_CurrentOrder(Order d_CurrentOrder) {
         this.d_CurrentOrder = d_CurrentOrder;
@@ -218,7 +263,7 @@ public class Player {
     /**
      * Setter for d_Result
      *
-     * @param d_Result
+     * @param d_Result The result
      */
     public void setD_Result(String d_Result) {
         this.d_Result = d_Result;
@@ -263,7 +308,8 @@ public class Player {
     }
 
     /**
-     * Getter for getD_PlayerOwnedContinent returns Continent owned by player
+     * Getter for getD_PlayerOwnedContinent
+     * @return Continent owned by player
      */
     public List<Continent> getD_PlayerOwnedContinent() {
         return d_PlayerOwnedContinent;
@@ -272,7 +318,7 @@ public class Player {
     /**
      * Setter for player owned continent
      *
-     * @param d_PlayerOwnedContinent
+     * @param d_PlayerOwnedContinent The continent owned by the player
      */
     public void setD_PlayerOwnedContinent(List<Continent> d_PlayerOwnedContinent) {
         this.d_PlayerOwnedContinent = d_PlayerOwnedContinent;
@@ -298,11 +344,19 @@ public class Player {
             }
         }
     }
-
+    /**
+     * Clears the list of continents owned by the player.
+     * The player's owned continents list is reset to an empty state.
+     */
     public void clearPlayerContinent() {
         d_PlayerOwnedContinent.clear();
     }
-
+    /**
+     * Checks if a specified country belongs to the player.
+     *
+     * @param p_Country The name of the country being checked.
+     * @return The Country object if it is owned by the player, otherwise returns null.
+     */
     public Country checkCountryBelongstoPlayer(String p_Country) {
         for (Country l_country : d_PlayerOwnedCountries) {
             if (l_country.getD_CountryName().equalsIgnoreCase(p_Country))
@@ -310,7 +364,11 @@ public class Player {
         }
         return null;
     }
-
+    /**
+     * Adds a country to the player's owned countries list.
+     *
+     * @param p_Country The Country object to be added to the player's owned countries.
+     */
     public void addCountry(Country p_Country) {
         d_PlayerOwnedCountries.add(p_Country);
     }
@@ -350,7 +408,12 @@ public class Player {
         if (d_NegotiatedPlayers.size() > 0)
             d_NegotiatedPlayers.clear();
     }
-
+    /**
+     * Searches for a player by their name within the game.
+     *
+     * @param p_name The name of the player being searched for.
+     * @return The Player object if a player with the specified name is found within the game; otherwise, returns null.
+     */
     public Player findPlayerByName(String p_name) {
         for (Player l_tp : d_GameModel.getD_Players()) {
             if (l_tp.getD_PlayerName().equalsIgnoreCase(p_name)) {
@@ -371,6 +434,7 @@ public class Player {
      *     <li>AirLift Order: Moves armies from the source country to a target country, even if they are not neighbors.</li>
      *     <li>Negotiate Order: Establishes a diplomatic agreement between the issuing player and another player, preventing attacks on each other's countries.</li>
      * </ul>
+     * @param p_Orders The order given by the player
      */
     public void issueOrder(String p_Orders) {
 

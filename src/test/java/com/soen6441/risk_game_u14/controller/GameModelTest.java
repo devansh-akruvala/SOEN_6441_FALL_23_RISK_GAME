@@ -137,20 +137,9 @@ public class GameModelTest {
     /**
      * This checks if player is deploying more armies than he has in its
      * reinforcement pool
+     * @throws Exception If it encounters an exception
      */
-    // @Test
-    // public void testIssueOrderArmySize() {
-    //
-    // String l_Command3 = "deploy India 4";
-    // String l_Expected3 = "Player doesn't have enough armies!!";
-    // d_C1.setD_ArmiesCount(3);
-    // d_C1.getD_PlayerOwnedCountries().add(d_Map.getD_CountryObjects().get(0));
-    // d_C1.setD_CurrentCommand(new Order(l_Command3, this.d_GameModel.getD_Map()));
-    // d_C1.issueOrder();
-    // String l_Result3 = d_C1.getD_Result();
-    //
-    // assertEquals(l_Expected3, l_Result3);
-    // }
+
     @Test
     public void testAssignReinforcements() throws Exception {
         d_GameModel.startUpPhase();
