@@ -5,11 +5,10 @@ import org.junit.platform.suite.api.Suite;
 
 /**
  * This Class is the test suite, it calls all the tests of Controller package
- * 
  */
 
 @Suite
-@SelectClasses({GameModelTest.class,MapControllerTest.class})
+@SelectClasses({GameModelTest.class, MapControllerTest.class})
 public class ControllerTestTestSuite {
 
 }

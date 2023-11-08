@@ -2,14 +2,14 @@ package com.soen6441.risk_game_u14.model;
 
 /***
  * This class is a model for the orders given by the game players
- * 
+ *
  * @author Aditya, Karandeep 
  */
 public interface Order {
 
-	void execute();
-	
-	//	private String d_Orders;W
+    void execute();
+
+    //	private String d_Orders;W
 //	private Map d_Map;
 //
 //	public Orders() {

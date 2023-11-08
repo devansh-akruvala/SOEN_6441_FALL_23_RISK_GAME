@@ -6,11 +6,10 @@ import org.junit.platform.suite.api.Suite;
 
 /**
  * This Class is the test suite, it calls all the tests of order package
- * 
  */
 
 @Suite
-@SelectClasses({AdvanceTest.class,AirliftTest.class,BlockadeTest.class,BombTest.class,DeployTest.class,NegotiateTest.class})
+@SelectClasses({AdvanceTest.class, AirliftTest.class, BlockadeTest.class, BombTest.class, DeployTest.class, NegotiateTest.class})
 public class OrderTestTestSuite {
 
 }

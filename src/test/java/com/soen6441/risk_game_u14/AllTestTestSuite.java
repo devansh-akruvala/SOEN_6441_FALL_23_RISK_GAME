@@ -9,11 +9,10 @@ import com.soen6441.risk_game_u14.state.StateTestTestSuite;
 
 /**
  * This Class is the test suite, it calls all the tests of Project
- * 
  */
 
 @Suite
-@SelectClasses({ControllerTestTestSuite.class,OrderTestTestSuite.class,StateTestTestSuite.class})
+@SelectClasses({ControllerTestTestSuite.class, OrderTestTestSuite.class, StateTestTestSuite.class})
 public class AllTestTestSuite {
 
 }

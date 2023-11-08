@@ -6,6 +6,7 @@ import com.soen6441.risk_game_u14.model.Order;
 import com.soen6441.risk_game_u14.model.Player;
 
 import java.util.Iterator;
+
 /**
  * The Blockade class implements the Order interface and overrides the execute method.
  * It is used when a player issues a blockade command.
@@ -17,8 +18,8 @@ public class Blockade implements Order {
 
     /**
      * Constructor called when creating a Blockade object.
-     * 
-     * @param p_Player The player issuing the blockade card.
+     *
+     * @param p_Player      The player issuing the blockade card.
      * @param p_TempCountry The country on which the blockade is applied.
      */
     public Blockade(Player p_Player, Country p_TempCountry) {
@@ -45,12 +46,12 @@ public class Blockade implements Order {
                     l_Player.addCountry(d_Country);
                 }
             }
-            d_Player.setD_Result( d_Player.getD_PlayerName() +": Blockade was Success!!");
+            d_Player.setD_Result(d_Player.getD_PlayerName() + ": Blockade was Success!!");
             getPlayer().getD_Cards().remove("Blockade");
-        }else {
-			d_Player.setD_SkipCommands(true);
-			d_Player.setD_Result(d_Player.getD_Result()+"\nSkipping all the following commands of " + d_Player.getD_PlayerName());
-		}
+        } else {
+            d_Player.setD_SkipCommands(true);
+            d_Player.setD_Result(d_Player.getD_Result() + "\nSkipping all the following commands of " + d_Player.getD_PlayerName());
+        }
 
     }
 
@@ -58,17 +59,17 @@ public class Blockade implements Order {
      * Checks the validity of the blockade order issued by the player.
      * Returns false if the country doesn't belong to the player or the player does
      * not have a blockade card.
-     * 
+     *
      * @return true if the order is valid, otherwise false.
      */
     public boolean isValid() {
-        
+
         if (!getPlayer().getD_Cards().contains("Blockade")) {
             d_Player.setD_Result("Player does not have a blockade card");
             return false;
         }
-        
-        if (d_Country!=null) {
+
+        if (d_Country != null) {
             d_Player.setD_Result("The blockade was successfull");
             return true;
         } else {
@@ -80,7 +81,7 @@ public class Blockade implements Order {
 
     /**
      * Returns the player who issued the blockade order.
-     * 
+     *
      * @return the player who issued the blockade order.
      */
     public Player getPlayer() {
@@ -89,7 +90,7 @@ public class Blockade implements Order {
 
     /**
      * Sets the player who issues the blockade order.
-     * 
+     *
      * @param d_Player The player who issues the blockade order.
      */
     public void setPlayer(Player d_Player) {
