@@ -3,7 +3,10 @@ package com.soen6441.risk_game_u14.order;
 import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.Order;
 import com.soen6441.risk_game_u14.model.Player;
-
+/**
+ * The Deploy class implements the Order interface and overrides the execute method.
+ * An instance of this class is created when a player issues a Deploy order.
+ */
 public class Deploy implements Order {
 
 	private Player d_Player;
@@ -11,17 +14,23 @@ public class Deploy implements Order {
 	private int d_NumArmies;
 
 	/**
-	 * Constructor which is created on creation of the object
+	 * Constructor for the Deploy class, called when creating an object.
 	 * 
-	 * @param p_Player    Player who issues the deploy order.
-	 * @param p_Country   Country on which the player issues deploy order.
-	 * @param p_NumArmies Number of armies to be deployed on the given country.
+	 * @param p_Player  The player issuing the deploy order.
+	 * @param p_Country  The country on which the player is deploying armies.
+	 * @param p_NumArmies The number of armies to be deployed on the given
+	 *                       country.
 	 */
 	public Deploy(Player p_Player, Country p_Country, int p_NumArmies) {
 		d_Player = p_Player;
 		d_Country = p_Country;
 		d_NumArmies = p_NumArmies;
 	}
+
+	/**
+	 * This method verifies the validity of the Deploy order and then assigns the
+	 * specified number of armies to the country.
+	 */
 
 	public void execute() {
 		if (isValid()) {
@@ -32,6 +41,15 @@ public class Deploy implements Order {
 			System.out.println("Skipping all the following commands of " + d_Player.getD_PlayerName());
 		}
 	}
+
+
+	/**
+	 * This method checks the validity of the issued deploy order.
+	 * It returns false if the country does not belong to the player or if the
+	 * player doesn't have enough armies.
+	 * 
+	 * @return true if the order is valid; otherwise, false.
+	 */
 
 	public boolean isValid() {
 		if (d_NumArmies <= d_Player.getD_ArmiesCount()) {
