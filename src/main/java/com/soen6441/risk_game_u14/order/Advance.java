@@ -14,19 +14,23 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.Order;
 import com.soen6441.risk_game_u14.model.Player;
 
+/**
+ * The Advance class represents a type of order issued by a player in the game. This order allows a player to attack a territory belonging to another player using a specified number of armies. The attack outcome is determined by a 60% success rate for the attacker and a 70% success rate for the defender.
+ * The order format is: "advance sourceCountry targetCountry NumberOfArmies".
+ */
 public class Advance implements Order {
 
 
 	/**
-	 * The sourceCountry of the attacking player and the targetCountry of the Defending Player.
+	 * The country from which the attack is launched (attacker's country) and the targeted defending country.
 	 */
 	Country d_SourceCountry,d_TargetCountry;
 	/**
-	 * The issuing or the attacking player.
+	 * The player issuing the attack.
 	 */
 	Player d_Player;
 	/**
-	 * The number of armies with which the player plans to attack.
+	 * The number of armies designated for the attack.
 	 */
 	int d_NumArmies;
 
@@ -38,11 +42,12 @@ public class Advance implements Order {
 	}
 
 	/**
-	 * 
-	 * @param p_Player The player that is issuing the order - The attacker.
-	 * @param p_SourceCountry The Country from which armies are to be moved for attack
-	 * @param p_TargetCountry The country which is to be attacked.
-	 * @param p_NumArmies1 The number of armies going for attack.
+	 * Constructs an Advance order issued by a player.
+	 *
+	 * @param p_Player          The attacking player issuing the order.
+	 * @param p_SourceCountry   The player's country launching the attack.
+	 * @param p_TargetCountry   The enemy country being attacked.
+	 * @param p_NumArmies1       The number of armies used in the attack.
 	 */
 
 	public Advance(Player p_Player, Country p_SourceCountry, Country p_TargetCountry, int p_NumArmies1) 
@@ -55,26 +60,26 @@ public class Advance implements Order {
 	}
 
 	/**
-	 * This is an overridden execute method of Order interface. This method implements the attack logic.
-	 * The logic implemented depends on the integer value  returned from the isValid method. 
+	 * This method, an implementation of the execute method from the Order interface, handles the attack mechanism in the game logic.
+	 * The specific actions depend on the integer value returned from the isValid method. The different scenarios include:
 	 * <ol>
-	 * <li>If the sourceCountry and the targetCountry both belong to the issuing player then the armies 
-	 * simply move from the source to the target country.</li>
-	 * <li> If the target country does not have any number of armies, then the that territory is simply acquired by the issuing player
-	 * and he/she deploys the attacking number of armies at the target Country.</li>
-	 * <li>Else the attack takes place.</li>
+	 * <li>1. If both the sourceCountry and targetCountry belong to the same player, the armies simply move from the source to the target country.</li>
+	 * <li>2. If the target country has no defending armies, it's acquired by the attacking player, who deploys the specified attacking armies there.</li>
+	 * <li>3. Otherwise, a standard attack takes place.</li>
 	 * </ol>
-	 * Attack - Each attacking army is assigned a random integer between 0-6 (that shows the 60% probability of it winning the attack).
-	 * 			Each defending army is assigned a random integer between 0-7 (that shows the 70% probability of it surviving the attack).
-	 * 			If the attacking number of armies are greater than the defending number of armies then, the attacker takes the best armies
-	 * 			equal to the number of defending armies to fight with and vice versa. in the battleground, armies fight one on one. If the 
-	 * 			assigned number of the attacker army is greater than the assigned number of the defender army then, that particular 
-	 * 			attacker army wins and the same goes the other way round. At the end if the count of winning attacker armies is more than 
-	 * 			the attacker wins the country and deploys the armies remaining after the fight and the armies that were kept aside on the 
-	 * 			target country that didn't participate in the fight. If the count of winning armies of attacker is same or less than that
-	 * 			of the defender than the defender wins. In such a case the target country has the left defending armies after the fight 
-	 * 			plus those armies of the defender that didn't participate in the fight. And the remaining armies of the attacker are sent 
-	 * 			back to its source Country.
+	 * During the attack phase:
+	 * - Each attacking army is randomly assigned a value between 0 and 6 (representing a maximum 60% chance of winning the attack).
+	 * - Each defending army is randomly assigned a value between 0 and 7 (representing a maximum 70% chance of surviving the attack).
+	 *
+	 * The battle unfolds based on the relative strengths of attacking and defending armies:
+	 * - If the attacking armies outnumber the defending armies, each side matches their best armies one-on-one.
+	 * - The side with the higher assigned value in a one-on-one battle wins. The victorious armies determine the overall outcome.
+	 *
+	 * The aftermath is decided based on the number of winning armies:
+	 * - If the attacking side has more winning armies, they conquer the target country and deploy remaining armies, including those uninvolved in the battle.
+	 * - If the defender has an equal or greater number of winning armies, they succeed, maintaining remaining defending armies and those unengaged in the fight.
+	 *
+	 * In the event of a defender's victory, the remaining attacking armies return to their source country.
 	 */
 	@Override
 	public void execute()
@@ -194,18 +199,16 @@ public class Advance implements Order {
 	}
 
 	/**
-	 * This Method returns the armies to fight in the battle ground. If the original attacking number of armies is greater than the 
-	 * defending number of armies. Then the 1st n number of armies with greatest corresponding values are selected from the original
-	 * set of armies. Where n would be the number of defending armies. Same happens when original defending number of armies is 
-	 * greater than the attacking number of armies. Then the 1st n number of armies with greatest corresponding values are selected 
-	 * from the original set of armies. Where n would be the number of attacking armies. In the case when both are equal in number 
-	 * then it just returns the attacking armies for size reference in execute method.
-	 *  
-	 * @param p_SizeDiffint 	This integer shows which side of armies are greater in number.
-	 * @param p_MinArmies		The number of armies that will participate in the fight.
-	 * @param p_AttackerArmies  The original attacking armies with the random numbers assigned to it.
-	 * @param p_DefenderArmies  The original defending armies with the random numbers assigned to it.
-	 * @return	The armies with maximum corresponding value of attacker side or defender side depending on who has greater number of armies.
+	 * This method determines the armies engaged in the battle.
+	 * If the initial number of attacking armies exceeds the defending forces, it selects the top 'n' armies with the highest assigned values from the original set of armies, where 'n' is the number of defending armies.
+	 * Similarly, if the original defending armies outnumber the attacking forces, it chooses the top 'n' armies with the greatest corresponding values from the initial set of armies, with 'n' representing the number of attacking armies.
+	 * When the quantities of attacking and defending armies are equal, the method solely returns the attacking armies to maintain a size reference in the execute method.
+	 *
+	 * @param p_SizeDiffint     Indicates which side has a numerical advantage in armies.
+	 * @param p_MinArmies       Signifies the quantity of armies participating in the battle.
+	 * @param p_AttackerArmies  Represents the initial attacking armies with randomly assigned values.
+	 * @param p_DefenderArmies  Denotes the original defending armies with randomly assigned values.
+	 * @return The selection of armies based on their maximum corresponding values, dependent on which side holds a larger number of armies.
 	 */
 	
 	TreeMap<Integer,Integer> ArmiestoFight(int p_SizeDiffint,int  p_MinArmies, TreeMap <Integer,Integer> p_AttackerArmies,TreeMap <Integer,Integer> p_DefenderArmies)
@@ -277,17 +280,19 @@ public class Advance implements Order {
 	}
 
 	/**
-	 * This method checks the validity of the order.
-	 * The cases when the order is not valid are:
+	 * This method validates the order and identifies several conditions that render the order invalid:
+	 *<ol>
+	 * <li> When the issuing player is currently in negotiations with the owner of the target country.</li>
+	 * <li>When the sourceCountry and the targetCountry are identical.</li>
+	 * <li>When the sourceCountry and the targetCountry are not neighboring territories.</li>
+	 * <li>When the sourceCountry is left with fewer than one army after the order has been executed with a specific number of armies.</li>
+	 *</ol>
+	 * This method returns different integers based on various valid or invalid execution cases:
 	 * <ol>
-	 * <li>When the issuing player is in negotiation with the owner of the target country</li>
-	 * <li>When the sourceCountry and the taretCountry are the same</li>
-	 * <li>When sourceCountry and the targetCountry are not neighbours</li>
-	 * <li>When the sourceCountry is left with armies less than one after the order has been issued with certain number of armies</li>
+	 * <li> It returns an integer of 1 when both countries involved in the order belong to the issuing player.</li>
+	 * <li> An integer of 2 is returned when the countries belong to different players.</li>
 	 * </ol>
-	 * An integer 1 is returned when both the countries belong to the issuing player.
-	 * An integer 2 is returned when the country belongs to different players.
-	 * @return integer that shows different cases of execution if the order is valid
+	 * @return An integer representing the different scenarios determining the validity of the order's execution.
 	 */
 	
 	public int isValid()

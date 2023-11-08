@@ -4,17 +4,19 @@ import com.soen6441.risk_game_u14.model.Order;
 import com.soen6441.risk_game_u14.model.Player;
 
 /**
- *	Negotiate class implements the Order interface and overrides the execute method.
- * 	During IssueOrder phase, when player issues negotiate command, it is stored in the orders list.
- *  During the ExecuteOrder phase, execute method of this class is called.
+ * The Negotiate class implements the Order interface and is responsible for executing negotiation commands between players in the game.
+ * During the Issue Order phase, when a player issues a negotiate command, it is stored in the orders list.
+ * During the Execute Order phase, the execute method of this class is invoked.
+ * @author Aditya Gupta
  */
 public class Negotiate implements Order {
     private Player d_SourcePlayer, d_TargetPlayer;
 
     /**
-     * Constructor of the Negotiate class which is called when object is created.
-     * @param p_SourcePlayer The player who issues the negotiate command.
-     * @param p_TargetPlayer The Player with whom source player wants to have a negotiation.
+     * Constructs a Negotiate object.
+     *
+     * @param p_SourcePlayer The player initiating the negotiation.
+     * @param p_TargetPlayer The player with whom the source player wishes to negotiate.
      */
     public Negotiate(Player p_SourcePlayer, Player p_TargetPlayer) {
         setSourcePlayer(p_SourcePlayer);
@@ -23,9 +25,9 @@ public class Negotiate implements Order {
     }
 
     /**
-     * This method adds the logic for the diplomacy(negotiation).
-     * If the source player owns Negotiate Card, then this method will make sure source and target players can not attack on each other during the turn.
-     * This method also removes the Negotiate Card from the source player so that he can not use it again.
+     * Implements the logic for diplomacy through negotiation between players.
+     * If the source player owns a Negotiate Card, this method ensures that the source and target players cannot attack each other during the turn.
+     * Additionally, it removes the Negotiate Card from the source player, preventing its reuse.
      */
     @Override
     public void execute() {
@@ -46,16 +48,18 @@ public class Negotiate implements Order {
     }
 
     /**
-     * This method returns the source player who issues the Negotiate order.
-     * @return Player who issued the negotiate command.
+     * Retrieves the player who initiated the Negotiate order.
+     *
+     * @return The player initiating the negotiate command.
      */
     public Player getSourcePlayer() {
         return d_SourcePlayer;
     }
 
     /**
-     * This method sets the player who issues the Negotiate order.
-     * @param d_SourcePlayer Player who issues the negotiate order.
+     * Sets the player initiating the Negotiate order.
+     *
+     * @param d_SourcePlayer The player initiating the negotiate order.
      */
     public void setSourcePlayer(Player d_SourcePlayer) {
         this.d_SourcePlayer = d_SourcePlayer;
