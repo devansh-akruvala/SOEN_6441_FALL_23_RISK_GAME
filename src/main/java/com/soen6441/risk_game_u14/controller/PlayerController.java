@@ -222,7 +222,6 @@ public class PlayerController {
 		while (!l_AllPlayerDone) {
 			l_AllPlayerDone = true;
 			for (Player l_Player : l_PlayerList) {
-				System.out.println(l_Player.getD_PlayerName());
 				if (!l_Player.getD_PlayerName().equalsIgnoreCase("Neutral Player")) {
 					if (l_Player.getD_PlayerOrderQueue().size() > 0 && l_Player.getD_SkipCommands() == false) {
 						l_AllPlayerDone = false;
