@@ -5,7 +5,7 @@ import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
 
 public class Reinforcement extends Phase{
 
-	private LogEntryBuffer d_LEB;
+	LogEntryBuffer d_LEB;
 	
 	public Reinforcement(GameEngine p_Ge) {
 		super(p_Ge);

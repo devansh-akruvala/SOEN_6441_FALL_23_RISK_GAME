@@ -4,7 +4,8 @@ import com.soen6441.risk_game_u14.controller.GameEngine;
 import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
 
 public class IssueOrder extends Phase {
-	private LogEntryBuffer d_LEB;
+	
+	LogEntryBuffer d_LEB;
 
 	public IssueOrder(GameEngine p_Ge) {
 		super(p_Ge);
