@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import com.soen6441.risk_game_u14.controller.GameEngine;
 import com.soen6441.risk_game_u14.model.GameModel;
-
+/**
+ * This class tests the methods written in Edit phase class.
+ */
 public class EditTest {
     GameModel d_GameModel;
     GameEngine d_Ge;

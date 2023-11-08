@@ -1,10 +1,11 @@
 package com.soen6441.risk_game_u14.state;
+import com.soen6441.risk_game_u14.controller.GameEngine;
+
+
 /**
  * The phase class is abstract class whose duty is to implement all the command in game
  * All the commands in game will be implementing by relevant phases by using methods of phase class
  */
-
-import com.soen6441.risk_game_u14.controller.GameEngine;
 
 public abstract class Phase {
     public GameEngine d_GameEngine;
@@ -14,6 +15,7 @@ public abstract class Phase {
 
     /**
      * This is the constructor for Phase class. It initializes Game engine and command prompt object
+     *
      * @param p_GameEngine Object of Game Engine
      *
      */
@@ -69,8 +71,6 @@ public abstract class Phase {
     /**
      * This method deals with validatemap command and returns results
      *
-     *
-     *
      * @return String which gives the proper acknowledgement to player
      */
 
@@ -102,20 +102,13 @@ public abstract class Phase {
      */
     abstract public String assignCountries();
 
-
     /**
      * This method deals with showMap command and returns results
-     *
-     *
-     *
-     *
      */
     abstract public void showMap();
 
     /**
      * This method returns the current phase names
-     *
-     *
      * @return String which gives the proper acknowledgement to player
      */
     abstract public String getPhaseName();

@@ -32,11 +32,19 @@ public class Country {
         this.d_Neighbors = new ArrayList<>();
         this.d_NoOfArmies = 0;
     }
-
+    /**
+     * Retrieves the owner.
+     *
+     * @return The player who currently owns.
+     */
     public Player getD_Owner() {
         return d_Owner;
     }
-
+    /**
+     * Sets the owner.
+     *
+     * @param d_Owner The player to be set as the owner.
+     */
     public void setD_Owner(Player d_Owner) {
         this.d_Owner = d_Owner;
     }
@@ -53,7 +61,7 @@ public class Country {
     /**
      * setter for d_count
      *
-     * @param d_Count
+     * @param d_Count This is the count
      */
     public static void setD_Count(int d_Count) {
         D_Count = d_Count;
@@ -71,7 +79,7 @@ public class Country {
     /**
      * setter for country id
      *
-     * @param d_CountryId
+     * @param d_CountryId The given country ID
      */
     public void setD_CountryId(int d_CountryId) {
         this.d_CountryId = d_CountryId;

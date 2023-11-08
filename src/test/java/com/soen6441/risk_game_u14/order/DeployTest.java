@@ -11,7 +11,9 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Map;
 import com.soen6441.risk_game_u14.model.Player;
-
+/**
+ * This class tests the methods written in Deploy order class.
+ */
 public class DeployTest {
     GameModel d_GameModel;
     GameEngine d_Ge;

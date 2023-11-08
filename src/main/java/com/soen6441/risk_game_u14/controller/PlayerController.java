@@ -92,6 +92,8 @@ public class PlayerController {
     /***
      * Ask orders from the players in a round-robin fashion and store them in an
      * order queue
+     * @param number The integer number to be parsed
+     * @return A boolean value
      */
 
     public boolean isIntParsable(String number) {
@@ -103,7 +105,12 @@ public class PlayerController {
             return false;
         }
     }
-
+    /**
+     * Checks if a country exists.
+     *
+     * @param p_CountryName The name of the country to be checked.
+     * @return True if the country exists; otherwise, false.
+     */
     public boolean isCountryExist(String p_CountryName) {
         boolean l_isExist = d_GameModel.getD_Map().countryAlreadyExist(p_CountryName);
         if (l_isExist)
@@ -113,7 +120,12 @@ public class PlayerController {
             return false;
         }
     }
-
+    /**
+     * Checks if a player exists in the game.
+     *
+     * @param p_name The name of the player being searched for.
+     * @return True if the player exists; otherwise, false.
+     */
     public Boolean isPlayerExist(String p_name) {
         for (Player l_tp : d_GameModel.getD_Players()) {
             if (l_tp.getD_PlayerName().equalsIgnoreCase(p_name)) {
@@ -123,7 +135,12 @@ public class PlayerController {
         System.out.println("Player with " + p_name + "Doesnot Exist");
         return false;
     }
-
+    /**
+     * Checks if a command entered by a player is valid.
+     *
+     * @param p_Command The command entered by the player.
+     * @return True if the command is valid; otherwise, false.
+     */
     public boolean isCommandValid(String p_Command) {
 
         String l_CommandSplit[] = p_Command.split(" ");
@@ -154,7 +171,10 @@ public class PlayerController {
         }
         return false;
     }
-
+    /**
+     * Manages the issuance of orders by players during the game.
+     * This method handles the order issuing process for players in the game.
+     */
     public void playerIssueOrder() {
         // loop through player
         // ask for order
@@ -287,6 +307,7 @@ public class PlayerController {
 
     /**
      * This method is used to check if one player owns all the countries of the map and hence can be declared as the winner of the game.
+     * @return An integer value if a player wins the game
      */
     public int checkTheWinner() {
         ArrayList<Country> l_CountryList = d_GameModel.getD_Map().getD_CountryObjects();

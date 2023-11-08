@@ -168,21 +168,6 @@ public class MapControllerTest {
     }
 
     /**
-     * Checks that if two continent is not connected than map is invalid (Here
-     * continent is a connnected subgraph but the two continents are not)
-     *
-     * @throws Exception if map is not valid
-     */
-//	@Test
-//	public void testValidateMapFalse() throws Exception {
-//		String l_Actual = "", l_Expected = " Map is not valid!!";
-//		d_Map.addCountryNeighbour("Spain", "France");
-//		d_Map.addCountryNeighbour("India", "Japan");
-//		l_Actual = d_MapController.validateMap();
-//		assertEquals(l_Expected, l_Actual);
-//	}
-
-    /**
      * Checks that if continent is not a sub graph
      *
      * @throws Exception if continent is not a subgraph

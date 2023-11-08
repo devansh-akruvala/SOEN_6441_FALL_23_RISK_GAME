@@ -14,6 +14,8 @@ public class Game {
     /**
      * This is the starting point of the game it creates the object of the GameModel
      * and passes it to GameEngine class and calls the listenCommand() method
+     * @param args This is the default argument for th e main function
+     * @throws Exception
      */
     public static void main(String[] args) throws Exception {
         GameModel d_RiskGameModel = new GameModel();

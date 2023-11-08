@@ -13,7 +13,9 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Map;
 import com.soen6441.risk_game_u14.model.Player;
-
+/**
+ * This class tests the methods written in Airlift order class.
+ */
 public class AirliftTest {
     GameModel d_GameModel;
     GameEngine d_Ge;

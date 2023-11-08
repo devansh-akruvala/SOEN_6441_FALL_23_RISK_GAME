@@ -190,6 +190,7 @@ public class GameModel {
 
     /**
      * This method randomly assign armies to all players according to warzone rules
+     * @throws Exception
      */
     public void assignReinforcementArmies() throws Exception {
         for (Player l_Player : d_Players) {
