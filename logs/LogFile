@@ -2,14 +2,6 @@
 In Edit Phase
 loadmap maptest1
 In Startup Phase
-showmap
-gameplayer -add p1 -add p2
-assigncountries
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-loadmap map1
-In Startup Phase
 gameplayer -add p1 -add p2
 assigncountries
 In Reinforcement Phase
@@ -21,3 +13,10 @@ In Execute Order Phase
 In Reinforcement Phase
 In Issue Order Phase
 In Execute Order Phase
+In Reinforcement Phase
+In Issue Order Phase
+In Execute Order Phase
+In Reinforcement Phase
+In Issue Order Phase
+In Execute Order Phase
+In GameOver Phase
