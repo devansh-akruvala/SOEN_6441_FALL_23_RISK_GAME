@@ -20,55 +20,73 @@ public class Gameover extends Phase{
 	@Override
 	public String editContinent(String p_command) {
 		// TODO Auto-generated method stub
-		return null;
+		String result = "Invalid Command in GameOver Phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String editCountry(String p_command) {
 		// TODO Auto-generated method stub
-		return null;
+		String result = "Invalid Command in GameOver Phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String editNeighbor(String p_command) {
 		// TODO Auto-generated method stub
-		return null;
+		String result = "Invalid Command in GameOver Phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String loadMap(String p_command) {
 		// TODO Auto-generated method stub
-		return null;
+		String result = "Invalid Command in GameOver Phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String saveMap(String p_command) {
 		// TODO Auto-generated method stub
-		return null;
+		String result = "Invalid Command in GameOver Phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String validateMap() {
 		// TODO Auto-generated method stub
-		return null;
+		String result = "Invalid Command in GameOver Phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String editMap(String p_command) {
 		// TODO Auto-generated method stub
-		return null;
+		String result = "Invalid Command in GameOver Phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String addPlayers(String p_command) {
 		// TODO Auto-generated method stub
-		return null;
+		String result = "Invalid Command in GameOver Phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String assignCountries() {
 		// TODO Auto-generated method stub
-		return null;
+		String result = "Invalid Command in GameOver Phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
@@ -80,7 +98,7 @@ public class Gameover extends Phase{
 	@Override
 	public String getPhaseName() {
 		// TODO Auto-generated method stub
-		return null;
+		return "GameOver Phase";
 	}
 
 }

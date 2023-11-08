@@ -15,17 +15,23 @@ public class Edit extends Phase {
 
 	@Override
 	public String editContinent(String p_command) {
-		return d_GameEngine.getD_MapController().editContinentCommand(p_command);
+		String result = d_GameEngine.getD_MapController().editContinentCommand(p_command);
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String editCountry(String p_command) {
-		return d_GameEngine.getD_MapController().editCountryCommand(p_command);
+		String result = d_GameEngine.getD_MapController().editCountryCommand(p_command);
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String editNeighbor(String p_command) {
-		return d_GameEngine.getD_MapController().editNeighborsCommand(p_command);
+		String result = d_GameEngine.getD_MapController().editNeighborsCommand(p_command);
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
@@ -41,7 +47,9 @@ public class Edit extends Phase {
 			return l_response;
 		} 
 		d_GameEngine.setD_GamePhase(new Startup(d_GameEngine));
+		d_LEB.setResult(l_response);
 		return l_response;
+
 	}
 
 	@Override
@@ -54,12 +62,15 @@ public class Edit extends Phase {
 		} else {
 			l_response = d_GameEngine.getD_MapController().saveMap(p_command);
 		}
+		d_LEB.setResult(l_response);
 		return l_response;
 	}
 
 	@Override
 	public String validateMap() {
-		return d_GameEngine.getD_MapController().validateMap();
+		String result =  d_GameEngine.getD_MapController().validateMap();
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
@@ -69,17 +80,22 @@ public class Edit extends Phase {
 
 	@Override
 	public String addPlayers(String p_command) {
-		return "Invalid Command in Edit phase";
+		String result = "Invalid Command in Edit phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String assignCountries() {
-		return "Invalid Command in Edit phase";
+		String result = "Invalid Command in Edit phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public void showMap() {
 		d_GameEngine.getD_MapController().showMap();
+	
 	}
 
 	@Override

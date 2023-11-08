@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
+import com.soen6441.risk_game_u14.log_observer_pattern.Logger;
 import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Order;
@@ -25,6 +27,7 @@ public class PlayerController {
 	private GameModel d_GameModel;
 	private HashMap<Integer, String> d_AllCards;
 	private Random d_Rand;
+	private LogEntryBuffer d_LEB;
 	
 	public PlayerController() {
 
@@ -43,6 +46,7 @@ public class PlayerController {
 		d_AllCards.put(2, "Negotiate");
 		d_AllCards.put(3,"Airlift");
 		d_Rand = new Random();
+		d_LEB = new LogEntryBuffer();
 	}
 
 	/***
@@ -202,6 +206,7 @@ public class PlayerController {
 						if (l_InputCommand.equalsIgnoreCase("exit")) {
 							l_IsPlayerExit.put(l_Player, true);
 						} else {
+							d_LEB.setResult(l_InputCommand);
 							l_Player.issueOrder(l_InputCommand);
 						}
 
@@ -244,13 +249,11 @@ public class PlayerController {
 						l_TempPlayer.setD_AtleastOneBattleWon(false);
 					}
 				}
-			
+				System.out.println("Orders are Succesfully Executed!!");
+				d_LEB.setResult("\nOrders are Succesfully Executed!!");
 				clearNegotiatedPlayerList();
 				removePlayerWithNoCountry();
 				
-				// DO IT IN LAST
-				
-				//checkTheWinner();
 	}
 	/**
 	 * This method is used to remove the player with no countries on its name.
