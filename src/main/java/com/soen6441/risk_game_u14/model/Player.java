@@ -8,6 +8,7 @@ import java.util.Queue;
 import com.soen6441.risk_game_u14.order.Advance;
 import com.soen6441.risk_game_u14.order.Airlift;
 import com.soen6441.risk_game_u14.order.Blockade;
+import com.soen6441.risk_game_u14.order.Bomb;
 import com.soen6441.risk_game_u14.order.Deploy;
 import com.soen6441.risk_game_u14.order.Negotiate;
 
@@ -379,8 +380,8 @@ public class Player {
 			int l_NumArmies1 = Integer.parseInt(l_InputCommandSplit[3]);
 			getD_PlayerOrderQueue().add(new Advance(this, l_SourceCountry, l_TargetCountry, l_NumArmies1));
 		} else if (l_command.equalsIgnoreCase("bomb")) {
-//				Country l_TargetCountry = d_GameModel.getD_Map().findCountryByName(l_InputCommandSplit[2]);
-//				getD_PlayerOrderQueue().add(new Bomb(this,l_TargetCountry));
+				Country l_TargetCountry = d_GameModel.getD_Map().findCountryByName(l_InputCommandSplit[1]);
+				getD_PlayerOrderQueue().add(new Bomb(this,l_TargetCountry));
 		} else if (l_command.equalsIgnoreCase("blockade")) {
 			Country l_SourceCountry = d_GameModel.getD_Map().findCountryByName(l_InputCommandSplit[1]);
 			getD_PlayerOrderQueue().add(new Blockade(this, l_SourceCountry));
