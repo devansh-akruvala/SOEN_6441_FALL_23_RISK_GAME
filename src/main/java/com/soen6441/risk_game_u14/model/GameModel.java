@@ -180,9 +180,6 @@ public class GameModel {
 				d_PlayersQueue.add(l_TempPlayer);
 				l_CountryList.remove(l_Index);
 			}
-			for (Player l_Player : d_Players) {
-				l_Player.setPlayerContinent(d_Map);
-			}
 		} else {
 			if (d_Players.size() == 0) {
 				throw new Exception("Please enter players using gameplayer add command");
@@ -199,6 +196,11 @@ public class GameModel {
 	 * 
 	 */
 	public void assignReinforcementArmies() throws Exception {
+		for (Player l_Player : d_Players) {
+			l_Player.clearPlayerContinent();
+			l_Player.setPlayerContinent();
+		}
+		
 		if (d_Players.size() > 0) {
 			for (Player l_Player : d_Players) {
 				if (!l_Player.getD_PlayerName().equalsIgnoreCase("Neutral Player")) {
@@ -208,7 +210,7 @@ public class GameModel {
 						l_ContinentValue += l_Continent.getD_ContinentValue();
 					}
 					l_ArmyCount = Math.max(l_ArmyCount, 3);
-					l_Player.setD_ArmiesCount(l_ArmyCount + l_ContinentValue);
+					l_Player.setD_ArmiesCount(l_Player.getD_ArmiesCount() + l_ArmyCount + l_ContinentValue);
 					System.out.println(l_Player.getD_ArmiesCount() + " Assigncountries");
 
 				} else {
@@ -228,7 +230,7 @@ public class GameModel {
 	 */
 	public void showplayer() {
 		for (Player l_player : d_Players) {
-			System.out.println("---------------------------------------");
+			System.out.println("\n\n---------------------------------------\n\n");
 			System.out.println(l_player.getD_PlayerName() + " => Reinforcement Armies: " + l_player.getD_ArmiesCount());
 
 			System.out.println("Owned Continents:");
