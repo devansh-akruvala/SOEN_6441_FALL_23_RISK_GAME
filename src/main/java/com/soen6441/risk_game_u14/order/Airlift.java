@@ -4,8 +4,9 @@ import com.soen6441.risk_game_u14.model.Country;			import com.soen6441.risk_game
 import com.soen6441.risk_game_u14.model.Player;
 
 /**
- * Airlift class implements the Order interface and overrides the execute method.
- * The object of this method is created when the player issues airlift order.
+ * The Airlift class implements the Order interface and contains the
+ * execute method for processing airlift orders issued by a player.
+ * @author karandeepsingh
  */
 public class Airlift implements Order {
     Player d_Player;
@@ -13,11 +14,12 @@ public class Airlift implements Order {
     int d_NumArmies;
 
     /**
-     * Constructor of the class which is called when the new object of Airlift class is created.
-     * @param p_Player Player who issues the airlift order.
-     * @param p_SourceCountry Country from which the airlift of armies should happen.
-     * @param p_TargetCountry Country to which armies to be sent.
-     * @param p_NumArmies Number of armies to be Airlift from one country to another.
+     * Constructor for creating instances of the Airlift class.
+     *
+     * @param p_Player         The player who issues the airlift order.
+     * @param p_SourceCountry  The country from which armies are to be airlifted.
+     * @param p_TargetCountry  The country to which armies are being sent.
+     * @param p_NumArmies      The number of armies to airlift from one country to another.
      */
     public Airlift(Player p_Player, Country p_SourceCountry, Country p_TargetCountry, int p_NumArmies) {
         d_Player = p_Player;
@@ -27,8 +29,8 @@ public class Airlift implements Order {
     }
 
     /**
-     * This method airlifts armies from one country to another country of the same player if order is valid.
-     * This method also removes the card airlift.
+     * Executes the airlift order, moving armies from one country to another, provided the order is valid.
+     * The method also removes the "Airlift" card from the player's cards.
      */
     @Override
     public void execute() {
@@ -45,11 +47,12 @@ public class Airlift implements Order {
     }
 
     /**
-     * This method checks for the validity of the Airlift order.
-     * Returns false if the source and target countries are same, player doesn't have airlift card.
-     * Return false if source country is not left with at least one army.
-     * @return true if valid, else false.
+     * This function evaluates the Airlift order's validity.
+     * @return true if the order is valid;
+     * @return false, taking into account conditions such as the source and target countries being the same, the player lacking an airlift card
+     * @return false, if the source country having less than one remaining army.
      */
+
     public boolean isValid() {
         if(!d_Player.getD_Cards().contains("Airlift")) {
             System.out.println("Player does not have a Airlift card");
