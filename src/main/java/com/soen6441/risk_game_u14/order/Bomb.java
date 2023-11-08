@@ -97,7 +97,9 @@ public class Bomb implements Order {
 	 * This method returns the player who issues the Bomb order
 	 * @return The player who issues the bomb order
 	 */
-	
+	 public Player getPlayer() {
+	        return d_Player;
+	    }
 
 	/**
 	 * Sets the player who issues the bomb order.

@@ -77,4 +77,17 @@ public class Airlift implements Order {
             }
         }
     }
+    
+    public Player getPlayer() {
+        return d_Player;
+    }
+
+    /**
+     * Sets the player who issues the blockade order.
+     * 
+     * @param d_Player The player who issues the blockade order.
+     */
+    public void setPlayer(Player d_Player) {
+        this.d_Player = d_Player;
+    }
 }
