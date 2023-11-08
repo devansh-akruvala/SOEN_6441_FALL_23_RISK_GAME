@@ -211,7 +211,7 @@ public class GameModel {
 					}
 					l_ArmyCount = Math.max(l_ArmyCount, 3);
 					l_Player.setD_ArmiesCount(l_Player.getD_ArmiesCount() + l_ArmyCount + l_ContinentValue);
-					System.out.println(l_Player.getD_ArmiesCount() + " Assigncountries");
+					System.out.println(l_Player.getD_PlayerName()+" got "+l_Player.getD_ArmiesCount()+ " armies");
 
 				} else {
 					l_Player.setD_ArmiesCount(0);
@@ -230,21 +230,29 @@ public class GameModel {
 	 */
 	public void showplayer() {
 		for (Player l_player : d_Players) {
-			System.out.println("\n\n---------------------------------------\n\n");
+			System.out.println("\n---------------------------------------");
 			System.out.println(l_player.getD_PlayerName() + " => Reinforcement Armies: " + l_player.getD_ArmiesCount());
+
+			System.out.print("Owned Cards: [");
+
+			for (String l_Card : l_player.getD_Cards())
+				System.out.print(l_Card + " ,");
+			System.out.print("]");
+			System.out.println(" ");
 
 			System.out.println("Owned Continents:");
 
 			for (Continent l_Continent : l_player.getD_PlayerOwnedContinent())
-				System.out.println(
+				System.out.println("\t"+
 						l_Continent.getD_ContinentName() + " => Continent Value: " + l_Continent.getD_ContinentValue());
 
 			System.out.println("Owned Countries:");
 
 			for (Country l_Country : l_player.getD_PlayerOwnedCountries())
 				System.out
-						.println(l_Country.getD_CountryName() + " => Armies deployed: " + l_Country.getD_NoOfArmies());
-		}
-	}
+						.println("\t"+l_Country.getD_CountryName() + " => Armies deployed: " + l_Country.getD_NoOfArmies());
 
+		}
+		System.out.println("---------------------------------------");
+	}
 }
