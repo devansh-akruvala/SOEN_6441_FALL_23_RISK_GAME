@@ -14,42 +14,58 @@ public class Startup extends Phase{
 	
 	@Override
 	public String editContinent(String p_command) {
-		return "Invalid Command in Startup phase";
+		String result = "Invalid Command in Startup phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String editCountry(String p_command) {
-		return "Invalid Command in Startup phase";
+		String result = "Invalid Command in Startup phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String editNeighbor(String p_command) {
-		return "Invalid Command in Startup phase";
+		String result = "Invalid Command in Startup phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String loadMap(String p_command) {
-		return "Invalid Command in Startup phase";
+		String result = "Invalid Command in Startup phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String saveMap(String p_command) {
-		return "Invalid Command in Startup phase";
+		String result = "Invalid Command in Startup phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String validateMap() {
-		return "Invalid Command in Startup phase";
+		String result = "Invalid Command in Startup phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String editMap(String p_command) {
-		return "Invalid Command in Startup phase";
+		String result = "Invalid Command in Startup phase";
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
 	public String addPlayers(String p_command) {
-		return d_GameEngine.getD_PlayerController().gamePlayerCommand(p_command);
+		String result = d_GameEngine.getD_PlayerController().gamePlayerCommand(p_command);
+		d_LEB.setResult(result);
+		return result;
 	}
 
 	@Override
@@ -60,7 +76,8 @@ public class Startup extends Phase{
 			return e.getMessage();
 		}
 		d_GameEngine.setD_GamePhase(new Reinforcement(d_GameEngine));
-		return "";
+		String result = "";
+		return result;
 		
 	}
 
