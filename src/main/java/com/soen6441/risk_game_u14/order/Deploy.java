@@ -6,6 +6,7 @@ import com.soen6441.risk_game_u14.model.Player;
 /**
  * The Deploy class implements the Order interface and overrides the execute method.
  * An instance of this class is created when a player issues a Deploy order.
+ * @author Devansh Akruvala
  */
 public class Deploy implements Order {
 
@@ -38,7 +39,7 @@ public class Deploy implements Order {
 			d_Country.setD_NoOfArmies(d_Country.getD_NoOfArmies() + d_NumArmies);
 		} else {
 			d_Player.setD_SkipCommands(true);
-			System.out.println("Skipping all the following commands of " + d_Player.getD_PlayerName());
+			d_Player.setD_Result(d_Player.getD_Result()+"\nSkipping all the following commands of " + d_Player.getD_PlayerName());
 		}
 	}
 
@@ -54,15 +55,15 @@ public class Deploy implements Order {
 	public boolean isValid() {
 		if (d_NumArmies <= d_Player.getD_ArmiesCount()) {
 			if (d_Country != null) {
-				System.out.println("\n" + d_Player.getD_PlayerName() + ": Deployed " + d_NumArmies + " to "
+				d_Player.setD_Result("\n" + d_Player.getD_PlayerName() + ": Deployed " + d_NumArmies + " to "
 						+ d_Country.getD_CountryName() + " was successful");
 				return true;
 			} else {
-				System.out.println("\n"+ d_Player.getD_PlayerName() +": This country  doesnot belongs to you");
+				d_Player.setD_Result("\n"+ d_Player.getD_PlayerName() +": This country  doesnot belongs to you");
 				return false;
 			}
 		} else {
-			System.out.println("\n" + d_Player.getD_PlayerName() + "Player doesnot have enough armies");
+			d_Player.setD_Result("\n" + d_Player.getD_PlayerName() + ": Player doesnot have enough armies");
 			return false;
 		}
 

@@ -41,7 +41,7 @@ public class Airlift implements Order {
         }
         else {
 			d_Player.setD_SkipCommands(true);
-			System.out.println("Skipping all the following commands of " + d_Player.getD_PlayerName());
+			d_Player.setD_Result( d_Player.getD_Result() +"\nSkipping all the following commands of " + d_Player.getD_PlayerName());
 		}
      
     }
@@ -55,24 +55,24 @@ public class Airlift implements Order {
 
     public boolean isValid() {
         if(!d_Player.getD_Cards().contains("Airlift")) {
-            System.out.println("Player does not have a Airlift card");
+            d_Player.setD_Result("Player does not have a Airlift card");
             return false;
         }
         if(d_SourceCountry==d_TargetCountry) {
-            System.out.println("The source country and target country cannot be same!");
+            d_Player.setD_Result("The source country and target country cannot be same!");
             return false;
         }
         else if(d_SourceCountry.getD_NoOfArmies()-d_NumArmies < 1) {
-            System.out.println("The source country should be left with at least one army!");
+            d_Player.setD_Result("The source country should be left with at least one army!");
             return false;
         }
         else {
             if(d_Player.getD_PlayerOwnedCountries().contains(d_SourceCountry) && d_Player.getD_PlayerOwnedCountries().contains(d_TargetCountry)) {
-                System.out.println("The source country and target country belong to the same player");
+                d_Player.setD_Result("The source country and target country belong to the same player");
                 return true;
             }
             else {
-                System.out.println("You can only airlift armies to your own countries. "+d_TargetCountry.getD_CountryName()+" does not belongs to "+d_Player.getD_PlayerName());
+                d_Player.setD_Result("You can only airlift armies to your own countries. "+d_TargetCountry.getD_CountryName()+" does not belongs to "+d_Player.getD_PlayerName());
                 return false;
             }
         }

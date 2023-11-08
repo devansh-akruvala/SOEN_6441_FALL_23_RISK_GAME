@@ -1,22 +1,69 @@
 
 In Edit Phase
-loadmap maptest1
+Command Entered: loadmap maptest1
 In Startup Phase
-gameplayer -add p1 -add p2
-assigncountries
+Map file loaded successfully!!
+Output: Map file loaded successfully!!
+Command Entered: gameplayer -add p1 -add p2
+Players command executed successfully
+Output: Players command executed successfully
+Command Entered: assigncountries
+In Reinforcement Phase
+In Issue Order Phase
+deploy a 3
+deploy b 1
+deploy a 3
+deploy d 2
+In Execute Order Phase
+p1's Order Result : 
+p1: Deployed 3 to a was successful
+p2's Order Result : 
+p2: Deployed 1 to b was successful
+p1's Order Result : 
+p1: Player doesnot have enough armies
+Skipping all the following commands of p1
+p2's Order Result : 
+p2: Deployed 2 to d was successful
+
+Orders are Succesfully Executed!!
+In Reinforcement Phase
+In Issue Order Phase
+advance a b 2
+In Execute Order Phase
+p1's Order Result : 
+p1 your attack on b was a Success!!
+Player p1 got Negotiate
+
+Orders are Succesfully Executed!!
+In Reinforcement Phase
+In Issue Order Phase
+negotiate p2
+advance d c 1
+In Execute Order Phase
+p1's Order Result : Negotiation with p2 successfull.
+p2's Order Result : 
+The targeted country c belongs to p1 which is negotiated player!
+Skipping all the following commands of p2
+
+Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
 In Execute Order Phase
+
+Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
+deploy c 10
+advance c d 9
 In Execute Order Phase
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
+p1's Order Result : 
+p1: Deployed 10 to c was successful
+p1's Order Result : 
+p1 your attack on d was a Success!!
+Player p1 got Negotiate
+
+Orders are Succesfully Executed!!
+
+p1 is the winner of the game!
 In GameOver Phase
+Output: 

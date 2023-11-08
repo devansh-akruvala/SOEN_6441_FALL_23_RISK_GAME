@@ -46,6 +46,10 @@ public class Bomb implements Order {
 			d_PlayerBombed.setD_ArmiesCount(d_PlayerBombed.getD_ArmiesCount() - l_NoOfArmiesReduced);
 			d_Player.getD_Cards().remove("Bomb");
 		}
+		else {
+			d_Player.setD_SkipCommands(true);
+			d_Player.setD_Result( d_Player.getD_Result() +"\nSkipping all the following commands of " + d_Player.getD_PlayerName());
+		}
 	}
 
 	/**
@@ -57,16 +61,16 @@ public class Bomb implements Order {
 	 */
 	public boolean isValid(){
 		if(d_Player.getD_NegotiatedPlayers().size()>0) {
-			System.out.println("Player is a negotiated player");
+			d_Player.setD_Result("Player is a negotiated player");
 			return false;
 		}	
 		if(!d_Player.getD_Cards().contains("Bomb")) {
-			System.out.println("Player does not have a bomb card");
+			d_Player.setD_Result("Player does not have a bomb card");
 			return false;
 		}
 
 		if(d_Player.getD_PlayerOwnedCountries().contains(d_Country)) {
-			System.out.println("Player cannot bomb its own country");
+			d_Player.setD_Result("Player cannot bomb its own country");
 			return false;
 		}
 		int l_Flag = 0;
@@ -78,11 +82,11 @@ public class Bomb implements Order {
 		}
 		
 		if(l_Flag==0) {
-			System.out.println("The bombing country is not a neighbour of player");
+			d_Player.setD_Result("The bombing country is not a neighbour of player");
 			return false;	
 		}
 		else {
-			System.out.println("The country is bombed");
+			d_Player.setD_Result("The country is bombed");
 			return true;
 		}
 		

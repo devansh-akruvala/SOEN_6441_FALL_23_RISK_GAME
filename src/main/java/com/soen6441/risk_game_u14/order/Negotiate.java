@@ -36,12 +36,12 @@ public class Negotiate implements Order {
             this.getSourcePlayer().getD_NegotiatedPlayers().add(d_TargetPlayer);
             this.d_TargetPlayer.getD_NegotiatedPlayers().add(getSourcePlayer());
             getSourcePlayer().getD_Cards().remove("Negotiate");
-            System.out.println("Negotiation with "+d_TargetPlayer.getD_PlayerName()+" successfull.");
+            d_SourcePlayer.setD_Result("Negotiation with "+d_TargetPlayer.getD_PlayerName()+" successfull.");
         }
         else{
-            System.out.println("\n"+getSourcePlayer().getD_PlayerName()+" does not own Negotiate Card for Diplomacy with "+d_TargetPlayer.getD_PlayerName());
-            d_TargetPlayer.setD_SkipCommands(true);
-			System.out.println("Skipping all the following commands of " + d_SourcePlayer.getD_PlayerName());
+            d_SourcePlayer.setD_Result("\n"+getSourcePlayer().getD_PlayerName()+" does not own Negotiate Card for Diplomacy with "+d_TargetPlayer.getD_PlayerName());
+            d_SourcePlayer.setD_SkipCommands(true);
+			d_SourcePlayer.setD_Result(d_SourcePlayer.getD_Result()+"\nSkipping all the following commands of " + d_SourcePlayer.getD_PlayerName());
 
         }
 

@@ -183,7 +183,7 @@ public class PlayerController {
 					if (l_IsPlayerExit.get(l_Player) == false) {
 
 						l_AllPlayerDone = false;
-						System.out.println(l_Player.getD_PlayerName() + "'s turn:");
+						System.out.print(l_Player.getD_PlayerName() + "'s turn: ");
 
 						int l_PlayerArmies = l_Player.getD_ArmiesCount();
 						boolean l_CorrectCommand = false;
@@ -232,6 +232,11 @@ public class PlayerController {
 						l_AllPlayerDone = false;
 						Order l_nextOrder = l_Player.nextOrder();
 						l_nextOrder.execute();
+						d_LEB.setResult(l_Player.getD_PlayerName()+"'s Order Result : "+l_Player.getD_Result());
+						System.out.println(l_Player.getD_PlayerName()+"'s Order Result : "+l_Player.getD_Result());
+					}else if(l_Player.getD_PlayerOrderQueue().size() > 0 && l_Player.getD_SkipCommands() == true) {
+						d_LEB.setResult(l_Player.getD_PlayerName()+"'s Order Result : Order Skipped");
+						System.out.println(l_Player.getD_PlayerName()+"'s Order Result : Order Skipped");
 					}
 				}
 			}
@@ -246,10 +251,11 @@ public class PlayerController {
 						String l_TempCard = d_AllCards.get(l_cardInteger);
 						l_TempPlayer.setCard(l_TempCard);
 						System.out.println("Player "+l_TempPlayer.getD_PlayerName()+" got "+l_TempCard);
+						d_LEB.setResult("Player "+l_TempPlayer.getD_PlayerName()+" got "+l_TempCard);
 						l_TempPlayer.setD_AtleastOneBattleWon(false);
 					}
 				}
-				System.out.println("Orders are Succesfully Executed!!");
+				System.out.println("\nOrders are Succesfully Executed!!");
 				d_LEB.setResult("\nOrders are Succesfully Executed!!");
 				clearNegotiatedPlayerList();
 				removePlayerWithNoCountry();
@@ -300,6 +306,7 @@ public class PlayerController {
 		if(l_flag==0)
 		{
 			System.out.println("\n"+l_CheckPlayer.getD_PlayerName()+" is the winner of the game!");
+			d_LEB.setResult("\n"+l_CheckPlayer.getD_PlayerName()+" is the winner of the game!");
 		}
 		return l_flag;
 	}
