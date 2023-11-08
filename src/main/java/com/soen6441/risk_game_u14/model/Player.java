@@ -281,7 +281,7 @@ public class Player {
 	 * This method checks that the player has captured the whole continent and if
 	 * yes, adds the continent value (reward) to the reinforcement armies
 	 * 
-	 * @param p_Map this is the game map
+	 *
 	 */
 	public void setPlayerContinent() {
 			ArrayList <Continent> l_MapContinents = d_GameModel.getD_Map().getD_ContinentObjects();
