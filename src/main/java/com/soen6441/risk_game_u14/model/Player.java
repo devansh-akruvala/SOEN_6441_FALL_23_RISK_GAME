@@ -283,16 +283,23 @@ public class Player {
 	 * 
 	 * @param p_Map this is the game map
 	 */
-	public void setPlayerContinent(Map p_Map) {
-		for (Continent l_continent : p_Map.getD_ContinentObjects()) {
-			int l_CountryCounter = 0;
-			for (Country l_CountriesInCoontinent : l_continent.getD_CountryList()) {
-				if (d_PlayerOwnedCountries.indexOf(l_CountriesInCoontinent) >= 0)
-					l_CountryCounter++;
+	public void setPlayerContinent() {
+			ArrayList <Continent> l_MapContinents = d_GameModel.getD_Map().getD_ContinentObjects();
+			for(Continent l_MapContinent : l_MapContinents) {
+				int l_Flag = 0;
+				for(Country l_Country : l_MapContinent.getD_CountryList()) {
+					if(!d_PlayerOwnedCountries.contains(l_Country)){
+						l_Flag=1;	
+					}
+				}
+				if(l_Flag==0){
+					d_PlayerOwnedContinent.add(l_MapContinent);
+				}
 			}
-			if (l_CountryCounter == l_continent.getD_CountryList().size())
-				d_PlayerOwnedContinent.add(l_continent);
-		}
+	}
+	
+	public void clearPlayerContinent() {
+		d_PlayerOwnedContinent.clear();
 	}
 
 	public Country checkCountryBelongstoPlayer(String p_Country) {
