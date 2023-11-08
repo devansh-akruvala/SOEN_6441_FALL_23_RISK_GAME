@@ -27,11 +27,10 @@ public class GameEngine {
 	private LogEntryBuffer d_LEB;
 	private Phase d_GamePhase;
 
-	
 	public GameEngine() {
 
 	}
-	
+
 	/***
 	 * This is the main game engine constructor method which is responsible for
 	 * controlling the map and player controllers and the game and map models in
@@ -44,17 +43,11 @@ public class GameEngine {
 		d_MapController = new MapController(p_GameModel.getD_Map());
 		d_PlayerController = new PlayerController(p_GameModel);
 		l_PhaseController = 1;
-		d_LEB=new LogEntryBuffer();
+		d_LEB = new LogEntryBuffer();
 		// initial phase will be edit phase hardcoding it
 		setD_GamePhase(new Edit(this));
 	}
 
-	
-	
-	
-	
-	
-	
 	public GameModel getD_GameModel() {
 		return d_GameModel;
 	}
@@ -105,149 +98,82 @@ public class GameEngine {
 	 */
 	public void listenCommand() throws Exception {
 		showCommands();
-		// 1 = edit phase
-		// 2 = edit done load player gamestart
-		// 3 = gameloop starts
 
-		//System.out.print("In " + returnPhase(l_PhaseController));
-		System.out.println("In "+d_GamePhase.getPhaseName());
+		// System.out.print("In " + returnPhase(l_PhaseController));
+		System.out.println("In " + d_GamePhase.getPhaseName());
 		System.out.println(" Waiting for Input:");
 		System.out.println("----------------------------------------");
 		Scanner l_ScannerObj = new Scanner(System.in);
 		boolean l_StopGame = false;
 		while (!l_StopGame) {
 			String l_Command = l_ScannerObj.nextLine();
-			d_LEB.setResult(l_Command);
+			d_LEB.setResult("Command Entered: " + l_Command);
 			String l_CommandSection = l_Command.split(" ")[0];
 
 			switch (l_CommandSection) {
 
 			case "editcontinent":
-//				if (l_PhaseController == 1) {
-//					System.out.println("Output: " + d_MapController.editContinentCommand(l_Command));
-//				} else {
-//					System.out.println("Invalid command in " + returnPhase(l_PhaseController));
-//				}
-				System.out.println("Output: " + d_GamePhase.editContinent(l_Command));
+				String result = d_GamePhase.editContinent(l_Command);
+				System.out.println("Output: " + result);
+				d_LEB.setResult(result);
 				break;
 			case "editcountry":
-//				if (l_PhaseController == 1) {
-//					System.out.println("Output: " + d_MapController.editCountryCommand(l_Command));
-//				} else {
-//					System.out.println("Invalid command in " + returnPhase(l_PhaseController));
-//				}
-				System.out.println("Output: " + d_GamePhase.editCountry(l_Command));
+				String result1 = "Output: " + d_GamePhase.editCountry(l_Command);
+				System.out.println(result1);
+				d_LEB.setResult(result1);
 				break;
 			case "editneighbor":
-//				if (l_PhaseController == 1) {
-//					System.out.println("Output: " + d_MapController.editNeighborsCommand(l_Command));
-//				} else {
-//					System.out.println("Invalid command in " + returnPhase(l_PhaseController));
-//				}
-				System.out.println("Output: " + d_GamePhase.editNeighbor(l_Command));
+
+				String result2 = "Output: " + d_GamePhase.editNeighbor(l_Command);
+				System.out.println(result2);
+				d_LEB.setResult(result2);
 				break;
 			case "editmap":
-//				if (l_PhaseController == 1) {
-//					System.out.println("Output: " + d_MapController.editMap(l_Command));
-//				} else {
-//					System.out.println("Invalid command in " + returnPhase(l_PhaseController));
-//				}
-				System.out.println("Output: " + d_GamePhase.editMap(l_Command));
+				String result3 = "Output: " + d_GamePhase.editMap(l_Command);
+				System.out.println(result3);
+				d_LEB.setResult(result3);
 				break;
 			case "showmap":
 				d_GamePhase.showMap();
+				d_LEB.setResult("Executed Showmap");
 				break;
 			case "savemap":
-//				if (l_PhaseController == 1) {
-//					String l_ValidResult = d_MapController.validateMap();
-//					System.out.println(l_ValidResult);
-//					if (d_MapController.validateMap().equalsIgnoreCase(" Map is not valid!!")) {
-//						System.out.println("Map cannot be saved!!");
-//					} else {
-//						System.out.println("Output: " + d_MapController.saveMap(l_Command));
-//						l_PhaseController = 2;
-//					}
-//				} else {
-//					System.out.println("Invalid command in " + returnPhase(l_PhaseController));
-//				}
-				System.out.println("Output: " + d_GamePhase.saveMap(l_Command));
+				String result4 = "Output: " + d_GamePhase.saveMap(l_Command);
+				System.out.println(result4);
+				d_LEB.setResult(result4);
 				break;
 			case "loadmap":
-//				if (l_PhaseController == 1) {
-//					System.out.println("Output: " + d_MapController.loadMap(l_Command));
-//					String l_ValidResult = d_MapController.validateMap();
-//					System.out.println(l_ValidResult);
-//					if (d_MapController.validateMap().equalsIgnoreCase(" Map is not valid!!")) {
-//						System.out.println("Reseting loaded map!! please load a valid map");
-//						d_MapController.resetMap();
-//					} else {
-//						l_PhaseController = 2;
-//						System.out.println("In " + returnPhase(l_PhaseController));
-//					}
-//				} else {
-//					System.out.println("Invalid command in " + returnPhase(l_PhaseController));
-//				}
-				System.out.println("Output: " + d_GamePhase.loadMap(l_Command));
+				String result5 = "Output: " + d_GamePhase.loadMap(l_Command);
+				System.out.println(result5);
+				d_LEB.setResult(result5);
 				break;
 			case "validatemap":
-//				if (l_PhaseController == 1) {
-//					System.out.println("Output: " + d_MapController.validateMap());
-//				} else {
-//					System.out.println("Invalid command in " + returnPhase(l_PhaseController));
-//				}
-				System.out.println("Output: " + d_GamePhase.validateMap());
+				String result6 = "Output: " + d_GamePhase.validateMap();
+				System.out.println(result6);
+				d_LEB.setResult(result6);
 				break;
 			case "gameplayer":
-//				if (l_PhaseController == 2) {
-//					System.out.println("Output: " + d_PlayerController.gamePlayerCommand(l_Command));
-//				} else {
-//					System.out.println("Invalid command in " + returnPhase(l_PhaseController));
-//				}
-				System.out.println("Output: " + d_GamePhase.addPlayers(l_Command));
+
+				String result7 = "Output: " + d_GamePhase.addPlayers(l_Command);
+				System.out.println(result7);
+				d_LEB.setResult(result7);
 				break;
+
 			case "assigncountries":
-//				if (l_PhaseController == 2) {
-//					System.out.println("In " + returnPhase(l_PhaseController));
-//					try {
-//						d_GameModel.startUpPhase();
-//						d_GameModel.showplayer();
-//						d_PlayerController.playerIssueOrder();
-//						d_PlayerController.playerExecuteOrder();
-//						l_PhaseController = 3;
-//						d_MapController.showMap();
-//						d_PlayerController.show();
-//					} catch (Exception e) {
-//						System.out.println(e.getMessage());
-//					}
-				System.out.println("Output: " + d_GamePhase.assignCountries());
-//				} else {
-//					System.out.println("Invalid command in " + returnPhase(l_PhaseController));
-//				}
+				String result8 = "Output: " + d_GamePhase.assignCountries();
+				System.out.println(result8);
+				d_LEB.setResult(result8);
+
 				break;
 			case "quit":
 				l_StopGame = !l_StopGame;
 				l_ScannerObj.close();
 				break;
 			default:
-				System.out.println("Output: Invalid Comamnd!!");
-
+				System.out.println("Output: Invalid Command!!");
+				d_LEB.setResult("Output: Invalid Command!!");
 			}
 		}
-	}
-
-	/***
-	 * This method identifies the current game stage in order for the different
-	 * sections of the game to work properly
-	 * 
-	 * @param p_PhaseController contains the code for current phase of game
-	 * @return the current game stage
-	 */
-	public String returnPhase(int p_PhaseController) {
-		if (p_PhaseController == 1)
-			return "Edit Phase";
-		if (p_PhaseController == 2)
-			return "GameStart Phase";
-		return "Game Loop Phase";
 	}
 
 	/***

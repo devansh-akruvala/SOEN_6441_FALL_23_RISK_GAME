@@ -17,6 +17,7 @@ import com.soen6441.risk_game_u14.model.Player;
 /**
  * The Advance class represents a type of order issued by a player in the game. This order allows a player to attack a territory belonging to another player using a specified number of armies. The attack outcome is determined by a 60% success rate for the attacker and a 70% success rate for the defender.
  * The order format is: "advance sourceCountry targetCountry NumberOfArmies".
+ * @author Devansh Akruvala
  */
 public class Advance implements Order {
 
@@ -88,7 +89,7 @@ public class Advance implements Order {
 		int l_flag = isValid();
 		if(l_flag==0) {
 			d_Player.setD_SkipCommands(true);
-			System.out.println("Skipping all the following commands of " + d_Player.getD_PlayerName());
+			d_Player.setD_Result(d_Player.getD_Result() + "\nSkipping all the following commands of " + d_Player.getD_PlayerName());
 		}
 		
 		else if(l_flag == 1)
@@ -108,7 +109,7 @@ public class Advance implements Order {
 				d_Player.setD_AtleastOneBattleWon(true);
 
 
-				System.out.println("\n"+d_Player.getD_PlayerName()+" your attack on "+d_TargetCountry.getD_CountryName()+" was a Success!!");
+				d_Player.setD_Result("\n"+d_Player.getD_PlayerName()+" your attack on "+d_TargetCountry.getD_CountryName()+" was a Success!!");
 				return;
 			}
 			TreeMap <Integer,Integer> l_AttackerArmies = new TreeMap<>(); 
@@ -132,12 +133,12 @@ public class Advance implements Order {
 			int l_SizeDiff = l_AttackerArmies.size() - l_DefenderArmies.size(); 
 			// Who has less number of armies.
 			int l_MinArmies=Math.min(l_AttackerArmies.size(),l_DefenderArmies.size() );
-			System.out.println("min armies"+l_MinArmies);
+//			d_Player.setD_Result("min armies"+l_MinArmies);
 
 			try{
 				// Getting the armies to fight in battleground based on who has less number of armies.
 				TreeMap<Integer, Integer> returnedHashMap = ArmiestoFight(l_SizeDiff,l_MinArmies,l_AttackerArmies,l_DefenderArmies);
-				System.out.println("returned hashmap "+returnedHashMap);
+				d_Player.setD_Result("returned hashmap "+returnedHashMap);
 				Iterator<Map.Entry<Integer,Integer>> itr_Attacker=l_AttackerArmiesinHand.entrySet().iterator();
 				Iterator<Map.Entry<Integer,Integer>> itr_Defender=l_DefenderArmiesinHand.entrySet().iterator();
 				
@@ -185,13 +186,13 @@ public class Advance implements Order {
 					d_Player.setD_AtleastOneBattleWon(true);
 
 
-					System.out.println("\n"+d_Player.getD_PlayerName()+" your attack on "+d_TargetCountry.getD_CountryName()+" was a Success!!");
+					d_Player.setD_Result("\n"+d_Player.getD_PlayerName()+" your attack on "+d_TargetCountry.getD_CountryName()+" was a Success!!");
 				}
 				else
 				{
 					d_SourceCountry.setD_NoOfArmies(d_SourceCountry.getD_NoOfArmies()-l_MinArmies+l_attackWin);
 					d_TargetCountry.setD_NoOfArmies(d_TargetCountry.getD_NoOfArmies()-l_MinArmies+l_defendWin);
-					System.out.println("\n"+d_Player.getD_PlayerName()+" your attack on "+d_TargetCountry.getD_CountryName()+" was a Failure!!");
+					d_Player.setD_Result("\n"+d_Player.getD_PlayerName()+" your attack on "+d_TargetCountry.getD_CountryName()+" was a Failure!!");
 				}
 			}catch(Exception p_E) {p_E.printStackTrace();}
 		}
@@ -214,7 +215,7 @@ public class Advance implements Order {
 	TreeMap<Integer,Integer> ArmiestoFight(int p_SizeDiffint,int  p_MinArmies, TreeMap <Integer,Integer> p_AttackerArmies,TreeMap <Integer,Integer> p_DefenderArmies)
 	{
 		TreeMap<Integer,Integer> returnHashMap = null;
-		System.out.println("size difference"+p_SizeDiffint);
+		d_Player.setD_Result("size difference"+p_SizeDiffint);
 		
 		// Attacking armies greater than defending armies.
 		if(p_SizeDiffint>0)
@@ -238,7 +239,7 @@ public class Advance implements Order {
 				Map.Entry<Integer,Integer> entry = itr.next(); 
 				l_AttackerArmiesinHand.put(entry.getKey(),entry.getValue());
 			}
-			System.out.println("l_AttackerArmiesinHand"+l_AttackerArmiesinHand);
+			d_Player.setD_Result("l_AttackerArmiesinHand"+l_AttackerArmiesinHand);
 			returnHashMap = l_AttackerArmiesinHand;
 		}
 		
@@ -261,12 +262,12 @@ public class Advance implements Order {
 			// Selecting top n armies to be sent to fight.
 			for(int i=0;i<p_MinArmies;i++)
 			{	
-				System.out.println("inside for of min armies");
+				d_Player.setD_Result("inside for of min armies");
 				Map.Entry<Integer,Integer> entry = itr.next(); 
-				System.out.println(entry.getKey()+" : "+ entry.getValue());
+				d_Player.setD_Result(entry.getKey()+" : "+ entry.getValue());
 				l_DefenderArmiesinHand.put(entry.getKey(),entry.getValue());
 			}
-			System.out.println("l_DefenderArmiesinHand"+l_DefenderArmiesinHand);
+			d_Player.setD_Result("l_DefenderArmiesinHand"+l_DefenderArmiesinHand);
 			returnHashMap =  l_DefenderArmiesinHand;
 		}
 		
@@ -275,7 +276,7 @@ public class Advance implements Order {
 		{
 			returnHashMap = p_AttackerArmies;
 		}
-		System.out.println("in armies to fight"+returnHashMap);
+		d_Player.setD_Result("in armies to fight"+returnHashMap);
 		return returnHashMap;
 	}
 
@@ -303,29 +304,30 @@ public class Advance implements Order {
 		
 		if(d_Player.getD_NegotiatedPlayers().contains(d_TargetCountry.getD_Owner()))
 		{
-			System.out.println("\nThe targeted country "+d_TargetCountry.getD_CountryName()+" belongs to "+d_TargetCountry.getD_Owner().getD_PlayerName()+" which is negotiated player!");
+			d_Player.setD_Result("\nThe targeted country "+d_TargetCountry.getD_CountryName()+" belongs to "+d_TargetCountry.getD_Owner().getD_PlayerName()+" which is negotiated player!");
 			l_ReturnInt=0;
 		}
 		else if(d_SourceCountry==d_TargetCountry)
 		{
-			System.out.println("\nThe source country and target country cannot be same!");
+			d_Player.setD_Result("\nThe source country and target country cannot be same!");
 			l_ReturnInt= 0;
 		}
 		else if(!d_SourceCountry.getD_Neighbors().contains(d_TargetCountry.getD_CountryName()))
 		{
-			System.out.println("\nThe source country and target country are not neighbours!");
+			d_Player.setD_Result("\nThe source country and target country are not neighbours!");
 			l_ReturnInt= 0;
 		}
 		else if(d_SourceCountry.getD_NoOfArmies()-d_NumArmies < 1)
 		{
-			System.out.println("\nThe source country should be left with atleast one army!");
+			d_Player.setD_Result("\nThe source country should be left with atleast one army!");
 			l_ReturnInt= 0;
 		}
 		else
 		{
 			if(d_Player.getD_PlayerOwnedCountries().contains(d_SourceCountry) && d_Player.getD_PlayerOwnedCountries().contains(d_TargetCountry))
 			{
-				System.out.println("\nThe source country and target country belong to the same player");
+				
+				d_Player.setD_Result("\nThe source country and target country belong to the same player");
 				l_ReturnInt= 1;
 			}
 			else if(d_Player.getD_PlayerOwnedCountries().contains(d_SourceCountry) && !d_Player.getD_PlayerOwnedCountries().contains(d_TargetCountry))

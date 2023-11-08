@@ -45,11 +45,11 @@ public class Blockade implements Order {
                     l_Player.addCountry(d_Country);
                 }
             }
-            System.out.println( d_Player.getD_PlayerName() +": Blockade was Success!!");
+            d_Player.setD_Result( d_Player.getD_PlayerName() +": Blockade was Success!!");
             getPlayer().getD_Cards().remove("Blockade");
         }else {
 			d_Player.setD_SkipCommands(true);
-			System.out.println("Skipping all the following commands of " + d_Player.getD_PlayerName());
+			d_Player.setD_Result(d_Player.getD_Result()+"\nSkipping all the following commands of " + d_Player.getD_PlayerName());
 		}
 
     }
@@ -64,15 +64,15 @@ public class Blockade implements Order {
     public boolean isValid() {
         
         if (!getPlayer().getD_Cards().contains("Blockade")) {
-            System.out.println("Player does not have a blockade card");
+            d_Player.setD_Result("Player does not have a blockade card");
             return false;
         }
         
         if (d_Country!=null) {
-            System.out.println("The blockade was successfull");
+            d_Player.setD_Result("The blockade was successfull");
             return true;
         } else {
-            System.out.println("\nThis country " + d_Country.getD_CountryName() + " doesnot belongs to "
+            d_Player.setD_Result("\nThis country " + d_Country.getD_CountryName() + " doesnot belongs to "
                     + getPlayer().getD_PlayerName());
             return false;
         }
