@@ -99,14 +99,14 @@ public class GameEngine {
     public void listenCommand() throws Exception {
         showCommands();
 
-        // System.out.print("In " + returnPhase(l_PhaseController));
-        System.out.println("In " + d_GamePhase.getPhaseName());
-        System.out.println(" Waiting for Input:");
-        System.out.println("----------------------------------------");
+        
         Scanner l_ScannerObj = new Scanner(System.in);
         boolean l_StopGame = false;
         while (!l_StopGame) {
-            String l_Command = l_ScannerObj.nextLine();
+        	System.out.println("\nIn " + d_GamePhase.getPhaseName());
+            System.out.println("----------------------------------------");
+            System.out.println("Waiting for Input:");
+        	String l_Command = l_ScannerObj.nextLine();
             d_LEB.setResult("Command Entered: " + l_Command);
             String l_CommandSection = l_Command.split(" ")[0];
 
@@ -185,10 +185,20 @@ public class GameEngine {
                         + "editcountry -add countryID continentID -remove countryID\r\n"
                         + "editneighbor -add countryID neighborcountryID -remove countryID neighborcountryID\n"
                         + "savemap filename\r\n" + "editmap filename\r\n" + "validatemap\r\n"
-                        + "----------------------------------------------\n" + "StartUp Phase Commands:\n\n"
-                        + "loadmap filename\r\n" + "gameplayer -add playername -remove playername\r\n"
-                        + "assigncountries\r\n" + "----------------------------------------------\n"
-                        + "In Game Phase Command\n\n" + "deploy countryID num\r\n");
+                        + "loadmap filename\r\n" +
+                        "----------------------------------------------\n" + 
+                        "StartUp Phase Commands:\n\n"+
+                        "gameplayer -add playername -remove playername\r\n"
+                        + "assigncountries\r\n" 
+                        + "----------------------------------------------\n"
+                        + "In Issue Order Phase Command\n\n" 
+                        + "deploy countryID numarmies\r\n"
+                        + "advance countrynamefrom countynameto numarmies\r\n"
+                        + "bomb countryID (requires bomb card)\r\n"
+                        + "blockade countryID (required blockade card)\r\n"
+                        + "airlift sourcecountryID targetcountryID numarmies (requires the airlift card)\r\n"
+                        + "negotiate playerID (requires the diplomacy card)\n");
+        System.out.println("*********************************************************************************************************\n");
 
     }
 
