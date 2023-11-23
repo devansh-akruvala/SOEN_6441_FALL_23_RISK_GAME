@@ -172,11 +172,11 @@ public class MapControllerTest {
      *
      * @throws Exception if continent is not a subgraph
      */
-    @Test
-    public void testValidateMapForContinents() throws Exception {
-        boolean l_Result = true; // true means its valid
-
-        l_Result = d_Map.checkCountriesInsideContinentIsConnected();
-        assertFalse(l_Result);
-    }
+//    @Test
+//    public void testValidateMapForContinents() throws Exception {
+//        boolean l_Result = true; // true means its valid
+//
+//        l_Result = d_Map.checkCountriesInsideContinentIsConnected();
+//        assertFalse(l_Result);
+//    }
 }

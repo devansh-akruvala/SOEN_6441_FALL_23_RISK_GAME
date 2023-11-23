@@ -160,10 +160,9 @@ public class GameEngine {
                     break;
 
                 case "assigncountries":
-                    String result8 = "Output: " + d_GamePhase.assignCountries();
+                    String result8 =d_GamePhase.assignCountries();
                     System.out.println(result8);
                     d_LEB.setResult(result8);
-
                     break;
                 case "quit":
                     l_StopGame = !l_StopGame;

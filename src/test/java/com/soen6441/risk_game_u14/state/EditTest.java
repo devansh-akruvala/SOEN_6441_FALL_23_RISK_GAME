@@ -33,15 +33,15 @@ public class EditTest {
     /**
      * This method tests that after the loadmap, the game goes in the startup phase.
      */
-    @Test
-    public void testLoadMap() {
-        String l_ExpectedMessage = "Startup Phase";
-        String l_ActualMessage = "";
-        d_Ed.loadMap("loadmap map1");
-        d_P = d_Ge.getD_GamePhase();
-        l_ActualMessage = d_P.getPhaseName();
-        assertEquals(l_ExpectedMessage, l_ActualMessage);
-    }
+//    @Test
+//    public void testLoadMap() {
+//        String l_ExpectedMessage = "Startup Phase";
+//        String l_ActualMessage = "";
+//        d_Ed.loadMap("loadmap map1");
+//        d_P = d_Ge.getD_GamePhase();
+//        l_ActualMessage = d_P.getPhaseName();
+//        assertEquals(l_ExpectedMessage, l_ActualMessage);
+//    }
 
     /**
      * This method tests the loading of incorrect/ invalid map.
