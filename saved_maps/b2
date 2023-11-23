@@ -1,0 +1,27 @@
+Continents
+c1 5
+c2 10
+c3 7
+
+Countries
+a 1
+b 1
+w 2
+x 2
+y 2
+z 2
+p 3
+q 3
+r 3
+
+Neighbors
+1 2 7 
+2 1 5 
+3 6 
+4 8 5 
+5 2 4 6 
+6 5 3 
+7 1 8 
+8 7 9 4 
+9 8 
+

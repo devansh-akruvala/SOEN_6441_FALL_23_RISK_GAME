@@ -30,7 +30,8 @@ public class ExecuteOrder extends Phase {
                 if (inpString.equalsIgnoreCase("y")) {
                     p_Ge.setD_GamePhase(new Reinforcement(p_Ge));
                 } else {
-                    System.out.println("Byee");
+                    System.out.println("Game Over");
+                    p_Ge.setD_GamePhase(new Gameover(p_Ge));
                 }
             } else {
                 p_Ge.setD_GamePhase(new Gameover(p_Ge));
