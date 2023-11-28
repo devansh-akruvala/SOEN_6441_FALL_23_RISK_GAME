@@ -7,8 +7,10 @@ import java.util.Queue;
 import java.util.Random;
 
 import com.soen6441.risk_game_u14.strategy.AggresivePlayerStrategy;
+import com.soen6441.risk_game_u14.strategy.BenevolentPlayerStrategy;
 import com.soen6441.risk_game_u14.strategy.CheaterPlayerStrategy;
 import com.soen6441.risk_game_u14.strategy.HumanPlayerStrategy;
+import com.soen6441.risk_game_u14.strategy.RandomPlayerStrategy;
 
 /***
  *
@@ -124,14 +126,14 @@ public class GameModel {
 		case "human" :
 			l_TempPlayer.setD_PlayerStrategy(new HumanPlayerStrategy(l_TempPlayer,this));
 			break;
-//
-//		case "benevolent" :				
-//			l_TempPlayer.setPlayerStrategy(new BenevolentPlayerStrategy(l_TempPlayer,this));
-//			break;
-//
-//		case "random": 
-//			l_TempPlayer.setPlayerStrategy(new RandomPlayerStrategy(l_TempPlayer,this));
-//			break;
+
+		case "benevolent" :				
+			l_TempPlayer.setD_PlayerStrategy(new BenevolentPlayerStrategy(l_TempPlayer,this));
+			break;
+
+		case "random": 
+			l_TempPlayer.setD_PlayerStrategy(new RandomPlayerStrategy(l_TempPlayer,this));
+			break;
 		case "cheater": 
 			
 			l_TempPlayer.setD_PlayerStrategy(new CheaterPlayerStrategy(l_TempPlayer,this));
