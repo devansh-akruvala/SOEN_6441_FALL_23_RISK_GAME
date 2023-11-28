@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
+import com.soen6441.risk_game_u14.strategy.AggresivePlayerStrategy;
+import com.soen6441.risk_game_u14.strategy.CheaterPlayerStrategy;
+import com.soen6441.risk_game_u14.strategy.HumanPlayerStrategy;
+
 /***
  *
  * This Is the Model class for game it has reference of map and players, it
@@ -103,7 +107,7 @@ public class GameModel {
      * @param p_PlayerName Name of the player to be added
      * @throws Exception if player already exist or more players cannot be added
      */
-    public void addPlayers(String p_PlayerName) throws Exception {
+    public void addPlayers(String p_PlayerName,String p_Strategy) throws Exception {
         if ((d_Players.size() >= d_Map.getD_CountryObjects().size())) {
             throw new Exception("Reached max number of players can be added to the game");
         }
@@ -111,7 +115,36 @@ public class GameModel {
             throw new Exception("Please enter a different player name as this name already exists");
         }
         Player l_TempPlayer = new Player(p_PlayerName, this);
+        
+		switch(p_Strategy) {
+		case "aggressive" :
+			l_TempPlayer.setD_PlayerStrategy(new AggresivePlayerStrategy(l_TempPlayer,this));
+			break;
+
+		case "human" :
+			l_TempPlayer.setD_PlayerStrategy(new HumanPlayerStrategy(l_TempPlayer,this));
+			break;
+//
+//		case "benevolent" :				
+//			l_TempPlayer.setPlayerStrategy(new BenevolentPlayerStrategy(l_TempPlayer,this));
+//			break;
+//
+//		case "random": 
+//			l_TempPlayer.setPlayerStrategy(new RandomPlayerStrategy(l_TempPlayer,this));
+//			break;
+		case "cheater": 
+			
+			l_TempPlayer.setD_PlayerStrategy(new CheaterPlayerStrategy(l_TempPlayer,this));
+			
+			break;
+			
+		default:
+			System.out.println("Invalid Command. Please try again.\n");
+			break;
+		}
+
         d_Players.add(l_TempPlayer);
+        
     }
 
     /**

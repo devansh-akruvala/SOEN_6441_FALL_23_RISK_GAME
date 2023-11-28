@@ -21,6 +21,7 @@ public class Gameover extends Phase {
         try {
             d_LEB = new LogEntryBuffer();
             d_LEB.setResult("In GameOver Phase");
+            System.out.println("Game Over!!");
         } catch (Exception p_E) {
             d_LEB.setResult(p_E.getMessage());
         }

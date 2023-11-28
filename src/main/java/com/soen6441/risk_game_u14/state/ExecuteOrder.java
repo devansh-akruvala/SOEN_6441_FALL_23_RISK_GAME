@@ -23,16 +23,9 @@ public class ExecuteOrder extends Phase {
             d_LEB.setResult("In Execute Order Phase");
             p_Ge.getD_PlayerController().playerExecuteOrder();
             p_Ge.getD_PlayerController().show();
-            if (p_Ge.getD_PlayerController().checkTheWinner() == 1) {
-                Scanner s = new Scanner(System.in);
-                System.out.println("Do you want to continue y = Yes n = No");
-                String inpString = s.nextLine();
-                if (inpString.equalsIgnoreCase("y")) {
-                    p_Ge.setD_GamePhase(new Reinforcement(p_Ge));
-                } else {
-                    System.out.println("Game Over");
-                    p_Ge.setD_GamePhase(new Gameover(p_Ge));
-                }
+            int checkWinner = p_Ge.getD_PlayerController().checkTheWinner();
+            if ( checkWinner == 1) {
+            	 p_Ge.setD_GamePhase(new Reinforcement(p_Ge));
             } else {
                 p_Ge.setD_GamePhase(new Gameover(p_Ge));
 
