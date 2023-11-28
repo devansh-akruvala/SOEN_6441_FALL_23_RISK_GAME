@@ -70,8 +70,8 @@ public class AdvanceTest {
 
         d_GameModel = new GameModel(d_Map);
         d_Ge = new GameEngine(d_GameModel);
-        d_GameModel.addPlayers("Devansh");
-        d_GameModel.addPlayers("Meshva");
+        d_GameModel.addPlayers("Devansh","human");
+        d_GameModel.addPlayers("Meshva","human");
         d_P1 = new Player("Devansh", d_GameModel);
         d_P2 = new Player("Meshva", d_GameModel);
 
