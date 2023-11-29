@@ -11,19 +11,33 @@ import com.soen6441.risk_game_u14.model.Player;
 import com.soen6441.risk_game_u14.state.IssueOrder;
 import com.soen6441.risk_game_u14.state.SaveGame;
 import com.soen6441.risk_game_u14.state.Startup;
-
+/**
+ * Represents a strategy for human players in a Risk game.
+ * Allows players to input commands via the console for various game actions.
+ * Extends the Strategy class and implements Serializable.
+ */
 public class HumanPlayerStrategy extends Strategy implements Serializable {
 	
 	private LogEntryBuffer d_LEB;
 	private Player d_Player;
 	private GameModel d_GameModel;
 
+	/**
+	 * Constructor for the HumanPlayerStrategy.
+	 *
+	 * @param p_Player     The associated player.
+	 * @param p_GameModel  The game model where the player exists.
+	 */
 	public HumanPlayerStrategy(Player p_Player, GameModel p_GameModel) {
 		d_Player = p_Player;
 		d_GameModel = p_GameModel;
 		d_LEB = new LogEntryBuffer();
 	}
-
+	/**
+	 * Reads and validates input to create an order based on player's command.
+	 *
+	 * @return The order string based on player's input.
+	 */
 	@Override
 	public String createOrder() {
 		// if correct command then dongt ask again
@@ -49,39 +63,46 @@ public class HumanPlayerStrategy extends Strategy implements Serializable {
 
 		return l_InputCommand;
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String strategyName() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String createDeployOrder() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String createAdvanceOrder() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String createCardOrder(String p_CardName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/***
-	 * Ask orders from the players in a round-robin fashion and store them in an
-	 * order queue
-	 * 
-	 * @param number The integer number to be parsed
-	 * @return A boolean value
+	/**
+	 * Checks if an input string represents an integer value.
+	 *
+	 * @param number The string to be checked for integer parsing.
+	 * @return True if the string can be parsed as an integer; otherwise, false.
 	 */
-
 	public boolean isIntParsable(String number) {
 		try {
 			Integer.parseInt(number);
@@ -93,7 +114,7 @@ public class HumanPlayerStrategy extends Strategy implements Serializable {
 	}
 
 	/**
-	 * Checks if a country exists.
+	 * Checks if a country exists in the game map.
 	 *
 	 * @param p_CountryName The name of the country to be checked.
 	 * @return True if the country exists; otherwise, false.
@@ -163,36 +184,14 @@ public class HumanPlayerStrategy extends Strategy implements Serializable {
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Saves the current game state based on the provided command.
+	 *
+	 * @param p_Command The command provided by the player to save the game.
+	 */
 	public void saveGame(String p_Command) {
 		this.d_GameModel.saveGame(p_Command.split(" ")[1]);
 	}
-	
-//	public void loadGame(String p_Command) {
-//		boolean l_Flag=false;
-//		this.d_GameModel=GameModel.loadGame(p_Command.split(" ")[1]);
-//		if (this.d_GameModel==null) {
-//			System.out.println("\nGame not found");
-//			d_LEB.setResult("Game not found");
-//			return;
-//		}
-//		d_LEB.setResult("Game Loaded");
-//
-//		if(this.d_GameModel.getD_Players().size()<=1) {
-//			.setD_GamePhase(new Startup(this));
-//		} else {
-//			ArrayList<Player> l_Players=this.d_GameModel.getD_Players();
-//			for(Player l_P : l_Players) {
-//				if(l_P.getD_PlayerOwnedCountries().size()>0) {
-//					l_Flag=true;
-//					break;
-//				}
-//			}
-//			if(l_Flag==true) {
-//				this.setD_GamePhase(new IssueOrder(this));
-//			} else {
-//				this.setD_GamePhase(new Startup(this));
-//			}
-//		}
-	
+
 }
