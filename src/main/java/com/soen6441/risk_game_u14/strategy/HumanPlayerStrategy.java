@@ -9,6 +9,7 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Player;
 import com.soen6441.risk_game_u14.state.IssueOrder;
+import com.soen6441.risk_game_u14.state.SaveGame;
 import com.soen6441.risk_game_u14.state.Startup;
 
 public class HumanPlayerStrategy extends Strategy implements Serializable {
@@ -30,7 +31,7 @@ public class HumanPlayerStrategy extends Strategy implements Serializable {
 		Scanner sc = new Scanner(System.in);
 		boolean l_CorrectCommand = false;
 		while (!l_CorrectCommand) {
-
+			System.out.println("Please enter "+d_Player.getD_PlayerName()+" order:");
 			String l_EnteredComamnd = sc.nextLine();
 
 			if (isCommandValid(l_EnteredComamnd)) {
@@ -154,11 +155,10 @@ public class HumanPlayerStrategy extends Strategy implements Serializable {
 		} else if (l_CommandSplit[0].equalsIgnoreCase("negotiate") && l_CommandLength == 2
 				&& isPlayerExist(l_CommandSplit[1])) {
 			return true;
-		} else if (l_CommandSplit[0].equalsIgnoreCase("exit")) {
+		}else if (l_CommandSplit[0].equalsIgnoreCase("savegame")) {
 			return true;
-		} else if (l_CommandSplit[0].equalsIgnoreCase("savegame")) {
-			return true;
-		} else if (l_CommandSplit[0].equalsIgnoreCase("loadgame")) {
+		} 
+		else if (l_CommandSplit[0].equalsIgnoreCase("exit")) {
 			return true;
 		}
 		return false;
@@ -166,7 +166,6 @@ public class HumanPlayerStrategy extends Strategy implements Serializable {
 	
 	public void saveGame(String p_Command) {
 		this.d_GameModel.saveGame(p_Command.split(" ")[1]);
-		//this.setD_GamePhase(new GameSaved(this));
 	}
 	
 //	public void loadGame(String p_Command) {

@@ -1,5 +1,6 @@
 package com.soen6441.risk_game_u14.state;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import com.soen6441.risk_game_u14.controller.GameEngine;
@@ -8,7 +9,7 @@ import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
  *The ExecuteOrder Phase extends the phase class and implements all the methods suitable for that particular phase.
  *It returns invalid command for others which are not compatible with this phase
  */
-public class ExecuteOrder extends Phase {
+public class ExecuteOrder extends Phase implements Serializable {
 
     LogEntryBuffer d_LEB;
     /**
@@ -26,9 +27,11 @@ public class ExecuteOrder extends Phase {
             p_Ge.getD_PlayerController().playerExecuteOrder();
             p_Ge.getD_PlayerController().show();
             int checkWinner = p_Ge.getD_PlayerController().checkTheWinner();
-            if (counter<50 && checkWinner == 1) {
+            if (checkWinner == 1 && counter<=50 ) {
             	 p_Ge.setD_GamePhase(new Reinforcement(p_Ge));
             } else {
+            	System.out.println("Number Of Rounds Exhausted");
+            	System.out.println("Its a Draw!!!");
                 p_Ge.setD_GamePhase(new Gameover(p_Ge));
 
             }

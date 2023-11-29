@@ -1,5 +1,6 @@
 package com.soen6441.risk_game_u14.state;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import com.soen6441.risk_game_u14.controller.GameEngine;
@@ -8,7 +9,7 @@ import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
  *The GameOver Phase extends the phase class and implements all the methods suitable for that particular phase.
  *It returns invalid command for others which are not compatible with this phase
  */
-public class Gameover extends Phase {
+public class Gameover extends Phase implements Serializable {
 
     LogEntryBuffer d_LEB;
     /**

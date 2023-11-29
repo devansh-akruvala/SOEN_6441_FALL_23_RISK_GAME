@@ -180,8 +180,8 @@ public class Advance implements Order {
 					Player ogOwner = d_TargetCountry.getD_Owner();
 					ogOwner.removeCountry(d_TargetCountry);
 					d_TargetCountry.setD_Owner(d_Player);
-					d_TargetCountry.setD_NoOfArmies(d_NumArmies - l_MinArmies + l_attackWin);
-					d_SourceCountry.setD_NoOfArmies(d_SourceCountry.getD_NoOfArmies() - d_NumArmies);
+					d_TargetCountry.setD_NoOfArmies(Math.max(0,d_NumArmies - l_MinArmies + l_attackWin));
+					d_SourceCountry.setD_NoOfArmies(Math.max(0,d_SourceCountry.getD_NoOfArmies() - d_NumArmies));
 					d_Player.addCountry(d_TargetCountry);
 
 					d_Player.setD_AtleastOneBattleWon(true);
@@ -189,8 +189,8 @@ public class Advance implements Order {
 					d_Player.setD_Result("\n" + d_Player.getD_PlayerName() + " your attack on "
 							+ d_TargetCountry.getD_CountryName() + " was a Success!!");
 				} else {
-					d_SourceCountry.setD_NoOfArmies(d_SourceCountry.getD_NoOfArmies() - l_MinArmies + l_attackWin);
-					d_TargetCountry.setD_NoOfArmies(d_TargetCountry.getD_NoOfArmies() - l_MinArmies + l_defendWin);
+					d_SourceCountry.setD_NoOfArmies(Math.max(0,d_SourceCountry.getD_NoOfArmies() - l_MinArmies + l_attackWin));
+					d_TargetCountry.setD_NoOfArmies(Math.max(0,d_TargetCountry.getD_NoOfArmies() - l_MinArmies + l_defendWin));
 					d_Player.setD_Result("\n" + d_Player.getD_PlayerName() + " your attack on "
 							+ d_TargetCountry.getD_CountryName() + " was a Failure!!");
 				}
