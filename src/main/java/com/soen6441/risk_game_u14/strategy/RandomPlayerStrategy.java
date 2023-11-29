@@ -108,6 +108,9 @@ public class RandomPlayerStrategy extends Strategy implements Serializable {
 		Country l_randomOwnCountry = getRandomCountry(d_Player.getD_PlayerOwnedCountries());
 		if(l_randomOwnCountry==null)
 			return null;
+		while(l_randomOwnCountry.getD_NoOfArmies()==0) {
+			l_randomOwnCountry = getRandomCountry(d_Player.getD_PlayerOwnedCountries());
+		}
 		int l_randomIndex = l_random.nextInt(l_randomOwnCountry.getD_Neighbors().size());
 		Country l_randomNeighbor;
 		if (l_randomOwnCountry.getD_Neighbors().size()>1) {
@@ -117,7 +120,7 @@ public class RandomPlayerStrategy extends Strategy implements Serializable {
 		}
 
 
-			l_armiesToSend = l_random.nextInt(l_randomOwnCountry.getD_NoOfArmies() + 1);
+			l_armiesToSend = l_random.nextInt(1,l_randomOwnCountry.getD_NoOfArmies() + 1);
 			return "advance "+l_randomOwnCountry.getD_CountryName()+" "+l_randomNeighbor.getD_CountryName()+" "+ l_armiesToSend;
 	}
 
@@ -126,12 +129,15 @@ public class RandomPlayerStrategy extends Strategy implements Serializable {
 		int l_armiesToSend;
 		Random l_random = new Random();
 		Country l_randomOwnCountry = getRandomCountry(d_Player.getD_PlayerOwnedCountries());
+		while(l_randomOwnCountry.getD_NoOfArmies()==0) {
+			l_randomOwnCountry = getRandomCountry(d_Player.getD_PlayerOwnedCountries());
+		}
 		if(l_randomOwnCountry==null)
 			return null;
 		Country l_randomNeighbour = d_GameModel.getD_Map().findCountryByName(l_randomOwnCountry.getD_Neighbors().get(l_random.nextInt(l_randomOwnCountry.getD_Neighbors().size())));
 		Player l_randomPlayer = getRandomPlayer(d_Player);
 		
-			l_armiesToSend = l_random.nextInt(l_randomOwnCountry.getD_NoOfArmies() + 1);
+			l_armiesToSend = l_random.nextInt(1,l_randomOwnCountry.getD_NoOfArmies() + 1);
 		
 		switch(p_CardName){
 			case "Bomb":
@@ -141,7 +147,10 @@ public class RandomPlayerStrategy extends Strategy implements Serializable {
 			case "Airlift":
 				return "airlift "+ l_randomOwnCountry.getD_CountryName()+" "+getRandomCountry(d_Player.getD_PlayerOwnedCountries()).getD_CountryName()+" "+l_armiesToSend;
 			case "Negotiate":
-				return "negotiate"+" "+l_randomPlayer.getD_PlayerName();
+				Player p = getRandomPlayer(d_Player); ;
+				if(p==null)
+					return null;
+				return "negotiate" + " " +p.getD_PlayerName() ;
 		}
 		return null;
 
@@ -187,9 +196,11 @@ public class RandomPlayerStrategy extends Strategy implements Serializable {
 		Random l_random = new Random();
 
 		for(Player l_player : d_GameModel.getD_Players()){
-			if(!l_player.equals(p_player))
+			if(!l_player.equals(p_player) && !l_player.getD_PlayerName().equalsIgnoreCase("Neutral Player"))
 				l_playerList.add(l_player);
 		}
+		if(l_playerList.size()==0)
+			return null;
 		return l_playerList.get(l_random.nextInt(l_playerList.size()));
  	}
 

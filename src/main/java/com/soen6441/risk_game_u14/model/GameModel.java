@@ -255,7 +255,7 @@ public class GameModel implements Serializable {
                         l_ContinentValue += l_Continent.getD_ContinentValue();
                     }
                     l_ArmyCount = Math.max(l_ArmyCount, 3);
-                    l_Player.setD_ArmiesCount(l_Player.getD_ArmiesCount() + l_ArmyCount + l_ContinentValue);
+                    l_Player.setD_ArmiesCount(Math.abs(l_Player.getD_ArmiesCount() + l_ArmyCount + l_ContinentValue));
                     System.out.println(l_Player.getD_PlayerName() + " got " + l_Player.getD_ArmiesCount() + " armies");
 
                 } else {
@@ -335,10 +335,6 @@ public class GameModel implements Serializable {
 		}
 		
 	}
-	
-	
-	
-	
 	
 	/**
 	 * This method takes the filename from the user and saves the game as in saves the game model object in to the file 

@@ -1,5 +1,7 @@
 package com.soen6441.risk_game_u14.controller;
 
+import java.io.Serializable;
+
 import com.soen6441.risk_game_u14.model.Map;
 
 /**
@@ -7,7 +9,7 @@ import com.soen6441.risk_game_u14.model.Map;
  *
  * @author Devansh Meshva Smridhi Aditya
  */
-public class MapController {
+public class MapController implements Serializable {
     private Map d_Map;
 
     public MapController(Map map) {

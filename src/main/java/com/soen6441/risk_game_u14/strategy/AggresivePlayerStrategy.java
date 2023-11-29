@@ -109,7 +109,7 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		d_deployCountries.add(l_strongestCountry);
 		int l_armiesToDeploy = 1;
 		if (d_Player.getD_ArmiesCount()>1) {
-			l_armiesToDeploy = l_random.nextInt(2,d_Player.getD_ArmiesCount()+1);
+			l_armiesToDeploy = l_random.nextInt(1,d_Player.getD_ArmiesCount()+1);
 		}
 		return String.format("deploy %s %d", l_strongestCountry.getD_CountryName(), l_armiesToDeploy);	
 	}
@@ -118,7 +118,8 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 	public String createAdvanceOrder() {
 //		Country l_randomSourceCountry = getRandomCountry(d_deployCountries);
 		Country l_randomSourceCountry = getStrongestCountry();
-		
+		if(l_randomSourceCountry.getD_NoOfArmies()==0 )
+			return null;
 		moveArmiesFromItsNeighbors(d_Player, l_randomSourceCountry);
 
 		Random l_random = new Random();
@@ -127,7 +128,7 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 						.get(l_random.nextInt(l_randomSourceCountry.getD_Neighbors().size())));
 		
 
-		int l_armiesToSend = l_randomSourceCountry.getD_NoOfArmies() > 1 ? l_randomSourceCountry.getD_NoOfArmies()-1: 1;
+		int l_armiesToSend = l_randomSourceCountry.getD_NoOfArmies() > 1 ? l_randomSourceCountry.getD_NoOfArmies(): 1;
 
 		System.out.println("advance " + l_randomSourceCountry.getD_CountryName() + " " + l_randomTargetCountry.getD_CountryName()
 				+ " " + l_armiesToSend);
@@ -140,12 +141,13 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 	public String createCardOrder(String p_CardName) {
 		Random l_random = new Random();
 		Country l_StrongestSourceCountry = getStrongestCountry();
-
+		if(l_StrongestSourceCountry.getD_NoOfArmies()==0)
+			return null;
 		Country l_randomTargetCountry = d_GameModel.getD_Map()
 				.findCountryByName(l_StrongestSourceCountry.getD_Neighbors()
 						.get(l_random.nextInt(l_StrongestSourceCountry.getD_Neighbors().size())));
 
-		int l_armiesToSend = l_StrongestSourceCountry.getD_NoOfArmies() > 1 ? l_StrongestSourceCountry.getD_NoOfArmies()-1 : 1;
+		int l_armiesToSend = l_StrongestSourceCountry.getD_NoOfArmies() > 1 ? l_StrongestSourceCountry.getD_NoOfArmies() : 1;
 
 		switch (p_CardName) {
 		case "Bomb":
@@ -156,7 +158,10 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 			return "airlift " + l_StrongestSourceCountry.getD_CountryName() + " "
 					+ getRandomCountry(d_Player.getD_PlayerOwnedCountries()).getD_CountryName() + " " + l_armiesToSend;
 		case "Negotiate":
-			return "negotiate" + " " + getRandomEnemyPlayer(d_Player).getD_PlayerName();
+			Player p = getRandomEnemyPlayer(d_Player); ;
+			if(p==null)
+				return null;
+			return "negotiate" + " " +p.getD_PlayerName() ;
 		}
 		return null;
 	}
@@ -213,7 +218,7 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 			}
 		}
 
-		int l_ArmiesToMove = 0;
+		int l_ArmiesToMove = 1;
 		// send armies from neighbor to source country
 		for (Country l_con : l_listOfNeighbors) {
 			l_ArmiesToMove += p_randomSourceCountry.getD_NoOfArmies() > 0
@@ -229,9 +234,11 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		Random l_random = new Random();
 
 		for (Player l_player : d_GameModel.getD_Players()) {
-			if (!l_player.equals(d_Player))
+			if (!l_player.equals(d_Player) && !l_player.getD_PlayerName().equalsIgnoreCase("Neutral Player"))
 				l_playerList.add(l_player);
 		}
+		if(l_playerList.size()==0)
+			return null;
 		return l_playerList.get(l_random.nextInt(l_playerList.size()));
 	}
 

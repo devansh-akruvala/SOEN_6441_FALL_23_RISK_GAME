@@ -1,5 +1,6 @@
 package com.soen6441.risk_game_u14.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,7 +25,7 @@ import com.soen6441.risk_game_u14.model.Player;
  *
  * @author Devansh, Aditya
  */
-public class PlayerController {
+public class PlayerController implements Serializable{
 	private Player d_Winner;
 	private GameModel d_GameModel;
 	private HashMap<Integer, String> d_AllCards;
@@ -341,6 +342,7 @@ public class PlayerController {
 			if(!l_player.getD_PlayerName().equalsIgnoreCase("Neutral Player") && l_player.getIsExit()==false)		
 			l_player.issueOrder();
 		}
+
 	}
 
 	/***
@@ -423,7 +425,6 @@ public class PlayerController {
 		ArrayList<Country> l_CountryList = d_GameModel.getD_Map().getD_CountryObjects();
 		Iterator<Country> itr = l_CountryList.iterator();
 		Player l_CheckPlayer = (Player) ((Country) itr.next()).getD_Owner();
-		System.out.println(l_CheckPlayer.getD_PlayerName());
 
 		int l_flag = 0;
 		while (itr.hasNext()) {

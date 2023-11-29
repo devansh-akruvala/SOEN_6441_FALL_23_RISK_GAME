@@ -81,19 +81,19 @@ public class Adaptee {
 			Scanner l_Sc = new Scanner(l_File);
 			while(l_Sc.hasNextLine()){
 				String l_Line=l_Sc.nextLine();
-				if(l_Line.contains("Continents")){	
+				if(l_Line.contains("[Continents]")){	
 					l_Line=l_Sc.nextLine();
 					while(!"".equals(l_Line) && l_Sc.hasNextLine()){
 						String[] l_Arr = l_Line.split("=", 2);
-						p_GameEngine.getD_GameModel().getD_Map().addContinent(l_Arr[0],Integer.parseInt(l_Arr[1]));
+						p_GameEngine.getD_GameModel().getD_Map().addContinent(l_Arr[0].strip(),Integer.parseInt(l_Arr[1]));
 						l_Line=l_Sc.nextLine();
 					}
 				}
-				if(l_Line.contains("Territories")){
+				if(l_Line.contains("[Territories]")){
 					l_Line=l_Sc.nextLine();
 					while(!"".equals(l_Line) && l_Sc.hasNextLine()){
 						String[] l_Arr1=l_Line.split(",");
-						p_GameEngine.getD_GameModel().getD_Map().addCountries(l_Arr1[0], l_Arr1[3]);
+						p_GameEngine.getD_GameModel().getD_Map().addCountries(l_Arr1[0].strip(), l_Arr1[3].strip());
 						l_Line=l_Sc.nextLine();
 					}
 				}
@@ -107,7 +107,7 @@ public class Adaptee {
 					while(!"".equals(l_Line) && l_Sc2.hasNextLine()){
 						String[] l_Arr1=l_Line.split(",");
 						for(int l_K=4;l_K<l_Arr1.length;l_K++){
-							p_GameEngine.getD_GameModel().getD_Map().addCountryNeighbour(l_Arr1[0], l_Arr1[l_K]);
+							p_GameEngine.getD_GameModel().getD_Map().addCountryNeighbour(l_Arr1[0].strip(), l_Arr1[l_K].strip());
 						}
 						l_Line=l_Sc2.nextLine();
 					}

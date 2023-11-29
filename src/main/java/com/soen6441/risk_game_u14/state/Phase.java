@@ -1,4 +1,6 @@
 package com.soen6441.risk_game_u14.state;
+import java.io.Serializable;
+
 import com.soen6441.risk_game_u14.controller.GameEngine;
 
 
@@ -7,7 +9,7 @@ import com.soen6441.risk_game_u14.controller.GameEngine;
  * All the commands in game will be implementing by relevant phases by using methods of phase class
  */
 
-public abstract class Phase {
+public abstract class Phase implements Serializable{
     public GameEngine d_GameEngine;
 
     public Phase() {
