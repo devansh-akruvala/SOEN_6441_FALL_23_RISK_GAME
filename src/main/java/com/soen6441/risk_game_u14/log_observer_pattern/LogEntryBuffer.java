@@ -1,9 +1,11 @@
 package com.soen6441.risk_game_u14.log_observer_pattern;
 
+import java.io.Serializable;
+
 /**
  * An extension of the Observable class, this class is used to log any changes in a file.
  */
-public class LogEntryBuffer extends Observable {
+public class LogEntryBuffer extends Observable implements Serializable {
     private String d_Result;
     private Logger d_Logger;
 

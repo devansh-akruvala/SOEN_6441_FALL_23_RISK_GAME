@@ -1,5 +1,6 @@
 package com.soen6441.risk_game_u14.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +19,7 @@ import com.soen6441.risk_game_u14.strategy.Strategy;
  *
  * @author Devansh, Aditya, Karandeep
  */
-public class Player {
+public class Player implements Serializable{
     private static int D_PlayerCount = 0;
     private int d_Playerid;
     private String d_PlayerName;

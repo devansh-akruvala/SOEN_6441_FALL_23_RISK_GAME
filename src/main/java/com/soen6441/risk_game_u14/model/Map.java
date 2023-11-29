@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -19,7 +20,7 @@ import java.util.Scanner;
  *
  * @author Devansh, Smridhi, Meshva
  */
-public class Map {
+public class Map implements Serializable {
     private ArrayList<Continent> d_ContinentObjects;
     private ArrayList<Country> d_CountryObjects;
     private HashMap<Integer, ArrayList<Integer>> d_AdjList;

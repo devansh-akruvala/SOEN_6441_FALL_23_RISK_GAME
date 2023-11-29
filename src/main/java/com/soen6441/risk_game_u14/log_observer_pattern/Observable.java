@@ -1,11 +1,12 @@
 package com.soen6441.risk_game_u14.log_observer_pattern;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * An Observable class with methods to connect/disconnect with observers and notify them of any updates.
  */
-public class Observable {
+public class Observable implements Serializable {
     ArrayList<Observer> d_Observers = new ArrayList<Observer>();
 
     /**

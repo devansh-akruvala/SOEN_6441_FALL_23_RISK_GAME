@@ -1,5 +1,11 @@
 package com.soen6441.risk_game_u14.model;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -26,7 +32,7 @@ import com.soen6441.risk_game_u14.strategy.RandomPlayerStrategy;
  *
  * @author Karandeep, Devansh
  */
-public class GameModel {
+public class GameModel implements Serializable {
     private Map d_Map;
     private ArrayList<Player> d_Players;
     private Queue<Player> d_PlayersQueue;
@@ -328,5 +334,43 @@ public class GameModel {
 			l_PlayerIndex++;
 		}
 		
+	}
+	
+	
+	
+	
+	
+	/**
+	 * This method takes the filename from the user and saves the game as in saves the game model object in to the file 
+	 * @param p_FileName name of the file to save the game
+	 */
+	public  void saveGame(String p_FileName) {
+		String l_File = p_FileName;
+		System.out.println(p_FileName);
+		try (FileOutputStream fileOut = new FileOutputStream("savedgames\\" + l_File);
+				ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+			out.writeObject(this);
+		} catch (IOException i) {
+			i.printStackTrace();
+		}
+		
+	}
+	/**
+	 * This methods loads the saved game.
+	 * It takes the name of the saved game file as input and converts it into the game model object and returns this object
+	 * @param p_FileName name of the saved game file 
+	 * @return game  object of gamemodel
+	 */
+	public static GameModel loadGame(String p_FileName) {
+		GameModel game = null;
+		try (FileInputStream fileIn = new FileInputStream("savedgames\\" + p_FileName);
+				ObjectInputStream in = new ObjectInputStream(fileIn)) {
+			game = (GameModel) in.readObject();
+		} catch (IOException i) {
+			return null;
+		} catch (ClassNotFoundException c) {
+			return null;
+		}
+		return game;
 	}
 }

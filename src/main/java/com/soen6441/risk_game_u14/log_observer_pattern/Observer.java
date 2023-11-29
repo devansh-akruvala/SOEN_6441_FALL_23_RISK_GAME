@@ -1,9 +1,11 @@
 package com.soen6441.risk_game_u14.log_observer_pattern;
 
+import java.io.Serializable;
+
 /**
  * An Observer interface containing an update method, called when notified by an Observable.
  */
-public interface Observer {
+public interface Observer extends Serializable {
     /**
      * This method updates the file with each log entry in the LogEntryBuffer.
      *
