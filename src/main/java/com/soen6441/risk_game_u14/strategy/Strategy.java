@@ -38,6 +38,9 @@ public abstract class Strategy implements Serializable {
 	 */
 	public abstract String createAdvanceOrder();
 	
+	/**
+	 * Creates card order 
+	 */
 	public abstract String createCardOrder(String p_CardName);
 	
 	

@@ -29,13 +29,28 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 	private Player d_Player;
 	private GameModel d_GameModel;
 	
+	/**
+	 * List containing deploy order countries.
+	 */
+	
 	ArrayList<Country> d_deployCountries = new ArrayList<Country>();
 	
+	
+	/**
+	 * Constructor setup variables for aggressive strategy
+	 * @param p_Player Player object
+	 * @param p_GameModel GameModel object
+	 */
 	public AggresivePlayerStrategy(Player p_Player,GameModel p_GameModel) {
 		d_Player=p_Player;
 		d_GameModel = p_GameModel;
 	}
 	
+	/**
+	 * This method creates a new order.
+	 * 
+	 * @return String form of order
+	 */
 	@Override
 	public String createOrder() {
 		// TODO Auto-generated method stub
@@ -95,12 +110,20 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		return l_command;
 	}
 
+	/**
+	 * This method returns the player behavior.
+	 * 
+	 * @return String player behavior
+	 */
 	@Override
 	public String strategyName() {
 		// TODO Auto-generated method stub
 		return "Aggressive";
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String createDeployOrder() {
 		Random l_random = new Random();
@@ -114,6 +137,9 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		return String.format("deploy %s %d", l_strongestCountry.getD_CountryName(), l_armiesToDeploy);	
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String createAdvanceOrder() {
 //		Country l_randomSourceCountry = getRandomCountry(d_deployCountries);
@@ -136,7 +162,11 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		return "advance " + l_randomSourceCountry.getD_CountryName() + " " + l_randomTargetCountry.getD_CountryName()
 				+ " " + l_armiesToSend;
 	}
-
+	
+	/**
+	 * Create card Orders
+	 *
+	 */
 	@Override
 	public String createCardOrder(String p_CardName) {
 		Random l_random = new Random();
@@ -166,6 +196,10 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		return null;
 	}
 	
+	/**
+	 * Check if its first turn 
+	 * @return boolean if its first turn
+	 */
 	private Boolean checkIfArmiesDepoyed(){
 		if(d_Player.getD_PlayerOwnedCountries().stream().anyMatch(l_country -> l_country.getD_NoOfArmies()>0)){
 			return true;
@@ -173,13 +207,23 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		return false;
 	}
 	
-	
+	/**
+	 * Get strongest country.
+	 * 
+	 * @return Strongest country
+	 */
 	public Country getStrongestCountry() {
 		List<Country> l_countriesOwnedByPlayer = d_Player.getD_PlayerOwnedCountries();
 		Country l_Country = calculateStrongestCountry(l_countriesOwnedByPlayer);
 		return l_Country;
 	}
 	
+	/**
+	 * This method calculates strongest country.
+	 * 
+	 * @param l_listOfCountries List of countries
+	 * @return strongest country
+	 */
 	public Country calculateStrongestCountry(List<Country> l_listOfCountries) {
 		LinkedHashMap<Country, Integer> l_CountryWithArmies = new LinkedHashMap<Country, Integer>();
 
@@ -199,6 +243,12 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 
 	}
 	
+	/**
+	 * This method returns random country.
+	 * 
+	 * @param p_listOfCountries
+	 * @return random country 
+	 */
 	private Country getRandomCountry(List<Country> p_listOfCountries) {
 		Random l_random = new Random();
 		if(p_listOfCountries.size()==1)
@@ -206,7 +256,13 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		return p_listOfCountries.get(l_random.nextInt(p_listOfCountries.size()));
 	}
 	
-	
+	/**
+	 * Move armies from neighbor to maximize aggregation of forces.
+	 * 
+	 * @param d_Player Player object
+	 * @param p_randomSourceCountry Source Country
+	 * 
+	 */
 	public void moveArmiesFromItsNeighbors(Player d_Player, Country p_randomSourceCountry) {
 		List<String> l_adjacentCountryIds = p_randomSourceCountry.getD_Neighbors();
 		List<Country> l_listOfNeighbors = new ArrayList<Country>();
@@ -229,6 +285,13 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		p_randomSourceCountry.setD_NoOfArmies(l_ArmiesToMove);
 	}
 
+	
+	/**
+	 * Get random enemy player.
+	 * 
+	 * @param p_player    Player
+	 * @return random enemy player
+	 */
 	private Player getRandomEnemyPlayer(Player p_player) {
 		ArrayList<Player> l_playerList = new ArrayList<Player>();
 		Random l_random = new Random();

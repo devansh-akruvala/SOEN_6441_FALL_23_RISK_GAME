@@ -12,6 +12,12 @@ import com.soen6441.risk_game_u14.state.IssueOrder;
 import com.soen6441.risk_game_u14.state.SaveGame;
 import com.soen6441.risk_game_u14.state.Startup;
 
+/**
+ * Class that implements the Human Player Strategy
+ * This class extends the parent Strategy class which has createOrder method to be implemented here.
+ *
+ */
+
 public class HumanPlayerStrategy extends Strategy implements Serializable {
 	
 	private LogEntryBuffer d_LEB;
@@ -26,7 +32,7 @@ public class HumanPlayerStrategy extends Strategy implements Serializable {
 
 	@Override
 	public String createOrder() {
-		// if correct command then dongt ask again
+		// if correct command then don't ask again
 		String l_InputCommand = "";
 		Scanner sc = new Scanner(System.in);
 		boolean l_CorrectCommand = false;

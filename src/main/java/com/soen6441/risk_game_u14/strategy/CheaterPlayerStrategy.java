@@ -11,6 +11,12 @@ import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Map;
 import com.soen6441.risk_game_u14.model.Player;
 
+/**
+ * Class that implements the Cheater Player Strategy
+ * This class extends the parent Strategy class which has createOrder method to be implemented here.
+ *
+ */
+
 public class CheaterPlayerStrategy extends Strategy implements Serializable{
 	private Player d_Player;
 	private GameModel d_GameModel;
