@@ -1,182 +1,79 @@
 
 In Edit Phase
-Command Entered: loadmap cmap1
-In Startup Phase
-
-Output: 
-Command Entered: gameplayer -add p1 aggressive -add p2 benevolent
-Players command executed successfully
-Output: Players command executed successfully
-Command Entered: assigncountries
-In Reinforcement Phase
-In Issue Order Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+In Edit Phase
+Reseting loaded map!! please load a valid map
+In Edit Phase
+In Edit Phase
+In Edit Phase
+Invalid Command in Edit phase
+In Edit Phase
+In Edit Phase
+Invalid Command in Edit phase
+In Edit Phase
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to b was successful
-p2's Order Result : 
-p2: Deployed 9 to c was successful
 
 Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
+null
+Invalid Command in Execute Order Phase
+In Edit Phase
 In Execute Order Phase
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country belong to the same player
 
 Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
+null
+Invalid Command in Execute Order Phase
+In Edit Phase
 In Execute Order Phase
-p1's Order Result : 
-p1 your attack on c was a Failure!!
-p2's Order Result : 
-The source country and target country belong to the same player
 
 Orders are Succesfully Executed!!
-In Reinforcement Phase
+null
+Invalid Command in Execute Order Phase
+In Edit Phase
 In Issue Order Phase
 In Execute Order Phase
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-p2: Deployed 33 to c was successful
 
 Orders are Succesfully Executed!!
-In Reinforcement Phase
+null
+Invalid Command In Issue Order Phase
+In Edit Phase
 In Issue Order Phase
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 42 to a was successful
-p2's Order Result : 
-p2: Deployed 2 to d was successful
 
 Orders are Succesfully Executed!!
-In Reinforcement Phase
+null
+Invalid Command In Issue Order Phase
+In Edit Phase
 In Issue Order Phase
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 8 to a was successful
-p2's Order Result : 
-p2: Deployed 25 to d was successful
 
 Orders are Succesfully Executed!!
-In Reinforcement Phase
+null
+Invalid Command In Issue Order Phase
+In Edit Phase
 In Issue Order Phase
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 9 to a was successful
-p2's Order Result : 
-p2: Deployed 7 to d was successful
 
 Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 2 to a was successful
-p2's Order Result : 
-The source country and target country belong to the same player
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : 
-p1 your attack on c was a Success!!
-p2's Order Result : 
-p2: Deployed 19 to d was successful
-Player p1 got Negotiate
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 5 to c was successful
-p2's Order Result : 
-p2: Deployed 7 to d was successful
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : 
-p1 your attack on d was a Failure!!
-p2's Order Result : 
-p2: Deployed 19 to d was successful
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-p2: Deployed 3 to d was successful
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 24 to a was successful
-p2's Order Result : 
-p2: Deployed 5 to d was successful
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : Negotiation with p1 successfull.
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 89 to a was successful
-p2's Order Result : 
-p2: Deployed 6 to d was successful
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 22 to a was successful
-p2's Order Result : 
-p2: Deployed 2 to d was successful
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 4 to a was successful
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-p2: Deployed 6 to d was successful
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-In Execute Order Phase
-p1's Order Result : 
-p1 your attack on d was a Success!!
-p2's Order Result : 
-p2: Deployed 3 to d was successful
-Player p1 got Bomb
-
-Orders are Succesfully Executed!!
-
-p1 is the winner of the game!
-In GameOver Phase
-
+null
+Invalid Command In Issue Order Phase

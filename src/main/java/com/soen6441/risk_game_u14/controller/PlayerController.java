@@ -333,11 +333,12 @@ public class PlayerController {
 		
 		for(Player l_player:d_GameModel.getD_Players()) {
 			if(!l_player.getD_PlayerName().equalsIgnoreCase("Neutral Player"))
+				l_player.setIsExit(false);
 				l_player.setD_SkipCommands(false);		
 		}
 		
 		for(Player l_player:d_GameModel.getD_Players()) {
-			if(!l_player.getD_PlayerName().equalsIgnoreCase("Neutral Player"))		
+			if(!l_player.getD_PlayerName().equalsIgnoreCase("Neutral Player") && l_player.getIsExit()==false)		
 			l_player.issueOrder();
 		}
 	}
@@ -422,6 +423,8 @@ public class PlayerController {
 		ArrayList<Country> l_CountryList = d_GameModel.getD_Map().getD_CountryObjects();
 		Iterator<Country> itr = l_CountryList.iterator();
 		Player l_CheckPlayer = (Player) ((Country) itr.next()).getD_Owner();
+		System.out.println(l_CheckPlayer.getD_PlayerName());
+
 		int l_flag = 0;
 		while (itr.hasNext()) {
 			if (!((Player) ((Country) itr.next()).getD_Owner() == l_CheckPlayer)) {

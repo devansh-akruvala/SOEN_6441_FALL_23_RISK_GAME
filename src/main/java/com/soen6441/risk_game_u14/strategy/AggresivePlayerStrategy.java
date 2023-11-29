@@ -41,6 +41,9 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		// TODO Auto-generated method stub
 		System.out.println("Creating order for: "+d_Player.getD_PlayerName());
 		String l_command;
+		if(d_Player.getD_PlayerOwnedCountries().size()==0)
+			return null;
+		
 		if(!checkIfArmiesDepoyed()) {
 			if(d_Player.getD_ArmiesCount()>0) {
 				l_command = createDeployOrder();

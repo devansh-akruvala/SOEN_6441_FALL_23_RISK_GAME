@@ -9,6 +9,7 @@ import java.util.Random;
 
 import com.soen6441.risk_game_u14.strategy.AggresivePlayerStrategy;
 import com.soen6441.risk_game_u14.strategy.BenevolentPlayerStrategy;
+import com.soen6441.risk_game_u14.strategy.CheaterPlayerStrategy;
 
 //import com.soen6441.risk_game_u14.strategy.AggresivePlayerStrategy;
 //import com.soen6441.risk_game_u14.strategy.BenevolentPlayerStrategy;
@@ -138,11 +139,11 @@ public class GameModel {
 //		case "random": 
 //			l_TempPlayer.setD_PlayerStrategy(new RandomPlayerStrategy(l_TempPlayer,this));
 //			break;
-//		case "cheater": 
-//			
-//			l_TempPlayer.setD_PlayerStrategy(new CheaterPlayerStrategy(l_TempPlayer,this));
-//			
-//			break;
+		case "cheater": 
+			
+			l_TempPlayer.setD_PlayerStrategy(new CheaterPlayerStrategy(l_TempPlayer,this));
+			
+			break;
 			
 		default:
 			System.out.println("Invalid Command. Please try again.\n");
