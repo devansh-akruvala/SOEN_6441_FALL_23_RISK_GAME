@@ -1,1634 +1,179 @@
 
 In Edit Phase
-Command Entered: loadmap maptest8
+Command Entered: loadmap cmap1
 In Startup Phase
-Map file loaded successfully!!
-Output: Map file loaded successfully!!
-Command Entered: gameplayer -add p1 aggressive -add p2 random
-Aggressive Player
-Random Player
+
+Output: 
+Command Entered: gameplayer -add p1 aggressive -add p2 benevolent
 Players command executed successfully
 Output: Players command executed successfully
 Command Entered: assigncountries
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@49097b5d, com.soen6441.risk_game_u14.order.Advance@6e2c634b]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@37a71e93, com.soen6441.risk_game_u14.order.Advance@7e6cbb7a]
 In Execute Order Phase
 p1's Order Result : 
-p1: Deployed 3 to Ukraine was successful
+p1: Deployed 3 to b was successful
 p2's Order Result : 
-p2: Deployed 3 to Pakistan was successful
-p1's Order Result : 
-p1 your attack on Pakistan was a Success!!
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-Player p1 got Bomb
+p2: Deployed 9 to c was successful
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@76fb509a, com.soen6441.risk_game_u14.order.Advance@300ffa5d]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@1f17ae12, com.soen6441.risk_game_u14.order.Advance@4d405ef7]
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Germany was successful
 p1's Order Result : 
 The source country and target country belong to the same player
 p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+The source country and target country belong to the same player
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@6193b845, com.soen6441.risk_game_u14.order.Advance@2e817b38]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@c4437c4, com.soen6441.risk_game_u14.order.Advance@433c675d]
 In Execute Order Phase
 p1's Order Result : 
-p1: Deployed 3 to Ukraine was successful
+p1 your attack on c was a Failure!!
 p2's Order Result : 
-p2: Deployed 3 to Maldives was successful
+The source country and target country belong to the same player
+
+Orders are Succesfully Executed!!
+In Reinforcement Phase
+In Issue Order Phase
+In Execute Order Phase
 p1's Order Result : 
 The source country and target country belong to the same player
 p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+p2: Deployed 33 to c was successful
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@3f91beef, com.soen6441.risk_game_u14.order.Advance@1a6c5a9e]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@37bba400, com.soen6441.risk_game_u14.order.Advance@179d3b25]
 In Execute Order Phase
 p1's Order Result : 
-p1: Deployed 3 to Pakistan was successful
+p1: Deployed 42 to a was successful
 p2's Order Result : 
-p2: Deployed 3 to Maldives was successful
+p2: Deployed 2 to d was successful
+
+Orders are Succesfully Executed!!
+In Reinforcement Phase
+In Issue Order Phase
+In Execute Order Phase
 p1's Order Result : 
+p1: Deployed 8 to a was successful
+p2's Order Result : 
+p2: Deployed 25 to d was successful
+
+Orders are Succesfully Executed!!
+In Reinforcement Phase
+In Issue Order Phase
+In Execute Order Phase
+p1's Order Result : 
+p1: Deployed 9 to a was successful
+p2's Order Result : 
+p2: Deployed 7 to d was successful
+
+Orders are Succesfully Executed!!
+In Reinforcement Phase
+In Issue Order Phase
+In Execute Order Phase
+p1's Order Result : 
+p1: Deployed 2 to a was successful
+p2's Order Result : 
 The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@254989ff, com.soen6441.risk_game_u14.order.Advance@5d099f62]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@37f8bb67, com.soen6441.risk_game_u14.order.Advance@49c2faae]
 In Execute Order Phase
 p1's Order Result : 
-p1: Deployed 3 to India was successful
+p1 your attack on c was a Success!!
 p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@20ad9418, com.soen6441.risk_game_u14.order.Advance@31cefde0]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@439f5b3d, com.soen6441.risk_game_u14.order.Advance@1d56ce6a]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Maldives was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@5197848c, com.soen6441.risk_game_u14.order.Advance@17f052a3]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@2e0fa5d3, com.soen6441.risk_game_u14.order.Advance@5010be6]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Bulgaria was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@685f4c2e, com.soen6441.risk_game_u14.order.Advance@7daf6ecc]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@2e5d6d97, com.soen6441.risk_game_u14.order.Advance@238e0d81]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Maldives was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@31221be2, com.soen6441.risk_game_u14.order.Advance@377dca04]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@728938a9, com.soen6441.risk_game_u14.order.Advance@21b8d17c]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Ukraine was successful
-p2's Order Result : 
-p2: Deployed 3 to Maldives was successful
-p1's Order Result : 
-p1 your attack on Bulgaria was a Success!!
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-Player p1 got Bomb
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@6267c3bb, com.soen6441.risk_game_u14.order.Advance@533ddba]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@246b179d, com.soen6441.risk_game_u14.order.Advance@7a07c5b4]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Bulgaria was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@26a1ab54, com.soen6441.risk_game_u14.order.Advance@3d646c37]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@41cf53f9, com.soen6441.risk_game_u14.order.Advance@5a10411]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Ukraine was successful
-p2's Order Result : 
-p2: Deployed 3 to Germany was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@2ef1e4fa, com.soen6441.risk_game_u14.order.Advance@306a30c7]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@b81eda8, com.soen6441.risk_game_u14.order.Advance@68de145]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Bulgaria was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-p1 your attack on Germany was a Success!!
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-Player p1 got Airlift
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@46f7f36a, com.soen6441.risk_game_u14.order.Advance@421faab1]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@2b71fc7e, com.soen6441.risk_game_u14.order.Advance@5ce65a89]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Germany was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@25f38edc, com.soen6441.risk_game_u14.order.Advance@1a86f2f1]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@3eb07fd3, com.soen6441.risk_game_u14.order.Advance@506c589e]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Bulgaria was successful
-p2's Order Result : 
-p2: Deployed 3 to Maldives was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@69d0a921, com.soen6441.risk_game_u14.order.Advance@446cdf90]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@799f7e29, com.soen6441.risk_game_u14.order.Advance@4b85612c]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Ukraine was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@277050dc, com.soen6441.risk_game_u14.order.Advance@5c29bfd]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@7aec35a, com.soen6441.risk_game_u14.order.Advance@67424e82]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@42110406, com.soen6441.risk_game_u14.order.Advance@531d72ca]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@22d8cfe0, com.soen6441.risk_game_u14.order.Advance@579bb367]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Ukraine was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@1de0aca6, com.soen6441.risk_game_u14.order.Advance@255316f2]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@41906a77, com.soen6441.risk_game_u14.order.Advance@4b9af9a9]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Maldives was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@5387f9e0, com.soen6441.risk_game_u14.order.Advance@6e5e91e4]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@2cdf8d8a, com.soen6441.risk_game_u14.order.Advance@30946e09]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Maldives was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@5cb0d902, com.soen6441.risk_game_u14.order.Advance@46fbb2c1]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@1698c449, com.soen6441.risk_game_u14.order.Advance@5ef04b5]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Maldives was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@5f4da5c3, com.soen6441.risk_game_u14.order.Advance@443b7951]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@14514713, com.soen6441.risk_game_u14.order.Advance@69663380]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@5b37e0d2, com.soen6441.risk_game_u14.order.Advance@4459eb14]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@5a2e4553, com.soen6441.risk_game_u14.order.Advance@28c97a5]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Maldives was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@6659c656, com.soen6441.risk_game_u14.order.Advance@6d5380c2]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@45ff54e6, com.soen6441.risk_game_u14.order.Advance@2328c243]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 3 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-p1 your attack on Maldives was a Success!!
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+p2: Deployed 19 to d was successful
 Player p1 got Negotiate
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@7a4f0f29, com.soen6441.risk_game_u14.order.Advance@45283ce2]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@2077d4de, com.soen6441.risk_game_u14.order.Advance@7591083d]
 In Execute Order Phase
 p1's Order Result : 
-p1: Deployed 13 to Maldives was successful
+p1: Deployed 5 to c was successful
 p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@77a567e1, com.soen6441.risk_game_u14.order.Advance@736e9adb]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@6d21714c, com.soen6441.risk_game_u14.order.Advance@108c4c35]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@4ccabbaa, com.soen6441.risk_game_u14.order.Advance@4bf558aa]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@2d38eb89, com.soen6441.risk_game_u14.order.Advance@5fa7e7ff]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Maldives was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@4629104a, com.soen6441.risk_game_u14.order.Advance@27f8302d]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@4d76f3f8, com.soen6441.risk_game_u14.order.Advance@2d8e6db6]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@23ab930d, com.soen6441.risk_game_u14.order.Advance@4534b60d]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@3fa77460, com.soen6441.risk_game_u14.order.Advance@619a5dff]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Maldives was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@1ed6993a, com.soen6441.risk_game_u14.order.Advance@7e32c033]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@7ab2bfe1, com.soen6441.risk_game_u14.order.Advance@497470ed]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@63c12fb0, com.soen6441.risk_game_u14.order.Advance@b1a58a3]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@6438a396, com.soen6441.risk_game_u14.order.Advance@e2144e4]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@6477463f, com.soen6441.risk_game_u14.order.Advance@3d71d552]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@1cf4f579, com.soen6441.risk_game_u14.order.Advance@18769467]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@46ee7fe8, com.soen6441.risk_game_u14.order.Advance@7506e922]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@4ee285c6, com.soen6441.risk_game_u14.order.Advance@621be5d1]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@573fd745, com.soen6441.risk_game_u14.order.Advance@15327b79]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@4f2410ac, com.soen6441.risk_game_u14.order.Advance@722c41f4]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@5b80350b, com.soen6441.risk_game_u14.order.Advance@5d6f64b1]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@32a1bec0, com.soen6441.risk_game_u14.order.Advance@22927a81]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@78e03bb5, com.soen6441.risk_game_u14.order.Advance@5e8c92f4]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@61e4705b, com.soen6441.risk_game_u14.order.Advance@50134894]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@2957fcb0, com.soen6441.risk_game_u14.order.Advance@1376c05c]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@51521cc1, com.soen6441.risk_game_u14.order.Advance@1b4fb997]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@deb6432, com.soen6441.risk_game_u14.order.Advance@28ba21f3]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@694f9431, com.soen6441.risk_game_u14.order.Advance@f2a0b8e]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@593634ad, com.soen6441.risk_game_u14.order.Advance@20fa23c1]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@3581c5f3, com.soen6441.risk_game_u14.order.Advance@6aa8ceb6]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@2530c12, com.soen6441.risk_game_u14.order.Advance@73c6c3b2]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@48533e64, com.soen6441.risk_game_u14.order.Advance@64a294a6]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@7e0b37bc, com.soen6441.risk_game_u14.order.Advance@3b95a09c]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@6ae40994, com.soen6441.risk_game_u14.order.Advance@1a93a7ca]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Ukraine was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@3d82c5f3, com.soen6441.risk_game_u14.order.Advance@2b05039f]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@61e717c2, com.soen6441.risk_game_u14.order.Advance@66cd51c3]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@4dcbadb4, com.soen6441.risk_game_u14.order.Advance@4e515669]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@17d10166, com.soen6441.risk_game_u14.order.Advance@1b9e1916]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@ba8a1dc, com.soen6441.risk_game_u14.order.Advance@4f8e5cde]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@504bae78, com.soen6441.risk_game_u14.order.Advance@3b764bce]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@759ebb3d, com.soen6441.risk_game_u14.order.Advance@484b61fc]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@45fe3ee3, com.soen6441.risk_game_u14.order.Advance@4cdf35a9]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@4c98385c, com.soen6441.risk_game_u14.order.Advance@5fcfe4b2]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@6bf2d08e, com.soen6441.risk_game_u14.order.Advance@5eb5c224]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Maldives was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@53e25b76, com.soen6441.risk_game_u14.order.Advance@73a8dfcc]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@ea30797, com.soen6441.risk_game_u14.order.Advance@7e774085]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@3f8f9dd6, com.soen6441.risk_game_u14.order.Advance@aec6354]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@1c655221, com.soen6441.risk_game_u14.order.Advance@58d25a40]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Maldives was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@1b701da1, com.soen6441.risk_game_u14.order.Advance@726f3b58]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@442d9b6e, com.soen6441.risk_game_u14.order.Advance@ee7d9f1]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@15615099, com.soen6441.risk_game_u14.order.Advance@1edf1c96]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@368102c8, com.soen6441.risk_game_u14.order.Advance@6996db8]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@1963006a, com.soen6441.risk_game_u14.order.Advance@7fbe847c]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@41975e01, com.soen6441.risk_game_u14.order.Advance@c2e1f26]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@dcf3e99, com.soen6441.risk_game_u14.order.Advance@6d9c638]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@7dc5e7b4, com.soen6441.risk_game_u14.order.Advance@1ee0005]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@75a1cd57, com.soen6441.risk_game_u14.order.Advance@3d012ddd]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@6f2b958e, com.soen6441.risk_game_u14.order.Advance@1eb44e46]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@6504e3b2, com.soen6441.risk_game_u14.order.Advance@515f550a]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@626b2d4a, com.soen6441.risk_game_u14.order.Advance@5e91993f]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@1c4af82c, com.soen6441.risk_game_u14.order.Advance@379619aa]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@cac736f, com.soen6441.risk_game_u14.order.Advance@5e265ba4]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@156643d4, com.soen6441.risk_game_u14.order.Advance@123a439b]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@7de26db8, com.soen6441.risk_game_u14.order.Advance@1175e2db]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Maldives was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@36aa7bc2, com.soen6441.risk_game_u14.order.Advance@76ccd017]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@182decdb, com.soen6441.risk_game_u14.order.Advance@26f0a63f]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@4361bd48, com.soen6441.risk_game_u14.order.Advance@53bd815b]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@2401f4c3, com.soen6441.risk_game_u14.order.Advance@7637f22]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Maldives was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@4926097b, com.soen6441.risk_game_u14.order.Advance@762efe5d]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@5d22bbb7, com.soen6441.risk_game_u14.order.Advance@41a4555e]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@3830f1c0, com.soen6441.risk_game_u14.order.Advance@39ed3c8d]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@71dac704, com.soen6441.risk_game_u14.order.Advance@123772c4]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Maldives was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@2d363fb3, com.soen6441.risk_game_u14.order.Advance@7d6f77cc]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@5aaa6d82, com.soen6441.risk_game_u14.order.Advance@73a28541]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@6f75e721, com.soen6441.risk_game_u14.order.Advance@69222c14]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@606d8acf, com.soen6441.risk_game_u14.order.Advance@782830e]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@470e2030, com.soen6441.risk_game_u14.order.Advance@3fb4f649]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@33833882, com.soen6441.risk_game_u14.order.Advance@200a570f]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@16b3fc9e, com.soen6441.risk_game_u14.order.Advance@e2d56bf]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@244038d0, com.soen6441.risk_game_u14.order.Advance@5680a178]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@5fdef03a, com.soen6441.risk_game_u14.order.Advance@3b22cdd0]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@1e81f4dc, com.soen6441.risk_game_u14.order.Advance@4d591d15]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@65ae6ba4, com.soen6441.risk_game_u14.order.Advance@48cf768c]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@59f95c5d, com.soen6441.risk_game_u14.order.Advance@5ccd43c2]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@4aa8f0b4, com.soen6441.risk_game_u14.order.Advance@7960847b]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@6a6824be, com.soen6441.risk_game_u14.order.Advance@5c8da962]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@512ddf17, com.soen6441.risk_game_u14.order.Advance@2c13da15]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@77556fd, com.soen6441.risk_game_u14.order.Advance@368239c8]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@9e89d68, com.soen6441.risk_game_u14.order.Advance@3b192d32]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@16f65612, com.soen6441.risk_game_u14.order.Advance@311d617d]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@7c53a9eb, com.soen6441.risk_game_u14.order.Advance@ed17bee]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@2a33fae0, com.soen6441.risk_game_u14.order.Advance@707f7052]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+p2: Deployed 7 to d was successful
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@11028347, com.soen6441.risk_game_u14.order.Advance@14899482]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@21588809, com.soen6441.risk_game_u14.order.Advance@2aae9190]
 In Execute Order Phase
 p1's Order Result : 
-p1: Deployed 13 to India was successful
+p1 your attack on d was a Failure!!
 p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@2f333739, com.soen6441.risk_game_u14.order.Advance@77468bd9]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@12bb4df8, com.soen6441.risk_game_u14.order.Advance@4cc77c2e]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@7a7b0070, com.soen6441.risk_game_u14.order.Advance@39a054a5]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@71bc1ae4, com.soen6441.risk_game_u14.order.Advance@6ed3ef1]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@2437c6dc, com.soen6441.risk_game_u14.order.Advance@1f89ab83]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@e73f9ac, com.soen6441.risk_game_u14.order.Advance@61064425]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@7b1d7fff, com.soen6441.risk_game_u14.order.Advance@299a06ac]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@383534aa, com.soen6441.risk_game_u14.order.Advance@6bc168e5]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@7b3300e5, com.soen6441.risk_game_u14.order.Advance@2e5c649]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@136432db, com.soen6441.risk_game_u14.order.Advance@7382f612]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@1055e4af, com.soen6441.risk_game_u14.order.Advance@3caeaf62]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@e6ea0c6, com.soen6441.risk_game_u14.order.Advance@6a38e57f]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@5577140b, com.soen6441.risk_game_u14.order.Advance@1c6b6478]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@67f89fa3, com.soen6441.risk_game_u14.order.Advance@4ac68d3e]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@277c0f21, com.soen6441.risk_game_u14.order.Advance@6073f712]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@43556938, com.soen6441.risk_game_u14.order.Advance@3d04a311]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@7a46a697, com.soen6441.risk_game_u14.order.Advance@5f205aa]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@6d86b085, com.soen6441.risk_game_u14.order.Advance@75828a0f]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Ukraine was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@3abfe836, com.soen6441.risk_game_u14.order.Advance@2ff5659e]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@77afea7d, com.soen6441.risk_game_u14.order.Advance@161cd475]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@532760d8, com.soen6441.risk_game_u14.order.Advance@57fa26b7]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@5f8ed237, com.soen6441.risk_game_u14.order.Advance@2f410acf]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Ukraine was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@47089e5f, com.soen6441.risk_game_u14.order.Advance@4141d797]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@68f7aae2, com.soen6441.risk_game_u14.order.Advance@4f47d241]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@4c3e4790, com.soen6441.risk_game_u14.order.Advance@38cccef]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@5679c6c6, com.soen6441.risk_game_u14.order.Advance@27ddd392]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Ukraine was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@19e1023e, com.soen6441.risk_game_u14.order.Advance@7cef4e59]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@64b8f8f4, com.soen6441.risk_game_u14.order.Advance@2db0f6b2]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@3cd1f1c8, com.soen6441.risk_game_u14.order.Advance@3a4afd8d]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@1996cd68, com.soen6441.risk_game_u14.order.Advance@3339ad8e]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@555590, com.soen6441.risk_game_u14.order.Advance@6d1e7682]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@424c0bc4, com.soen6441.risk_game_u14.order.Advance@3c679bde]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Maldives was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@16b4a017, com.soen6441.risk_game_u14.order.Advance@8807e25]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@2a3046da, com.soen6441.risk_game_u14.order.Advance@2a098129]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@198e2867, com.soen6441.risk_game_u14.order.Advance@12f40c25]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@3ada9e37, com.soen6441.risk_game_u14.order.Advance@5cbc508c]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Maldives was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@3419866c, com.soen6441.risk_game_u14.order.Advance@63e31ee]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@68fb2c38, com.soen6441.risk_game_u14.order.Advance@567d299b]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@2eafffde, com.soen6441.risk_game_u14.order.Advance@59690aa4]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@6842775d, com.soen6441.risk_game_u14.order.Advance@574caa3f]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@64cee07, com.soen6441.risk_game_u14.order.Advance@1761e840]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@6c629d6e, com.soen6441.risk_game_u14.order.Advance@5ecddf8f]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@3f102e87, com.soen6441.risk_game_u14.order.Advance@27abe2cd]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@5f5a92bb, com.soen6441.risk_game_u14.order.Advance@6fdb1f78]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bhutan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-
-Orders are Succesfully Executed!!
-In Reinforcement Phase
-In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@51016012, com.soen6441.risk_game_u14.order.Advance@29444d75]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@2280cdac, com.soen6441.risk_game_u14.order.Advance@1517365b]
-In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Nepal was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+p2: Deployed 19 to d was successful
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@4fccd51b, com.soen6441.risk_game_u14.order.Advance@44e81672]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@60215eee, com.soen6441.risk_game_u14.order.Advance@4ca8195f]
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to India was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
 p1's Order Result : 
 The source country and target country belong to the same player
 p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+p2: Deployed 3 to d was successful
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@65e579dc, com.soen6441.risk_game_u14.order.Advance@61baa894]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@b065c63, com.soen6441.risk_game_u14.order.Advance@768debd]
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Pakistan was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
 p1's Order Result : 
-The source country and target country belong to the same player
+p1: Deployed 24 to a was successful
 p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+p2: Deployed 5 to d was successful
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@490d6c15, com.soen6441.risk_game_u14.order.Advance@7d4793a8]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@449b2d27, com.soen6441.risk_game_u14.order.Advance@5479e3f]
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Ukraine was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
-p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+p1's Order Result : Negotiation with p1 successfull.
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@27082746, com.soen6441.risk_game_u14.order.Advance@66133adc]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@7bfcd12c, com.soen6441.risk_game_u14.order.Advance@42f30e0a]
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bulgaria was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
 p1's Order Result : 
-The source country and target country belong to the same player
+p1: Deployed 89 to a was successful
 p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+p2: Deployed 6 to d was successful
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@24273305, com.soen6441.risk_game_u14.order.Advance@5b1d2887]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@46f5f779, com.soen6441.risk_game_u14.order.Advance@1c2c22f3]
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Ukraine was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
 p1's Order Result : 
-The source country and target country belong to the same player
+p1: Deployed 22 to a was successful
 p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+p2: Deployed 2 to d was successful
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@18e8568, com.soen6441.risk_game_u14.order.Advance@33e5ccce]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@5a42bbf4, com.soen6441.risk_game_u14.order.Advance@270421f5]
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Bulgaria was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
 p1's Order Result : 
-The source country and target country belong to the same player
-p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+p1: Deployed 4 to a was successful
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@52d455b8, com.soen6441.risk_game_u14.order.Advance@4f4a7090]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@18ef96, com.soen6441.risk_game_u14.order.Advance@6956de9]
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to Germany was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
 p1's Order Result : 
 The source country and target country belong to the same player
 p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
+p2: Deployed 6 to d was successful
 
 Orders are Succesfully Executed!!
 In Reinforcement Phase
 In Issue Order Phase
-in aggressive the order is - [com.soen6441.risk_game_u14.order.Deploy@769c9116, com.soen6441.risk_game_u14.order.Advance@6aceb1a5]
-in Random the order is - [com.soen6441.risk_game_u14.order.Deploy@2d6d8735, com.soen6441.risk_game_u14.order.Advance@ba4d54]
 In Execute Order Phase
-p1's Order Result : 
-p1: Deployed 13 to France was successful
-p2's Order Result : 
-p2: Deployed 3 to Spain was successful
 p1's Order Result : 
-p1 your attack on Spain was a Success!!
+p1 your attack on d was a Success!!
 p2's Order Result : 
-The source country and target country are not neighbours!
-Skipping all the following commands of p2
-Player p1 got Airlift
+p2: Deployed 3 to d was successful
+Player p1 got Bomb
 
 Orders are Succesfully Executed!!
 

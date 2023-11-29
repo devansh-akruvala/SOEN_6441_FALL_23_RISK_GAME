@@ -152,5 +152,10 @@ public class ExecuteOrder extends Phase {
         return "Execute Order";
 
     }
+	@Override
+	public String tournament(String p_String, String p_CommandStringFromInput) {
+		// TODO Auto-generated method stub
+		return "Invalid Command in Execute Order Phase";
+	}
 
 }

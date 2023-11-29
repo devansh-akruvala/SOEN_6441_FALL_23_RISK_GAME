@@ -145,5 +145,10 @@ public class IssueOrder extends Phase {
         // TODO Auto-generated method stub
         return "Issue Order";
     }
+	@Override
+	public String tournament(String p_String, String p_CommandStringFromInput) {
+		// TODO Auto-generated method stub
+		return "Invalid Command in Issue Order Phase";
+	}
 
 }

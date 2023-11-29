@@ -143,5 +143,10 @@ public class Gameover extends Phase {
         // TODO Auto-generated method stub
         return "GameOver Phase";
     }
+	@Override
+	public String tournament(String p_String, String p_CommandStringFromInput) {
+		// TODO Auto-generated method stub
+		return "Invalid Command in Game Over Phase";
+	}
 
 }

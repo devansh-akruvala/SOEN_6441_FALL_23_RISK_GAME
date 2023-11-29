@@ -1,6 +1,7 @@
 package com.soen6441.risk_game_u14.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -8,9 +9,12 @@ import java.util.Random;
 
 import com.soen6441.risk_game_u14.strategy.AggresivePlayerStrategy;
 import com.soen6441.risk_game_u14.strategy.BenevolentPlayerStrategy;
-import com.soen6441.risk_game_u14.strategy.CheaterPlayerStrategy;
-import com.soen6441.risk_game_u14.strategy.HumanPlayerStrategy;
-import com.soen6441.risk_game_u14.strategy.RandomPlayerStrategy;
+
+//import com.soen6441.risk_game_u14.strategy.AggresivePlayerStrategy;
+//import com.soen6441.risk_game_u14.strategy.BenevolentPlayerStrategy;
+//import com.soen6441.risk_game_u14.strategy.CheaterPlayerStrategy;
+//import com.soen6441.risk_game_u14.strategy.HumanPlayerStrategy;
+//import com.soen6441.risk_game_u14.strategy.RandomPlayerStrategy;
 
 /***
  *
@@ -123,22 +127,22 @@ public class GameModel {
 			l_TempPlayer.setD_PlayerStrategy(new AggresivePlayerStrategy(l_TempPlayer,this));
 			break;
 
-		case "human" :
-			l_TempPlayer.setD_PlayerStrategy(new HumanPlayerStrategy(l_TempPlayer,this));
-			break;
-
+//		case "human" :
+//			l_TempPlayer.setD_PlayerStrategy(new HumanPlayerStrategy(l_TempPlayer,this));
+//			break;
+//
 		case "benevolent" :				
 			l_TempPlayer.setD_PlayerStrategy(new BenevolentPlayerStrategy(l_TempPlayer,this));
 			break;
 
-		case "random": 
-			l_TempPlayer.setD_PlayerStrategy(new RandomPlayerStrategy(l_TempPlayer,this));
-			break;
-		case "cheater": 
-			
-			l_TempPlayer.setD_PlayerStrategy(new CheaterPlayerStrategy(l_TempPlayer,this));
-			
-			break;
+//		case "random": 
+//			l_TempPlayer.setD_PlayerStrategy(new RandomPlayerStrategy(l_TempPlayer,this));
+//			break;
+//		case "cheater": 
+//			
+//			l_TempPlayer.setD_PlayerStrategy(new CheaterPlayerStrategy(l_TempPlayer,this));
+//			
+//			break;
 			
 		default:
 			System.out.println("Invalid Command. Please try again.\n");
@@ -286,4 +290,40 @@ public class GameModel {
         }
         System.out.println("---------------------------------------");
     }
+    
+    /**
+	 * <p>
+	 * This Method is the startup Phase method for TournamentPhase
+	 * </p>
+	 * <ul>
+	 * <li>This Method will take all the players in a a list.</li>
+	 * <li>Then it will check for all the countries available in a map.</li> 
+	 * <li>It will run the loop until all the countries are assigned to players.</li>
+	 * <li>Now it will Randomly assign countries to all players and remove the assigned countries from the list.</li>
+	 * </ul> 
+	 */
+	public void tournamentstartUpPhase() {
+		List<Country> l_CountryList = (List<Country>) this.getD_Map().getD_CountryObjects().clone();	
+		int l_PlayerIndex = 0;
+		int l_PlayerCount = this.getD_Players().size();
+		ArrayList<Integer> l_TempList = new ArrayList<>();
+		ArrayList<Player> l_playerList= this.getD_Players();
+		// Here creating the list with indexes
+		for (int i = 0; i < l_CountryList.size(); i++) {
+			l_TempList.add(i);
+		}
+		// Shuffling the list for randomness
+		Collections.shuffle(l_TempList, new Random());
+		// assigning the shuffled countries from tempList to the players one by one
+		for (int i = 0; i < l_CountryList.size(); i++) {
+			if (l_PlayerIndex == l_PlayerCount)
+				l_PlayerIndex = 0;
+			Country l_NewCountry = l_CountryList.get(l_TempList.get(i));
+			l_playerList.get(l_PlayerIndex).addCountry(l_NewCountry);
+			l_NewCountry.setD_Owner(l_playerList.get(l_PlayerIndex));
+			l_CountryList.remove(l_TempList.get(i));
+			l_PlayerIndex++;
+		}
+		
+	}
 }
