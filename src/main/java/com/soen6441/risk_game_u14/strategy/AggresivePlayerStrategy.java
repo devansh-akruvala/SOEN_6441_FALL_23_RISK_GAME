@@ -41,6 +41,7 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		// TODO Auto-generated method stub
 		System.out.println("Creating order for: "+d_Player.getD_PlayerName());
 		String l_command;
+		
 		if(d_Player.getD_PlayerOwnedCountries().size()==0)
 			return null;
 		
@@ -195,6 +196,8 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 	
 	private Country getRandomCountry(List<Country> p_listOfCountries) {
 		Random l_random = new Random();
+		if(p_listOfCountries.size()==1)
+			return p_listOfCountries.get(0);
 		return p_listOfCountries.get(l_random.nextInt(p_listOfCountries.size()));
 	}
 	
@@ -226,8 +229,8 @@ public class AggresivePlayerStrategy extends Strategy implements Serializable {
 		Random l_random = new Random();
 
 		for (Player l_player : d_GameModel.getD_Players()) {
-			if (!l_player.equals(p_player))
-				l_playerList.add(p_player);
+			if (!l_player.equals(d_Player))
+				l_playerList.add(l_player);
 		}
 		return l_playerList.get(l_random.nextInt(l_playerList.size()));
 	}

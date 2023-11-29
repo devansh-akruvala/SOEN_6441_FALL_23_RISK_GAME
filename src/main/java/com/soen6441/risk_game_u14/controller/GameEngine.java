@@ -3,6 +3,7 @@ package com.soen6441.risk_game_u14.controller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
@@ -266,7 +267,7 @@ public class GameEngine {
 		}
 		if("-D".equals(l_CommandArray[7])){
 			int l_MaxTurns=Integer.parseInt(l_CommandArray[8]);
-			if(l_MaxTurns>50||l_MaxTurns<10) {
+			if(l_MaxTurns>50||l_MaxTurns<1) {
 				d_LEB.setResult("Number of turns should be in between 10 to 50 both inclusive");
 				throw new Exception("Number of turns should be in between 10 to 50 both inclusive");//throw exception
 				
@@ -292,9 +293,17 @@ public class GameEngine {
 				
 				d_GameModel.getD_Players().clear();
 
-				for(int k=0;k<l_P;k++) {
-					d_GameModel.addPlayers("Player"+(NUM++),l_PlayerStrategyList[k]);
+//				for(int k=0;k<l_P;k++) {
+//					d_GameModel.addPlayers("Player"+(NUM++),l_PlayerStrategyList[k]);
+//				}
+				
+				int firstStrategyIndex =new Random().nextInt(l_P);
+				int secondStrategyIndex = firstStrategyIndex;
+				while(firstStrategyIndex==secondStrategyIndex) {
+					secondStrategyIndex=new Random().nextInt(l_P);
 				}
+				d_GameModel.addPlayers("Player_"+(NUM++)+l_PlayerStrategyList[firstStrategyIndex],l_PlayerStrategyList[firstStrategyIndex]);
+				d_GameModel.addPlayers("Player_"+(NUM++)+l_PlayerStrategyList[secondStrategyIndex],l_PlayerStrategyList[secondStrategyIndex]);
 
 				d_GameModel.tournamentstartUpPhase();
 				int l_Noofturns=0;
@@ -303,10 +312,17 @@ public class GameEngine {
 					d_GameModel.assignReinforcementArmies();
 					this.getD_PlayerController().playerIssueOrder();
 					this.getD_PlayerController().playerExecuteOrder();
-					if(this.getD_PlayerController().getWinner()!=null) {
-						l_Result.add(this.getD_PlayerController().getWinner().getD_PlayerStrategy().strategyName());
-						System.out.println(this.getD_PlayerController().getWinner().getD_PlayerName()+"is the winner");
-						d_LEB.setResult(this.getD_PlayerController().getWinner().getD_PlayerName()+"is the winner");
+					
+//					if(this.getD_PlayerController().getWinner()!=null) {
+//						l_Result.add(this.getD_PlayerController().getWinner().getD_PlayerStrategy().strategyName());
+//						System.out.println(this.getD_PlayerController().getWinner().getD_PlayerName()+"is the winner");
+//						d_LEB.setResult(this.getD_PlayerController().getWinner().getD_PlayerName()+"is the winner");
+//						d_GameModel.getD_Map().reset();
+//						break;
+//					}
+					if(d_PlayerController.checkTheWinner()==0) {
+						System.out.println("Gameover ===>>>>>>>>"+d_PlayerController.getWinner());
+						l_Result.add(d_PlayerController.getWinner().getD_PlayerStrategy().strategyName());
 						d_GameModel.getD_Map().reset();
 						break;
 					}

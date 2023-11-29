@@ -26,7 +26,7 @@ public class ExecuteOrder extends Phase {
             p_Ge.getD_PlayerController().playerExecuteOrder();
             p_Ge.getD_PlayerController().show();
             int checkWinner = p_Ge.getD_PlayerController().checkTheWinner();
-            if (counter<20 && checkWinner == 1) {
+            if (counter<50 && checkWinner == 1) {
             	 p_Ge.setD_GamePhase(new Reinforcement(p_Ge));
             } else {
                 p_Ge.setD_GamePhase(new Gameover(p_Ge));
