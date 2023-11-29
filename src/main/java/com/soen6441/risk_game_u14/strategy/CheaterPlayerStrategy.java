@@ -10,11 +10,14 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Map;
 import com.soen6441.risk_game_u14.model.Player;
+
+
 /**
  * This class represents a Cheater Player Strategy for a Risk game.
  * Implements strategy-specific behavior for the Cheater player type.
  * Extends the Strategy class and implements Serializable for object serialization.
  */
+
 public class CheaterPlayerStrategy extends Strategy implements Serializable{
 	private Player d_Player;
 	private GameModel d_GameModel;

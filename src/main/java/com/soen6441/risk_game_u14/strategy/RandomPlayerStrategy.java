@@ -9,18 +9,39 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Player;
 
+/**
+ * Class that implements the Random Player Strategy
+ * This class extends the parent Strategy class which has createOrder method to be implemented here.
+ *
+ */
 public class RandomPlayerStrategy extends Strategy implements Serializable {
 
 	private Player d_Player;
 	private GameModel d_GameModel;
 	
+	
+	/**
+	 * List containing deploy order countries.
+	 */
 	ArrayList<Country> d_deployCountries = new ArrayList<Country>();
+	
+	
+	/**
+	 * Constructor setup variables for random strategy
+	 * @param p_Player Player object
+	 * @param p_GameModel GameModel object
+	 */
 
 	public RandomPlayerStrategy(Player p_Player, GameModel p_GameModel) {
 		d_Player = p_Player;
 		d_GameModel = p_GameModel;
 	}
 
+	/**
+	 * This method creates a new order.
+	 * 
+	 * @return Order object of order class
+	 */
 	@Override
 	public String createOrder() {
 		// TODO Auto-generated method stub
@@ -79,12 +100,19 @@ public class RandomPlayerStrategy extends Strategy implements Serializable {
 		return l_command;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String strategyName() {
 		// TODO Auto-generated method stub
 		return "Random";
 	}
+	
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String createDeployOrder() {
 		if (d_Player.getD_ArmiesCount()>0) {
@@ -101,6 +129,9 @@ public class RandomPlayerStrategy extends Strategy implements Serializable {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String createAdvanceOrder() {
 		int l_armiesToSend;
@@ -124,6 +155,9 @@ public class RandomPlayerStrategy extends Strategy implements Serializable {
 			return "advance "+l_randomOwnCountry.getD_CountryName()+" "+l_randomNeighbor.getD_CountryName()+" "+ l_armiesToSend;
 	}
 
+	/**
+	 * Creates card order 
+	 */
 	@Override
 	public String createCardOrder(String p_CardName) {
 		int l_armiesToSend;
@@ -185,10 +219,9 @@ public class RandomPlayerStrategy extends Strategy implements Serializable {
 	}
 
 	/**
-	 * Chooses a random player to negotaiate.
+	 * Chooses a random player to negotiate.
 	 *
 	 * @param p_player player object
-	 * @param p_gameState current gamestate.
 	 * @return player object
 	 */
 	private Player getRandomPlayer(Player p_player){

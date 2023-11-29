@@ -37,12 +37,14 @@ public abstract class Strategy implements Serializable {
 	 * @return List with the first parameter as the source country and the second as the target country.
 	 */
 	public abstract String createAdvanceOrder();
-
+	
+	 
 	/**
 	 * Generates orders based on the player's cards.
 	 * @param p_CardName Name of the card to create an order for.
 	 * @return Order created based on the specified card.
-	 */
+    */
+
 	public abstract String createCardOrder(String p_CardName);
 	
 	
