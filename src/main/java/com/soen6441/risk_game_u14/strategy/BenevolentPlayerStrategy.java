@@ -29,6 +29,8 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable{
 		// TODO Auto-generated method stub
 		System.out.println("Creating order for: "+d_Player.getD_PlayerName());
 		String l_command;
+		if(d_Player.getD_PlayerOwnedCountries().size()==0)
+			return null;
 		if(!checkIfArmiesDepoyed()) {
 			if(d_Player.getD_ArmiesCount()>0) {
 				l_command = createDeployOrder();
@@ -109,17 +111,22 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable{
 		// advance on weakest country
 		int l_armiesToSend;
 		Random l_random = new Random();
-
-		Country l_randomSourceCountry = getRandomCountry(d_deployCountries);
+		// weakest country neighbor
+		List<Country> weakestcountryNeighbors = new ArrayList<>();
+		for(String weak: getWeakestCountry(d_Player).getD_Neighbors()) {
+			weakestcountryNeighbors.add(d_GameModel.getD_Map().findCountryByName(weak));
+		}
+		
+		Country l_randomSourceCountry = getRandomCountry(weakestcountryNeighbors);
 		System.out.println("Source country : "+ l_randomSourceCountry.getD_CountryName());
 		
-		Country l_weakestTargetCountry = getWeakestNeighbor(l_randomSourceCountry);
+		Country l_weakestTargetCountry =  getWeakestCountry(d_Player);//getWeakestNeighbor(l_randomSourceCountry);
 		if(l_weakestTargetCountry == null)
 			return null;
 		
 		System.out.println("Target Country : "+l_weakestTargetCountry.getD_CountryName());
 		if (l_randomSourceCountry.getD_NoOfArmies() > 1) {
-			l_armiesToSend = l_random.nextInt(l_randomSourceCountry.getD_NoOfArmies() - 1) + 1;
+			l_armiesToSend = l_random.nextInt(l_randomSourceCountry.getD_NoOfArmies() + 1);
 		} else {
 			l_armiesToSend = 1;
 		}
@@ -138,7 +145,7 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable{
 		Country l_randomOwnCountry = getRandomCountry(d_Player.getD_PlayerOwnedCountries());
 
 		if (l_randomOwnCountry.getD_NoOfArmies() > 1) {
-			l_armiesToSend = l_random.nextInt(l_randomOwnCountry.getD_NoOfArmies() - 1) + 1;
+			l_armiesToSend = l_random.nextInt(l_randomOwnCountry.getD_NoOfArmies() + 1);
 		} else {
 			l_armiesToSend = 1;
 		}
@@ -173,6 +180,7 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable{
 		for (Country l_country : l_listOfCountries) {
 			l_CountryWithArmies.put(l_country, l_country.getD_NoOfArmies());
 		}
+		System.out.println("-----------------"+l_CountryWithArmies.size());
 		l_smallestNoOfArmies = Collections.min(l_CountryWithArmies.values());
 		for (Entry<Country, Integer> entry : l_CountryWithArmies.entrySet()) {
 			if (entry.getValue().equals(l_smallestNoOfArmies)) {
@@ -184,7 +192,10 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable{
 	}
 	
 	private Country getRandomCountry(List<Country> p_listOfCountries) {
+		
 		Random l_random = new Random();
+		if(p_listOfCountries.size()==1)
+			return p_listOfCountries.get(0);
 		return p_listOfCountries.get(l_random.nextInt(p_listOfCountries.size()));
 	}
 	
@@ -208,8 +219,8 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable{
 		Random l_random = new Random();
 
 		for (Player l_player : d_GameModel.getD_Players()) {
-			if (!l_player.equals(p_player))
-				l_playerList.add(p_player);
+			if (!l_player.equals(d_Player))
+				l_playerList.add(l_player);
 		}
 		return l_playerList.get(l_random.nextInt(l_playerList.size()));
 	}

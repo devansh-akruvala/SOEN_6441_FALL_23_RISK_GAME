@@ -16,15 +16,17 @@ public class ExecuteOrder extends Phase {
      * It then calls the execute method.
      * @param p_Ge object of game engine
      */
+    static int counter=0;
     public ExecuteOrder(GameEngine p_Ge) {
         super(p_Ge);
+        counter++;
         try {
             d_LEB = new LogEntryBuffer();
             d_LEB.setResult("In Execute Order Phase");
             p_Ge.getD_PlayerController().playerExecuteOrder();
             p_Ge.getD_PlayerController().show();
             int checkWinner = p_Ge.getD_PlayerController().checkTheWinner();
-            if ( checkWinner == 1) {
+            if (counter<50 && checkWinner == 1) {
             	 p_Ge.setD_GamePhase(new Reinforcement(p_Ge));
             } else {
                 p_Ge.setD_GamePhase(new Gameover(p_Ge));
