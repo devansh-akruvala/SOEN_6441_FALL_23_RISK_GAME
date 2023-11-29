@@ -11,7 +11,9 @@ import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Map;
 import com.soen6441.risk_game_u14.model.Player;
 import com.soen6441.risk_game_u14.state.Edit;
+import com.soen6441.risk_game_u14.state.IssueOrder;
 import com.soen6441.risk_game_u14.state.Phase;
+import com.soen6441.risk_game_u14.state.Startup;
 
 /**
  * The GameEngine Class Controls the Phases of Game
@@ -176,6 +178,15 @@ public class GameEngine {
                     System.out.println(result8);
                     d_LEB.setResult(result8);
                     break;
+                case "loadgame":
+					d_LEB.setResult(l_Command);
+					loadGame(l_Command);
+					break;
+
+				case "savegame":
+					d_LEB.setResult(l_Command);
+					saveGame(l_Command);
+					break;
                 case "quit":
                     l_StopGame = !l_StopGame;
                     l_ScannerObj.close();
@@ -428,5 +439,48 @@ public class GameEngine {
 			l_Str.append(" ");
 		return l_Str.toString();
 	}
+	
+	
+	
+	
+	
+	public void loadGame(String p_Command) {
+		boolean l_Flag=false;
+		this.d_GameModel=GameModel.loadGame(p_Command.split(" ")[1]);
+		if (this.d_GameModel==null) {
+			System.out.println("\nGame not found");
+			d_LEB.setResult("Game not found");
+			return;
+		}
+		d_LEB.setResult("Game Loaded");
+
+		if(this.d_GameModel.getD_Players().size()<=1) {
+			this.setD_GamePhase(new Startup(this));
+		} else {
+			ArrayList<Player> l_Players=this.d_GameModel.getD_Players();
+			for(Player l_P : l_Players) {
+				if(l_P.getD_PlayerOwnedCountries().size()>0) {
+					l_Flag=true;
+					break;
+				}
+			}
+			if(l_Flag==true) {
+				this.setD_GamePhase(new IssueOrder(this));
+			} else {
+				this.setD_GamePhase(new Startup(this));
+			}
+		}
+	}
+
+	/**
+	 * This method calls the savegame method of GameModel to save the game during gameplay.
+	 * Once the game is saved, this method also sets it phase to GameSaved phase.  
+	 * @param p_Command command entered by the user
+	 */
+	public void saveGame(String p_Command) {
+		this.d_GameModel.saveGame(p_Command.split(" ")[1]);
+		//this.setD_GamePhase(new GameSaved(this));
+	}
+
     
 }

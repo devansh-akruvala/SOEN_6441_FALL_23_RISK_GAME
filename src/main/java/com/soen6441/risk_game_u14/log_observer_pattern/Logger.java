@@ -4,13 +4,14 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.io.Serializable;
 
 /**
  * A concrete class implementing the Observer interface.
  * Objects of this class are linked to the Observable LogEntryBuffer.
  * They are notified on any changes.
  */
-public class Logger implements Observer {
+public class Logger implements Observer, Serializable {
     private static int D_Count = 0;
 
     /**

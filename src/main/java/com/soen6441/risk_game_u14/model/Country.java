@@ -1,5 +1,6 @@
 package com.soen6441.risk_game_u14.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Devansh
  */
 
-public class Country {
+public class Country implements Serializable{
     private static int D_Count = 0;
     private int d_CountryId;
     private String d_CountryName;
