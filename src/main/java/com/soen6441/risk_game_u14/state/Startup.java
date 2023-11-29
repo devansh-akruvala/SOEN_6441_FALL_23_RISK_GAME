@@ -130,5 +130,10 @@ public class Startup extends Phase {
     public String getPhaseName() {
         return "Startup Phase";
     }
+	@Override
+	public String tournament(String p_String, String p_CommandStringFromInput) {
+		// TODO Auto-generated method stub
+		return "Invalid Command in Startup Phase";
+	}
 
 }

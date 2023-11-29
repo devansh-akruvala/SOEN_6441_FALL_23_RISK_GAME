@@ -145,5 +145,9 @@ public class Reinforcement extends Phase {
         return "Reinforcement Phase";
     }
 
-
+	@Override
+	public String tournament(String p_String, String p_CommandStringFromInput) {
+		// TODO Auto-generated method stub
+		return "Invalid Command in Reinforcement Phase";
+	}
 }

@@ -14,7 +14,7 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Order;
 import com.soen6441.risk_game_u14.model.Player;
-import com.soen6441.risk_game_u14.strategy.HumanPlayerStrategy;
+//import com.soen6441.risk_game_u14.strategy.HumanPlayerStrategy;
 
 /***
  * This class adds players to the game and randomly assigns countries amongst
@@ -25,6 +25,7 @@ import com.soen6441.risk_game_u14.strategy.HumanPlayerStrategy;
  * @author Devansh, Aditya
  */
 public class PlayerController {
+	private Player d_Winner;
 	private GameModel d_GameModel;
 	private HashMap<Integer, String> d_AllCards;
 	private Random d_Rand;
@@ -429,12 +430,29 @@ public class PlayerController {
 			}
 		}
 		if (l_flag == 0) {
+			setWinner(l_CheckPlayer);
 			System.out.println("\n" + l_CheckPlayer.getD_PlayerName() + " is the winner of the game!");
 			d_LEB.setResult("\n" + l_CheckPlayer.getD_PlayerName() + " is the winner of the game!");
 		}
 		return l_flag;
 	}
 
+	/**
+	 * This is the getter method of providing winner player
+	 * @return The player who won the game.
+	 */
+	public Player getWinner()
+	{
+		return this.d_Winner;
+	}
+	/**
+	 * The setter method to set the player as winner of the game.
+	 * @param p_Winner The player who won the game.
+	 */
+	public void setWinner(Player p_Winner)
+	{
+		this.d_Winner=p_Winner;
+	}
 	/***
 	 * This is the display method for the game map
 	 */

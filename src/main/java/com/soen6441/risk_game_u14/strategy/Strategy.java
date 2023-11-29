@@ -17,7 +17,7 @@ public abstract class Strategy implements Serializable {
 	 * This method creates different types of orders for each type of player based on their strategy. 
 	 * @return order created according to the player type 
 	 */
-	public abstract ArrayList<Order> createOrder();
+	public abstract String createOrder();
 	
 	/**
 	 * This method returns the name of the strategy that player holds. 
@@ -29,14 +29,16 @@ public abstract class Strategy implements Serializable {
 	 * This method returns the source country for deploy or advance order. 
 	 * @return country to which armies are deployed or from where attack is happening
 	 */
-	public abstract Country toDefend();
+	public abstract String createDeployOrder();
 	
 	/**
 	 * This method returns the list of source and target country for the attack. \
 	 * This is internally used for the advance order creation to pass as target source and target country. 
 	 * @return returns list with first parameter as source country and second as target country. 
 	 */
-	public abstract ArrayList<Country> toAttack();
+	public abstract String createAdvanceOrder();
+	
+	public abstract String createCardOrder(String p_CardName);
 	
 	
 }

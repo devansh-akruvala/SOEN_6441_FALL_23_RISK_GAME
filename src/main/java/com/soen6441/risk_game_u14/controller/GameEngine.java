@@ -1,10 +1,14 @@
 package com.soen6441.risk_game_u14.controller;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Map;
+import com.soen6441.risk_game_u14.model.Player;
 import com.soen6441.risk_game_u14.state.Edit;
 import com.soen6441.risk_game_u14.state.Phase;
 
@@ -19,13 +23,15 @@ import com.soen6441.risk_game_u14.state.Phase;
  */
 
 public class GameEngine {
-
+	
     private GameModel d_GameModel;
     private MapController d_MapController;
     private PlayerController d_PlayerController;
     int l_PhaseController;
     private LogEntryBuffer d_LEB;
     private Phase d_GamePhase;
+	private HashMap<String, ArrayList<String>> d_TournamentResult;
+	static int NUM=0;
 
     public GameEngine() {
 
@@ -111,6 +117,11 @@ public class GameEngine {
             String l_CommandSection = l_Command.split(" ")[0];
 
             switch (l_CommandSection) {
+        	case "tournament":
+				d_LEB.setResult(l_Command);
+				System.out.println(d_GamePhase.tournament("tournament",l_Command));
+
+				break;
 
                 case "editcontinent":
                     String result = d_GamePhase.editContinent(l_Command);
@@ -201,4 +212,205 @@ public class GameEngine {
 
     }
 
+    
+    
+    
+    public void tournament(String p_InputString) throws Exception {
+
+		int l_M = 0;
+		int l_P = 0;
+		int l_G = 0;
+		int l_D = 0;
+		String[] l_MapList = null;
+		String[] l_PlayerStrategyList=null;
+		ArrayList<Map> l_Maps=new ArrayList<Map>();
+		ArrayList<File> l_Files=new ArrayList<File>();
+		String l_Path="saved_maps\\";
+		String[] l_CommandArray = p_InputString.split(" ");
+		if("-M".equals(l_CommandArray[1])){
+			l_MapList=l_CommandArray[2].split(",");
+			if(l_MapList.length>5||l_MapList.length<1) {
+				d_LEB.setResult("Number of Maps should be in between 1 to 5 both inclusive");
+				throw new Exception("Number of Maps should be in between 1 to 5 both inclusive");//throw exception
+				
+			} else 
+				l_M=l_MapList.length;
+			for(int i=0;i<l_M;i++) {
+				File l_F = new File(l_Path+l_MapList[i]);
+				if (!l_F.exists()) {
+					d_LEB.setResult("File does not Exists");
+					throw new Exception("File does not Exists");//throw exception
+					
+				} else
+					l_Files.add(l_F);
+			}
+		}
+		if("-P".equals(l_CommandArray[3])){
+			l_PlayerStrategyList=l_CommandArray[4].split(",");
+			if(l_PlayerStrategyList.length>4||l_PlayerStrategyList.length<2) {
+				d_LEB.setResult("Number of Player strategies should be in between 2 to 4 both inclusive");
+				throw new Exception("Number of Player strategies should be in between 2 to 4 both inclusive");//throw exception
+				
+			} else {
+				l_P=l_PlayerStrategyList.length;
+			}
+		}
+		if("-G".equals(l_CommandArray[5])){
+			int l_NumGames=Integer.parseInt(l_CommandArray[6]);
+			if(l_NumGames>5||l_NumGames<1) {
+				d_LEB.setResult("Number of Games should be in between 1 to 5 both inclusive");
+				throw new Exception("Number of Games should be in between 1 to 5 both inclusive");//throw exception
+				
+			} else
+				l_G=l_NumGames;
+		}
+		if("-D".equals(l_CommandArray[7])){
+			int l_MaxTurns=Integer.parseInt(l_CommandArray[8]);
+			if(l_MaxTurns>50||l_MaxTurns<10) {
+				d_LEB.setResult("Number of turns should be in between 10 to 50 both inclusive");
+				throw new Exception("Number of turns should be in between 10 to 50 both inclusive");//throw exception
+				
+			} else
+				l_D=l_MaxTurns;
+		}
+		 d_TournamentResult = new HashMap<>();
+
+		for (int i = 0; i < l_M; i++) {
+			System.out.println("\n=============================================\n");
+			System.out.println("\nMap number:"+(i+1)+"\n");
+			d_LEB.setResult("\n=============================================\n");
+			d_LEB.setResult("\nMap number:"+(i+1)+"\n");
+			ArrayList<String> l_Result = new ArrayList<>();
+
+			for (int j = 0; j < l_G; j++) {
+				System.out.println(l_MapList[i]);
+				d_GameModel.getD_Map().loadFile(l_MapList[i]);
+				System.out.println("\n=============================================\n");
+				System.out.println("\nGame number:"+(j+1)+"\n");
+				d_LEB.setResult("\n=============================================\n");
+				d_LEB.setResult("\nGame number:"+(j+1)+"\n");
+				
+				d_GameModel.getD_Players().clear();
+
+				for(int k=0;k<l_P;k++) {
+					d_GameModel.addPlayers("Player"+(NUM++),l_PlayerStrategyList[k]);
+				}
+
+				d_GameModel.tournamentstartUpPhase();
+				int l_Noofturns=0;
+				while(true)
+				{
+					d_GameModel.assignReinforcementArmies();
+					this.getD_PlayerController().playerIssueOrder();
+					this.getD_PlayerController().playerExecuteOrder();
+					if(this.getD_PlayerController().getWinner()!=null) {
+						l_Result.add(this.getD_PlayerController().getWinner().getD_PlayerStrategy().strategyName());
+						System.out.println(this.getD_PlayerController().getWinner().getD_PlayerName()+"is the winner");
+						d_LEB.setResult(this.getD_PlayerController().getWinner().getD_PlayerName()+"is the winner");
+						d_GameModel.getD_Map().reset();
+						break;
+					}
+
+					if(l_Noofturns == l_D) {
+						System.out.println("\nMatch is draw");
+						d_LEB.setResult("\nMatch is draw");
+						l_Result.add("Draw");
+						d_GameModel.getD_Players().clear();
+						d_GameModel.getD_Map().reset();
+						break;
+					}
+					l_Noofturns++;
+				}
+				d_TournamentResult.put(l_MapList[i],l_Result);
+			}
+		}
+		printTournamentResult(l_M, l_G, l_D, d_TournamentResult, l_PlayerStrategyList);
+	}
+
+
+	/**
+	 * This method prints the tournament result for each individual map and each individual game.
+	 * @param p_M Number of maps
+	 * @param p_G Number of games
+	 * @param p_D Number of turns
+	 * @param p_tournamentResult Result of the tournament
+	 * @param p_PlayerStrategyList Player strategy list
+	 */
+	private void printTournamentResult(int p_M, int p_G, int p_D, HashMap<String, ArrayList<String>> p_tournamentResult,
+			String[] p_PlayerStrategyList) {
+
+		String[] l_MapStrings = p_tournamentResult.keySet().toArray(new String[p_tournamentResult.keySet().size()]);
+		System.out.println("\n");
+		System.out.println("\n");
+		d_LEB.setResult("\n=============================================\n");
+		System.out.println("=============================================\n");
+		System.out.println("==============TOURNAMENT RESULT===============\n");
+		d_LEB.setResult("==============TOURNAMENT RESULT===============\n");
+		System.out.println("=============================================\n");
+		d_LEB.setResult("\n=============================================\n");
+		System.out.println("\n");
+		StringBuffer l_MapNameString = new StringBuffer();
+		for (String l_MapString : l_MapStrings) {
+			l_MapNameString.append(l_MapString+ ",");
+		}
+		System.out.println("\n");
+		d_LEB.setResult("\n=============================================\n");
+		System.out.println("M:" + l_MapNameString);
+		d_LEB.setResult("M:" + l_MapNameString);
+		StringBuffer stratergiesNameString = new StringBuffer();
+		for (String aP_PlayerStrategyList : p_PlayerStrategyList) {
+			stratergiesNameString.append(aP_PlayerStrategyList + ",");
+		}
+		System.out.println("P:" + stratergiesNameString);
+		d_LEB.setResult("P:" + stratergiesNameString);
+		System.out.println("G:" + p_G);
+		d_LEB.setResult("G:" + p_G);
+		System.out.println("D:" + p_D);
+		d_LEB.setResult("D:" + p_D);
+		System.out.println("\n");
+		d_LEB.setResult("\n");
+		System.out.println("\n");
+		d_LEB.setResult("\n");
+		StringBuilder l_StringBuilder = new StringBuilder();
+		l_StringBuilder.append("|");
+		l_StringBuilder.append(getFormattedString(" "));
+		for (int i = 0; i < p_G; i++) {
+			l_StringBuilder.append("|");
+			l_StringBuilder.append(getFormattedString("Game " + (i + 1)));
+		}
+		l_StringBuilder.append("|");
+		System.out.println("\n");
+		d_LEB.setResult("\n");
+		System.out.println(l_StringBuilder.toString());
+		d_LEB.setResult(l_StringBuilder.toString());
+		System.out.println("\n");
+		d_LEB.setResult("\n");
+		for (String l_MapString : l_MapStrings) {
+
+			StringBuilder l_SbMap = new StringBuilder();
+			l_SbMap.append("|");
+			l_SbMap.append(getFormattedString(l_MapString));
+
+			ArrayList<String> l_GameResults = p_tournamentResult.get(l_MapString);
+			for (int j = 0; j < p_G; j++) {
+				l_SbMap.append("|");
+				l_SbMap.append(getFormattedString(l_GameResults.get(j)));
+			}
+			System.out.println("\n");
+			l_SbMap.append("|");
+			System.out.println(l_SbMap.toString());
+			d_LEB.setResult(l_SbMap.toString());
+
+		}
+	}
+
+	private String getFormattedString(String p_Input) {
+		int l_Length = 4;
+
+		StringBuilder l_Str = new StringBuilder(" " + p_Input);
+		for (int l_I = p_Input.length(); l_I <= l_Length; l_I++)
+			l_Str.append(" ");
+		return l_Str.toString();
+	}
+    
 }

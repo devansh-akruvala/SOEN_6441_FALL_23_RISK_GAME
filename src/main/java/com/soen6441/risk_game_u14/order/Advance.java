@@ -284,9 +284,6 @@ public class Advance implements Order {
         } else if (!d_SourceCountry.getD_Neighbors().contains(d_TargetCountry.getD_CountryName())) {
             d_Player.setD_Result("\nThe source country and target country are not neighbours!");
             l_ReturnInt = 0;
-        } else if (d_SourceCountry.getD_NoOfArmies() - d_NumArmies < 1) {
-            d_Player.setD_Result("\nThe source country should be left with atleast one army!");
-            l_ReturnInt = 0;
         } else {
             if (d_Player.getD_PlayerOwnedCountries().contains(d_SourceCountry) && d_Player.getD_PlayerOwnedCountries().contains(d_TargetCountry)) {
 
@@ -314,3 +311,8 @@ public class Advance implements Order {
         this.d_Player = d_Player;
     }
 }
+
+//else if (d_SourceCountry.getD_NoOfArmies() - d_NumArmies < 1) {
+//    d_Player.setD_Result("\nThe source country should be left with atleast one army!");
+//    l_ReturnInt = 0;
+//} 

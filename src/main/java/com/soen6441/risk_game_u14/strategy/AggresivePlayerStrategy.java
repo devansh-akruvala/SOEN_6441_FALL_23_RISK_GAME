@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -23,128 +24,209 @@ import com.soen6441.risk_game_u14.order.Deploy;
  * This class extends the parent Strategy class which has createOrder method to be implemented here. 
  */
 public class AggresivePlayerStrategy extends Strategy implements Serializable {
-	/**
-	 * The Random reference to generate random numbers.
-	 */
-	private Random d_Random;
-	/**
-	 * GameModel new object to get the current map.
-	 */
-	private GameModel d_GameModel;
-	/**
-	 * Player reference of this strategy
-	 */
+
+	
 	private Player d_Player;
-	/**
-	 * Constructor which accept the player of type aggresive and the gamemode which contains all other game related data. 
-	 * @param p_Player	aggresive type of player
-	 * @param p_GameModel GameModel object
-	 */
+	private GameModel d_GameModel;
+	
+	ArrayList<Country> d_deployCountries = new ArrayList<Country>();
+	
 	public AggresivePlayerStrategy(Player p_Player,GameModel p_GameModel) {
-		this.d_Player = p_Player;
-		this.d_GameModel = p_GameModel;
-		d_Random = new Random();
-		d_Leb.setResult("Aggressive Player");
+		d_Player=p_Player;
+		d_GameModel = p_GameModel;
 	}
-
-	/**
-	 * This method returns the strongest country for the aggresive player. 
-	 * It takes the list of players and sort them according to their number of armies. 
-	 * @return Country returns the strongest country of the player
-	 */
+	
 	@Override
-	public Country toDefend() {
-		Country l_TempCountry=null;
-		HashMap <Country,Integer> l_PlayerCountryMap = new HashMap<>();
-		for(Country l_Country : d_Player.getD_PlayerOwnedCountries()){
-			l_PlayerCountryMap.put(l_Country, l_Country.getD_NoOfArmies());
-		}
-		List<Entry<Country, Integer>> l_List = new LinkedList<Entry<Country, Integer>>(l_PlayerCountryMap.entrySet()); 
-		Collections.sort(l_List, new Comparator<Entry<Country, Integer>>()   {  
-			@Override
-			public int compare(Entry<Country, Integer> l_O1, Entry<Country, Integer> l_O2){   
-				return l_O2.getValue().compareTo(l_O1.getValue());  
-			}  
-		});
-		l_TempCountry = l_List.get(0).getKey();
-		return l_TempCountry;
-	}
-
-	/**
-	 * This method checks for all the neighbors of the source country and randomly choose any one country to attack. 
-	 * If the country to be attacked is of same player then only transfer of armies happen else advance order is executed. 
-	 * @return returns the list of source and target country for the attack
-	 */
-	@Override
-	public ArrayList<Country> toAttack(){
-		ArrayList<Country> l_ReturnCountries = new ArrayList<Country>();
-		Country l_Country = toDefend();
-		Country l_ReturnCountry=null;
-		ArrayList<Country> l_BorderCountriesList = new ArrayList<>();
-		for(Country l_C : this.d_GameModel.getD_Map().getD_CountryObjects()) {
-			if(l_Country.getD_Neighbors().contains(l_C.getD_CountryName())) {
-				l_BorderCountriesList.add(l_C);
+	public String createOrder() {
+		// TODO Auto-generated method stub
+		System.out.println("Creating order for: "+d_Player.getD_PlayerName());
+		String l_command;
+		if(!checkIfArmiesDepoyed()) {
+			if(d_Player.getD_ArmiesCount()>0) {
+				l_command = createDeployOrder();
+			}else{
+				l_command = createAdvanceOrder();
 			}
 		}
-		/// picking neighbor randomly and performing advance accordingly
-		l_ReturnCountry = l_BorderCountriesList.get(d_Random.nextInt(l_BorderCountriesList.size()));
-		l_ReturnCountries.add(0,l_Country);
-		l_ReturnCountries.add(1,l_ReturnCountry);
-		return l_ReturnCountries;
+		else {
+			if(d_Player.getD_Cards().size()>0){
+				System.out.println("Enters Card Logic");
+				int l_index = (int) (Math.random() * 3) +1;
+				switch (l_index) {
+					case 1:
+						System.out.println("Deploy!");
+						l_command = createDeployOrder();
+						break;
+					case 2:
+						System.out.println("Advance!");
+						l_command = createAdvanceOrder();
+						break;
+					case 3:
+						if (d_Player.getD_Cards().size() == 1) {
+							System.out.println("Cards!");
+							l_command = createCardOrder(d_Player.getD_Cards().get(0));
+							break;
+						} else {
+							Random l_random = new Random();
+							int l_randomIndex = l_random.nextInt(d_Player.getD_Cards().size());
+							l_command = createCardOrder(d_Player.getD_Cards().get(l_randomIndex));
+							break;
+						}
+					default:
+						l_command = createAdvanceOrder();
+						break;
+				}
+			} else{
+				Random l_random = new Random();
+				Boolean l_randomBoolean = l_random.nextBoolean();
+				if(l_randomBoolean){
+					System.out.println("Without Card Deploy Logic");
+					l_command = createDeployOrder();
+				}else{
+					System.out.println("Without Card Advance Logic");
+					l_command = createAdvanceOrder();
+				}
+			}
+		}
+		return l_command;
 	}
 
-	/**
-	 * This method centralize its armies on the strongest country. 
-	 * Meaning, it deploys on the strongest country initially and then when it has enough number of armies it attacks from the strongest country. 
-	 * Deploy and Advance orders are created randomly. 
-	 * @return Order returns the order which was created
-	 */
-	@Override
-	public ArrayList<Order> createOrder() {
-		System.out.println(d_Player.getD_PlayerName()+" order");
-//		int l_RandomInt = d_Random.nextInt(2);
-		ArrayList<Order> l_OrderToBeReturned = new ArrayList<>();
-//		switch(l_RandomInt) {
-//		case 0: 
-//			Country l_DefendCountry1 = toDefend();
-//			d_Leb.setResult("in agressive the armies are deployed to -" +l_DefendCountry1.getD_CountryName());
-//			l_OrderToBeReturned = new Deploy(this.d_Player, l_DefendCountry1, Math.max(d_Random.nextInt(d_Player.getD_ArmiesCount()),2));
-//			break;
-//		case 1: 
-//			ArrayList<Country> l_Countries = toAttack();
-//			/*If player does not have enough armies, it will not advance. it will still deploy*/
-//			if(l_Countries.get(0).getD_NoOfArmies()>1){
-//				d_Leb.setResult("in aggressive defending country - "+l_Countries.get(0).getD_CountryName()+" Attacking country - "+l_Countries.get(1).getD_CountryName()+" with armies- "+(l_Countries.get(0).getD_NoOfArmies()-1));
-//				l_OrderToBeReturned =  new Advance(this.d_Player, l_Countries.get(0), l_Countries.get(1), l_Countries.get(0).getD_NoOfArmies()-1);
-//			}
-//			else{
-//				d_Leb.setResult("in agrressive the armies are deployed to -" +l_Countries.get(0).getD_CountryName());
-//				l_OrderToBeReturned = new Deploy(this.d_Player, toDefend(),Math.max(d_Random.nextInt(d_Player.getD_ArmiesCount()),2));
-//			}
-//			break;	
-//		}
-		
-
-		
-		ArrayList<Country> l_Countries = toAttack();
-		int l_ArmyCount = d_Player.getD_ArmiesCount();
-		System.out.println("Deploying "+ l_ArmyCount +" to " + l_Countries.get(0).getD_CountryName());
-		l_OrderToBeReturned.add(new Deploy(d_Player,l_Countries.get(0), l_ArmyCount));
-		int attackArmies =l_ArmyCount+l_Countries.get(0).getD_NoOfArmies()-1;
-		System.out.println("Advancing to "+l_Countries.get(1).getD_CountryName()+" with "+attackArmies+" Armies");
-		l_OrderToBeReturned.add(new Advance(d_Player, l_Countries.get(0), l_Countries.get(1), attackArmies));
-		
-		d_Leb.setResult("in aggressive the order is - "+l_OrderToBeReturned);
-		return l_OrderToBeReturned;
-	}
-
-	/**
-	 * This method returns the strategy type of the player. 
-	 * @return return String returns the type of player
-	 */
 	@Override
 	public String strategyName() {
+		// TODO Auto-generated method stub
 		return "Aggressive";
+	}
+
+	@Override
+	public String createDeployOrder() {
+		Random l_random = new Random();
+		// get strongest country then deploy
+		Country l_strongestCountry = getStrongestCountry();
+		d_deployCountries.add(l_strongestCountry);
+		int l_armiesToDeploy = 1;
+		if (d_Player.getD_ArmiesCount()>1) {
+			l_armiesToDeploy = l_random.nextInt(2,d_Player.getD_ArmiesCount()+1);
+		}
+		return String.format("deploy %s %d", l_strongestCountry.getD_CountryName(), l_armiesToDeploy);	
+	}
+
+	@Override
+	public String createAdvanceOrder() {
+//		Country l_randomSourceCountry = getRandomCountry(d_deployCountries);
+		Country l_randomSourceCountry = getStrongestCountry();
+		
+		moveArmiesFromItsNeighbors(d_Player, l_randomSourceCountry);
+
+		Random l_random = new Random();
+		Country l_randomTargetCountry = d_GameModel.getD_Map()
+				.findCountryByName(l_randomSourceCountry.getD_Neighbors()
+						.get(l_random.nextInt(l_randomSourceCountry.getD_Neighbors().size())));
+		
+
+		int l_armiesToSend = l_randomSourceCountry.getD_NoOfArmies() > 1 ? l_randomSourceCountry.getD_NoOfArmies()-1: 1;
+
+		System.out.println("advance " + l_randomSourceCountry.getD_CountryName() + " " + l_randomTargetCountry.getD_CountryName()
+				+ " " + l_armiesToSend);
+		// attacks with strongest country
+		return "advance " + l_randomSourceCountry.getD_CountryName() + " " + l_randomTargetCountry.getD_CountryName()
+				+ " " + l_armiesToSend;
+	}
+
+	@Override
+	public String createCardOrder(String p_CardName) {
+		Random l_random = new Random();
+		Country l_StrongestSourceCountry = getStrongestCountry();
+
+		Country l_randomTargetCountry = d_GameModel.getD_Map()
+				.findCountryByName(l_StrongestSourceCountry.getD_Neighbors()
+						.get(l_random.nextInt(l_StrongestSourceCountry.getD_Neighbors().size())));
+
+		int l_armiesToSend = l_StrongestSourceCountry.getD_NoOfArmies() > 1 ? l_StrongestSourceCountry.getD_NoOfArmies()-1 : 1;
+
+		switch (p_CardName) {
+		case "Bomb":
+			return "bomb " + l_randomTargetCountry.getD_CountryName();
+		case "Blockade":
+			return "blockade " + l_StrongestSourceCountry.getD_CountryName();
+		case "Airlift":
+			return "airlift " + l_StrongestSourceCountry.getD_CountryName() + " "
+					+ getRandomCountry(d_Player.getD_PlayerOwnedCountries()).getD_CountryName() + " " + l_armiesToSend;
+		case "Negotiate":
+			return "negotiate" + " " + getRandomEnemyPlayer(d_Player).getD_PlayerName();
+		}
+		return null;
+	}
+	
+	private Boolean checkIfArmiesDepoyed(){
+		if(d_Player.getD_PlayerOwnedCountries().stream().anyMatch(l_country -> l_country.getD_NoOfArmies()>0)){
+			return true;
+		}
+		return false;
+	}
+	
+	
+	public Country getStrongestCountry() {
+		List<Country> l_countriesOwnedByPlayer = d_Player.getD_PlayerOwnedCountries();
+		Country l_Country = calculateStrongestCountry(l_countriesOwnedByPlayer);
+		return l_Country;
+	}
+	
+	public Country calculateStrongestCountry(List<Country> l_listOfCountries) {
+		LinkedHashMap<Country, Integer> l_CountryWithArmies = new LinkedHashMap<Country, Integer>();
+
+		int l_largestNoOfArmies;
+		Country l_Country = null;
+		// return strongest country from owned countries of player.
+		for (Country l_country : l_listOfCountries) {
+			l_CountryWithArmies.put(l_country, l_country.getD_NoOfArmies());
+		}
+		l_largestNoOfArmies = Collections.max(l_CountryWithArmies.values());
+		for (Entry<Country, Integer> entry : l_CountryWithArmies.entrySet()) {
+			if (entry.getValue().equals(l_largestNoOfArmies)) {
+				return entry.getKey();
+			}
+		}
+		return l_Country;
+
+	}
+	
+	private Country getRandomCountry(List<Country> p_listOfCountries) {
+		Random l_random = new Random();
+		return p_listOfCountries.get(l_random.nextInt(p_listOfCountries.size()));
+	}
+	
+	
+	public void moveArmiesFromItsNeighbors(Player d_Player, Country p_randomSourceCountry) {
+		List<String> l_adjacentCountryIds = p_randomSourceCountry.getD_Neighbors();
+		List<Country> l_listOfNeighbors = new ArrayList<Country>();
+		for (int l_index = 0; l_index < l_adjacentCountryIds.size(); l_index++) {
+			Country l_country = d_GameModel.getD_Map().findCountryByName(l_adjacentCountryIds.get(l_index));
+			// check if neighbor belongs to player and then add to list
+			if (d_Player.getD_PlayerOwnedCountries().contains(l_country)) {
+				l_listOfNeighbors.add(l_country);
+			}
+		}
+
+		int l_ArmiesToMove = 0;
+		// send armies from neighbor to source country
+		for (Country l_con : l_listOfNeighbors) {
+			l_ArmiesToMove += p_randomSourceCountry.getD_NoOfArmies() > 0
+					? p_randomSourceCountry.getD_NoOfArmies() + (l_con.getD_NoOfArmies())
+					: (l_con.getD_NoOfArmies());
+
+		}
+		p_randomSourceCountry.setD_NoOfArmies(l_ArmiesToMove);
+	}
+
+	private Player getRandomEnemyPlayer(Player p_player) {
+		ArrayList<Player> l_playerList = new ArrayList<Player>();
+		Random l_random = new Random();
+
+		for (Player l_player : d_GameModel.getD_Players()) {
+			if (!l_player.equals(p_player))
+				l_playerList.add(p_player);
+		}
+		return l_playerList.get(l_random.nextInt(l_playerList.size()));
 	}
 
 }
