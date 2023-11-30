@@ -230,7 +230,6 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable {
 		for (Country l_country : l_listOfCountries) {
 			l_CountryWithArmies.put(l_country, l_country.getD_NoOfArmies());
 		}
-		System.out.println("-----------------" + l_CountryWithArmies.size());
 		l_smallestNoOfArmies = Collections.min(l_CountryWithArmies.values());
 		for (Entry<Country, Integer> entry : l_CountryWithArmies.entrySet()) {
 			if (entry.getValue().equals(l_smallestNoOfArmies)) {
