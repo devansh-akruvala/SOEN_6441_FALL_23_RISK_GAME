@@ -12,41 +12,18 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Player;
 
-
-/**
- * Class that implements the Benevolent Player Strategy
- * This class extends the parent Strategy class which has createOrder method to be implemented here.
- *
- */
-
 public class BenevolentPlayerStrategy extends Strategy implements Serializable {
 
 	private Player d_Player;
 	private GameModel d_GameModel;
-	
-	/**
-	 * List containing deploy order countries.
-	 */
 
 	ArrayList<Country> d_deployCountries = new ArrayList<Country>();
-	
-	
-	/**
-	 * Constructor setup variables for benevolent strategy
-	 * @param p_Player Player object
-	 * @param p_GameModel GameModel object
-	 */
 
 	public BenevolentPlayerStrategy(Player p_Player, GameModel p_GameModel) {
 		d_Player = p_Player;
 		d_GameModel = p_GameModel;
 	}
 
-	/**
-	 * This method creates a new order.
-	 * 
-	 * @return Order object of order class
-	 */
 	@Override
 	public String createOrder() {
 		// TODO Auto-generated method stub
@@ -109,9 +86,6 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable {
 		return "Benevolent";
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String createDeployOrder() {
 		if (d_Player.getD_ArmiesCount() > 0) {
@@ -130,9 +104,6 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String createAdvanceOrder() {
 		// advance on weakest country
@@ -155,7 +126,7 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable {
 
 		System.out.println("Target Country : " + l_weakestTargetCountry.getD_CountryName());
 		if (l_randomSourceCountry.getD_NoOfArmies() > 1) {
-			l_armiesToSend = l_random.nextInt(1, l_randomSourceCountry.getD_NoOfArmies() + 1);
+			l_armiesToSend = l_random.nextInt(l_randomSourceCountry.getD_NoOfArmies());
 		} else {
 			l_armiesToSend = 1;
 		}
@@ -167,9 +138,6 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable {
 
 	}
 
-	/**
-	 * Creates card order 
-	 */
 	@Override
 	public String createCardOrder(String p_CardName) {
 		int l_armiesToSend;
@@ -201,25 +169,13 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable {
 		}
 		return null;
 	}
-	
-	/**
-	 * This method return weakest Country where benevolent player can deploy armies.
-	 * 
-	 * @param p_player Player
-	 * @return weakest country
-	 */
+
 	public Country getWeakestCountry(Player p_player) {
 		List<Country> l_countriesOwnedByPlayer = p_player.getD_PlayerOwnedCountries();
 		Country l_Country = calculateWeakestCountry(l_countriesOwnedByPlayer);
 		return l_Country;
 	}
 
-	/**
-	 * This method calculates weakest country.
-	 * 
-	 * @param l_listOfCountries list of countries
-	 * @return weakest country
-	 */
 	public Country calculateWeakestCountry(List<Country> l_listOfCountries) {
 		LinkedHashMap<Country, Integer> l_CountryWithArmies = new LinkedHashMap<Country, Integer>();
 
@@ -240,12 +196,6 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable {
 
 	}
 
-	/**
-	 * This method returns random country.
-	 * 
-	 * @param p_listOfCountries list of countries
-	 * @return return country
-	 */
 	private Country getRandomCountry(List<Country> p_listOfCountries) {
 
 		Random l_random = new Random();
@@ -254,11 +204,6 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable {
 		return p_listOfCountries.get(l_random.nextInt(p_listOfCountries.size()));
 	}
 
-	/**
-	 * This method return weakest Country where benevolent player can deploy armies.
-	 * @param l_randomSourceCountry
-	 * @return
-	 */
 	public Country getWeakestNeighbor(Country l_randomSourceCountry) {
 		List<String> l_adjacentCountryIds = l_randomSourceCountry.getD_Neighbors();
 		List<Country> l_listOfNeighbors = new ArrayList<Country>();
@@ -273,12 +218,6 @@ public class BenevolentPlayerStrategy extends Strategy implements Serializable {
 		return null;
 	}
 
-	/**
-	 * This method return List of Country Ids of random enemy neighbors.
-	 * 
-	 * @param p_player  Player
-	 * @return List of Ids.
-	 */
 	private Player getRandomEnemyPlayer(Player p_player) {
 		ArrayList<Player> l_playerList = new ArrayList<Player>();
 		Random l_random = new Random();
