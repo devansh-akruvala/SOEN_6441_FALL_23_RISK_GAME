@@ -1,3 +1,10 @@
+
+package com.soen6441.risk_game_u14.state;
+
+import java.io.Serializable;
+
+import com.soen6441.risk_game_u14.controller.GameEngine;
+import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
 /**
  * The SaveGame class represents the state of the game during the "Save Game" phase.
  * It extends the Phase class and implements the Serializable interface.
@@ -6,19 +13,11 @@
  * validating maps, editing maps, adding players, assigning countries, showing the map, etc.
  * Additionally, it contains a LogEntryBuffer to store log entries related to the save game phase.
  *
- * @author Smridhi 
+ * @author Smridhi
  * @version 1.0
  * @see Phase
  * @see Serializable
  */
-
-package com.soen6441.risk_game_u14.state;
-
-import java.io.Serializable;
-
-import com.soen6441.risk_game_u14.controller.GameEngine;
-import com.soen6441.risk_game_u14.log_observer_pattern.LogEntryBuffer;
-
 public class SaveGame extends Phase implements Serializable {
 	/**
 	 * The LogEntryBuffer to store log entries for the SaveGame phase.
