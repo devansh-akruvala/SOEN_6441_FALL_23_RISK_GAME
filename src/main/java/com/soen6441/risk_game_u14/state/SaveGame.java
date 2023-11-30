@@ -25,8 +25,6 @@ public class SaveGame extends Phase implements Serializable {
 	 */
 	LogEntryBuffer d_LEB;
 
-	
-
 	/**
 	 * Constructor for the SaveGame class.
 	 * Initializes the GameEngine object, the LogEntryBuffer, and sets the result in
@@ -39,7 +37,7 @@ public class SaveGame extends Phase implements Serializable {
 		d_LEB = new LogEntryBuffer();
 		d_LEB.setResult("In Saved game Phase");
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -66,6 +64,7 @@ public class SaveGame extends Phase implements Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -74,6 +73,7 @@ public class SaveGame extends Phase implements Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -82,6 +82,7 @@ public class SaveGame extends Phase implements Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -90,6 +91,7 @@ public class SaveGame extends Phase implements Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -98,6 +100,7 @@ public class SaveGame extends Phase implements Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -106,6 +109,7 @@ public class SaveGame extends Phase implements Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
