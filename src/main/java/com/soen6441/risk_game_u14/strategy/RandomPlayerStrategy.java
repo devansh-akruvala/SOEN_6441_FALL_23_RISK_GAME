@@ -194,8 +194,7 @@ public class RandomPlayerStrategy extends Strategy implements Serializable {
 	/**
 	 * Check if it is first turn.
 	 *
-	 * @param p_player player instance
-	 * @return boolean
+	 * @return True or False depending upon if the
 	 */
 	private Boolean checkIfArmiesDepoyed(){
 		if(d_Player.getD_PlayerOwnedCountries().stream().anyMatch(l_country -> l_country.getD_NoOfArmies()>0)){
@@ -205,7 +204,7 @@ public class RandomPlayerStrategy extends Strategy implements Serializable {
 	}
 	/**
 	 *
-	 * returns a random country owned by player.
+	 * Gives a random country owned by player.
 	 *
 	 * @param p_listOfCountries list of countries owned by player
 	 * @return a random country from list

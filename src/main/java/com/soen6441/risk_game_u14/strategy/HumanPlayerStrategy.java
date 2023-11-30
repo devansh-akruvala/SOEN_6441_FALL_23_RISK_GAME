@@ -14,12 +14,6 @@ import com.soen6441.risk_game_u14.state.Startup;
 
 
 /**
- * Class that implements the Human Player Strategy
- * This class extends the parent Strategy class which has createOrder method to be implemented here.
- *
- */
-
-/**
  * Represents a strategy for human players in a Risk game.
  * Allows players to input commands via the console for various game actions.
  * Extends the Strategy class and implements Serializable.
