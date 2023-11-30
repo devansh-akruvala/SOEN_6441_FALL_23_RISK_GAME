@@ -8,36 +8,43 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.Order;
 
 /**
- * This is a parent class for the strategy pattern. 
- * Each player has their different strategy and they extends this class and implements the methods accordingly. 
+ * Abstract parent class for implementing the strategy pattern.
+ * Players define unique strategies by extending this class and implementing its methods.
  */
 public abstract class Strategy implements Serializable {
 	LogEntryBuffer d_Leb = new LogEntryBuffer();
 	/**
-	 * This method creates different types of orders for each type of player based on their strategy. 
-	 * @return order created according to the player type 
+	 * Generates specific orders based on the player's strategy.
+	 * @return Order created according to the player's strategy.
 	 */
 	public abstract String createOrder();
-	
+
 	/**
-	 * This method returns the name of the strategy that player holds. 
-	 * @return strategy name
+	 * Retrieves the name of the player's strategy.
+	 * @return Strategy name.
 	 */
 	public abstract String strategyName();
-	
+
 	/**
-	 * This method returns the source country for deploy or advance order. 
-	 * @return country to which armies are deployed or from where attack is happening
+	 * Retrieves the source country for deploy or advance orders.
+	 * @return Country where armies are deployed or from where an attack originates.
 	 */
 	public abstract String createDeployOrder();
-	
+
 	/**
-	 * This method returns the list of source and target country for the attack. \
-	 * This is internally used for the advance order creation to pass as target source and target country. 
-	 * @return returns list with first parameter as source country and second as target country. 
+	 * Retrieves the list of source and target countries for an attack.
+	 * Internally used for creating advance orders, providing source and target countries.
+	 * @return List with the first parameter as the source country and the second as the target country.
 	 */
 	public abstract String createAdvanceOrder();
 	
+	 
+	/**
+	 * Generates orders based on the player's cards.
+	 * @param p_CardName Name of the card to create an order for.
+	 * @return Order created based on the specified card.
+    */
+
 	public abstract String createCardOrder(String p_CardName);
 	
 	

@@ -11,24 +11,16 @@ import com.soen6441.risk_game_u14.model.Continent;
 import com.soen6441.risk_game_u14.model.Country;
 
 /**
- * This is the Adaptee class which has loadmap and savemap functions for the conquest map type. 
- * Adptee's functionality is similar to the target but it is used for another type of map file.
- */	
+ * Adaptee class for handling map loading and saving functions specific to the conquest map type.
+ * Adaptee's functionality aligns with the target, but it is designed for a different map file type.
+ */
 public class Adaptee {
+
 	/**
-	 * This method load another type of map file called the conquest file.
-	 * After reading from the conquest file, it stores in to the same Map object which is created for the domination file type.
-	 * @param p_S argument which contains the name of the conquest map file
-	 * @param p_GameEngine GameEngine object which will internally have Map object in which we will load all the continents, countries and their borders. 
-	 * @return success or error for the implementation of this function
-	 */
-	
-	/**
-	 * This method saves another type of map in the file type called the conquest map file.
-	 * For each continent, country and their respective border stored in the Map object inside GameEngine, it saves them into the file at their respective places.
-	 * @param p_S argument This argument contains name of the file inside we want to save. 
-	 * @param p_GameEngine GameEngine object which will internally have Map object from which we will save all the continents, countries and their borders. 
-	 * @return success or error for the implementation of this function
+	 * Saves a conquest map file with information from the Map object inside the GameEngine.
+	 * @param p_S Name of the file to be saved.
+	 * @param p_GameEngine GameEngine object containing the Map object with continents, countries, and borders.
+	 * @return Success or error message for the implementation of this function.
 	 */
 	public String saveConquestMap(String p_S,GameEngine p_GameEngine) {
 		try {
@@ -72,7 +64,13 @@ public class Adaptee {
 		}
 		return "Map has been saved succesfully\n";
 	}
-	
+
+	/**
+	 * Loads a conquest map file, storing the information in the Map object used for domination maps.
+	 * @param p_S Name of the conquest map file to be loaded.
+	 * @param p_GameEngine GameEngine object containing the Map object to store continents, countries, and borders.
+	 * @return Success or error message for the implementation of this function.
+	 */
 	public String loadConquestMap(String p_S,GameEngine p_GameEngine) {
 		try {
 			p_GameEngine.getD_GameModel().getD_Map().reset();
