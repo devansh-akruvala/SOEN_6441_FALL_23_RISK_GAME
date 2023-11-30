@@ -11,6 +11,10 @@ import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Map;
 import com.soen6441.risk_game_u14.model.Player;
 
+/**
+ * Test class for the BenevolentPlayerStrategy class.
+ * Uses JUnit 5 annotations for defining tests.
+ */
 public class BenevolentPlayerTest {
 	/**
 	 * Player objects
@@ -36,7 +40,11 @@ public class BenevolentPlayerTest {
 	 * Country objects
 	 */
 	Country d_Country1, d_Country2, d_Country3;
-
+	/**
+	 * Sets up the context for testing.
+	 *
+	 * @throws Exception Throws an exception if setup fails.
+	 */
 	@BeforeEach
 	public void setTestContext() throws Exception {
 		d_Map = new Map();
@@ -71,6 +79,11 @@ public class BenevolentPlayerTest {
 		d_Country3.addNeighbours("india");
 		
 	}
+
+	/**
+	 * Tests the functionality of finding the weakest country by the BenevolentPlayerStrategy class.
+	 * Verifies if the weakest country is correctly identified.
+	 */
 	@Test
 	public void testStrongestCountry() {
 		String l_Actual="";
@@ -80,6 +93,10 @@ public class BenevolentPlayerTest {
 		l_Actual = c1.getD_CountryName();
 		assertEquals(l_Expected,l_Actual);
 	}
+	/**
+	 * Tests the creation of an order by the BenevolentPlayerStrategy class.
+	 * Checks if the first order is a deploy order.
+	 */
 	@Test
 	public void testOrderCreation() {
 		d_Player1.setD_PlayerStrategy(new BenevolentPlayerStrategy(d_Player1, d_GameModel));

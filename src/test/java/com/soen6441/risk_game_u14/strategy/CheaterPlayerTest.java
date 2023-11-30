@@ -11,7 +11,10 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Map;
 import com.soen6441.risk_game_u14.model.Player;
-
+/**
+ * Test class for the CheaterPlayerStrategy class.
+ * Uses JUnit 5 annotations for defining tests.
+ */
 public class CheaterPlayerTest {
 	/**
 	 * Player object
@@ -37,7 +40,11 @@ public class CheaterPlayerTest {
 	 * Country Objects
 	 */
 	Country d_Country1, d_Country2, d_Country3,d_Country4;
-
+	/**
+	 * Sets up the context for testing.
+	 *
+	 * @throws Exception Throws an exception if setup fails.
+	 */
 	@BeforeEach
 	public void setTestContext() throws Exception {
 		d_Map = new Map();
@@ -79,11 +86,10 @@ public class CheaterPlayerTest {
 		d_Country1.addNeighbours("india");
 				
 	}
-	 /**
-     * Checks if it creates an null Order.
-     *
-     * @throws IOException Exception
-     */
+	/**
+	 * Tests if the CheaterPlayerStrategy class creates a null order when attempting to create an advance order.
+	 *
+	 */
     @Test
     public void testOrderCreationToBeNull(){
     	d_Player1.setD_PlayerStrategy(new CheaterPlayerStrategy(d_Player1, d_GameModel));
@@ -91,6 +97,10 @@ public class CheaterPlayerTest {
        
     	assertNull(l_receivedOrder);
     }
+
+	/**
+	 * Tests if the CheaterPlayerStrategy class creates a null deploy order.
+	 */
     @Test
     public void testOrderDeployCreationToBeNull(){
     	d_Player1.setD_PlayerStrategy(new CheaterPlayerStrategy(d_Player1, d_GameModel));
@@ -98,6 +108,10 @@ public class CheaterPlayerTest {
        
     	assertNull(l_receivedOrder);
     }
+
+	/**
+	 * Tests if the CheaterPlayerStrategy class creates a null card order.
+	 */
     @Test
     public void testOrderCardCreationToBeNull(){
     	d_Player1.setD_PlayerStrategy(new CheaterPlayerStrategy(d_Player1, d_GameModel));

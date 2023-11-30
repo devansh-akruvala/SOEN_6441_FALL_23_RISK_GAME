@@ -10,7 +10,10 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Map;
 import com.soen6441.risk_game_u14.model.Player;
-
+/**
+ * Test class for testing the functionality of the RandomPlayerStrategy class.
+ * Uses JUnit 5 annotations for defining tests.
+ */
 public class RandomPlayerTest {
 	/**
 	 * Player object
@@ -37,6 +40,11 @@ public class RandomPlayerTest {
 	 */
 	Country d_Country1, d_Country2, d_Country3,d_Country4;
 
+	/**
+	 * Sets up the context for testing.
+	 *
+	 * @throws Exception Throws an exception if setup fails.
+	 */
 	@BeforeEach
 	public void setTestContext() throws Exception {
 		d_Map = new Map();
@@ -78,10 +86,10 @@ public class RandomPlayerTest {
 		d_Country1.addNeighbours("india");
 				
 	}
+
 	/**
-	 * Checks if it creates an Order String and first order is deploy.
-	 *
-	 * @throws IOException Exception
+	 * Tests the creation of an order by the RandomPlayerStrategy class.
+	 * Checks if the first order is a deploy order.
 	 */
 	@Test
 	public void testOrderCreation() {
