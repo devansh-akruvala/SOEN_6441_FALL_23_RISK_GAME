@@ -10,7 +10,10 @@ import com.soen6441.risk_game_u14.model.Country;
 import com.soen6441.risk_game_u14.model.GameModel;
 import com.soen6441.risk_game_u14.model.Map;
 import com.soen6441.risk_game_u14.model.Player;
-
+/**
+ * Test class for the AggressivePlayerStrategy class.
+ * Uses JUnit 5 annotations for defining tests.
+ */
 public class AggressivePlayerTest {
 	/**
 	 * Player objects
@@ -36,7 +39,11 @@ public class AggressivePlayerTest {
 	 * Country objects
 	 */
 	Country d_Country1, d_Country2, d_Country3;
-
+	/**
+	 * Sets up the context for testing.
+	 *
+	 * @throws Exception Throws an exception if setup fails.
+	 */
 	@BeforeEach
 	public void setTestContext() throws Exception {
 		d_Map = new Map();
@@ -70,7 +77,10 @@ public class AggressivePlayerTest {
 		d_Country3.addNeighbours("india");
 		
 	}
-	
+	/**
+	 * Tests the creation of an order by the AggressivePlayerStrategy class.
+	 * Checks if the first order is a deploy order.
+	 */
 	@Test
 	public void testOrderCreation() {
 		d_Player1.setD_PlayerStrategy(new AggresivePlayerStrategy(d_Player1, d_GameModel));
@@ -79,6 +89,10 @@ public class AggressivePlayerTest {
 		assertEquals(l_receivedOrder.split(" ")[0], "deploy");
 	}
 
+	/**
+	 * Tests the functionality of finding the strongest country by the AggressivePlayerStrategy class.
+	 * Verifies if the strongest country is correctly identified.
+	 */
 	@Test
 	public void testStrongestCountry() {
 		String l_Actual="";
@@ -88,7 +102,10 @@ public class AggressivePlayerTest {
 		l_Actual = c1.getD_CountryName();
 		assertEquals(l_Expected,l_Actual);
 	}
-	
+	/**
+	 * Another test to validate the identification of the strongest country by the AggressivePlayerStrategy class.
+	 * Ensures consistency in identifying the strongest country.
+	 */
 	@Test
 	public void testStrongestCountry2() {
 		String l_Actual="";
