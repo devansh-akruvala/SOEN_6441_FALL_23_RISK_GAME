@@ -6,7 +6,7 @@
  * validating maps, editing maps, adding players, assigning countries, showing the map, etc.
  * Additionally, it contains a LogEntryBuffer to store log entries related to the save game phase.
  *
- * @author Smridhi
+ * @author Smridhi 
  * @version 1.0
  * @see Phase
  * @see Serializable
